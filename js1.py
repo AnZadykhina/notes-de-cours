@@ -106,24 +106,24 @@ text = {
 
 def trouverlemot (mot, dict):
     if dict["text"]:
-        liste=[]
+        var liste = []
         for cle in dict["text"]:
             if mot in dict["text"][cle]:
                 liste.append(cle)
     return liste
 print(trouverlemot("judge", text))
 
-var trouverlemot = function (mot, dict){
+var trouverlemot = function(mot, dict) {
     if (dict["text"]){
         liste=[];
-    for(var cle in dict["text"])
-    {
-        if (dict["text"][cle].includes(mot)){
-            liste.push(cle);
-            console.log(cle);
+        for(var cle in dict["text"])
+        {
+            if (dict["text"][cle].includes(mot)){
+              liste.push(cle);
+              console.log(cle);
             }
         }
-    return liste
+        return liste
     }
 }
 
