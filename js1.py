@@ -127,5 +127,6 @@ var trouverlemot = function(mot, dict) {
     }
 }
 
-trouverlemot ("judge", text)           
+var mot = prompt("choisir le mot")
+trouverlemot (mot, text)           
     
