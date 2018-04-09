@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="ed_GarLorrMe2" type="ed" xml:lang="fr">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title type="main">Garin le Lorrain</title>
+                <title type="sub">Numérisation de l'édition de Meyer de 1905</title>
+                <respStmt xml:id="JBC">
+                    <resp>sous la direction de</resp>
+                    <persName>Jean-Baptiste Camps</persName>
+                </respStmt>
+                <respStmt xml:id="AZ">
+                    <resp>édition numérique</resp>
+                    <persName>Anastasiia Zadykhina</persName>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <authority>
+                    <persName>
+                        <forename>Jean-Baptiste</forename>
+                        <surname>Camps</surname>
+                    </persName>
+                    <address>
+                        <orgName>École nationale des chartes</orgName>
+                        <addrLine>65 rue de Richelieu</addrLine>
+                        <addrLine>F-75002 Paris</addrLine>
+                    </address>
+                    <email>jbcamps@hotmail.com</email>
+                </authority>
+                <availability status="free">
+                    <licence target="http://creativecommons.org/publicdomain/mark/1.0/"> Les textes
+                        d'auteurs médiévaux sont dans le domaine public.</licence>
+                    <licence target="http://creativecommons.org/licenses/by-sa/4.0/"> Le travail
+                        d'encodage et d'annotation sont mis à disposition selon les termes de la
+                        licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0
+                        International (CC BY-SA 4.0). </licence>
+                </availability>
+                <date>2018</date>
+            </publicationStmt>
+            <sourceDesc>
+                <biblStruct xml:id="edGLM2">
+                    <monogr>
+                        <editor xml:id="Meyer">
+                            <persName>
+                                <forename>Paul</forename>
+                                <surname>Meyer</surname>
+                            </persName>
+                        </editor>
+                        <title type="main">Garin le Lorrain</title>
+                        <title type="sub">Fragments de manuscrits français</title>
+                        <idno type="DOI">10.3406/roma.1905.5417</idno>
+                        <imprint>
+                            <publisher>Romania, <idno>34</idno></publisher>
+                            <pubPlace>Paris</pubPlace>
+                            <date>1905</date>
+                        </imprint>
+                        <biblScope unit="page" from="429" to="435">429-435</biblScope>
+                    </monogr>
+                </biblStruct>
+                <msDesc>
+                    <msIdentifier>
+                        <repository>potentiellement le même que le BnF</repository>
+                        <altIdentifier>
+                            <idno>nouv. acq. fr. 23011</idno>
+                        </altIdentifier>
+                    </msIdentifier>
+                    <msFrag>
+                        <msIdentifier>
+                            <msName>Fragm. Gaston Paris</msName>
+                        </msIdentifier>
+                    </msFrag>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <creation>
+                <origPlace cert="medium" resp="DEAF" type="lieuComposition">traits champ. et
+                    pic</origPlace>
+                <origDate cert="medium" resp="DEAF" notBefore="1175" notAfter="1200"
+                    type="dateComposition">1175-1200</origDate>
+                <origPlace cert="medium" resp="Meyer" type="lieuManuscrit">français
+                    central</origPlace>
+                <origDate cert="medium" resp="Meyer" notBefore="1280" notAfter="1300"
+                    type="dateManuscrit">1280-1300</origDate>
+            </creation>
+            <langUsage>
+                <language cert="unknown" resp="#Meyer" ident="fro">centre de la France</language>
+            </langUsage>
+        </profileDesc>
+        <revisionDesc status="draft">
+            <change who="#AZ" when="2018-03-15">Création de teiHeader</change>
+        </revisionDesc>
+
+    </teiHeader>
+    <text>
+        <front>
+            <div>
+                <pb facs="00002.pdf.png" n="00002"/>
+                <p>J‘ai trouvé dans les papiers de Gaston Paris un feuillet pro<lb break="no"
+                        rend="hyphen"/>venant d‘un manuscrit dépecé des Lorrains. L‘écriture est de
+                    la <lb/>fin du XIIIe siècle. Il y a quarante vers à la colonne, soit en
+                    <lb/>tout cent soixante vers. J‘ignore absolument d‘où vient ce <lb/>feuillet :
+                    tout ce que je sais c‘est qu‘il a servi de couverture à<lb/> un registre de
+                    baptêmes, comme l‘indique une note du XVIe <lb/>siècle écrite sur la marge, mais
+                    dans quelle paroisse, je ne sau<lb break="no" rend="hyphen"/>rais dire. Cela n‘a
+                    du reste aucune importance. Je le déposerai <lb/>à la Bibliothèque nationale où
+                    on le fera entrer dans quelque <lb/>recueil de mélanges. En attendant, je crois
+                    utile de le publier, <lb/>et même d‘en donner un fac—similé partiel (le haut du
+                    recto). <lb/>Peut—être existe—t—il quelque part d‘autres morceaux du même livre
+                    : le fac—similé facilitera l‘identification.</p>
+                <p>Ces cent soixante vers correspondent aux <ref>vers 3221—3373 de <lb/>La Mort de
+                        Garin d‘Edélestand Du Méril (Paris, 1846, pp. 151— <lb/>8)</ref>. Je suis à
+                    peu près sûr qu‘il ne s‘y rencontre aucune leçon <lb/>de quelque valeur qui ne
+                    se trouve déjà dans tel ou tel des <lb/>nombreux mss. qu‘on possède de Garin —
+                    ce qui ne se peut <lb/>vérifier avec l‘édition de Du Méril, où le texte est
+                    constitué <lb/>de la façon la plus arbitraire et où les variantes ne sont pas
+                    <lb/>publiées, mais ce que j‘aurais pu établir sans peine à l‘aide des
+                    <lb/>ressources de nos bibliothèques de Paris. Je n‘ai pas jugé à pro<lb
+                        break="no" rend="hyphen"/>pos, toutefois, de relever en note les variantes
+                    des manuscrits, <lb/>comme je l‘ai fait autrefois à propos d‘autres fragments
+                    sur lesquels <lb/>j‘ai eu à faire des rapports au Comité des travaux
+                    historiques. <lb/>Actuellement les études sur Garin sont beaucoup plus avancées
+                    <lb/>que jadis. M. Stengel publiera prochainement une édition de ce <lb/>vaste
+                    et intéressart poème, et il indiquera sans peine, et avec<lb/>
+                    <pb facs="0003.pdf.png" n="00003"/>
+                    <!-- 430 P. MEYER --> plus de précision que ce que je pourrais faire, la famille
+                    à<lb/> laquelle appartient le fragment dont je vais donner la tran<lb break="no"
+                        rend="hyphen"/>scription.</p>
+                <p>Ce fragment ne présente pas de caractères linguistiques bien <lb/>marqués : c‘est
+                    le français commun du centre de la France. <lb/>Quelques détails cependant
+                    peuvent être relevés ; l‘s tombe très <lb/>souvent avant une consonne : poteïs
+                        <ref corresp="#edGLM2_w_000006"> 1</ref>, futes <ref
+                        corresp="#edGLM2_w_000048 #edGLM2_w_001097"> 7, 151 </ref><note
+                        resp="#Meyer"><lb/>1. Cf. pour la date de ce phénomène Raoul de Cambrai, p.
+                        lxxxviij ; Roma<lb break="no" rend="hyphen"/>nia, XV, 616 , XVIII, 572 ,
+                        XIX, 459. Le phénomène est constant dans l 'ancien glossaire hébreu—français
+                        publié par M . Neubauer, Roman . Stud., I.</note>; l‘ finale <lb/>se
+                    vocalise, même devenue une voyelle dans chevau, 21, 46—7, <lb/>72, 160 ; le
+                    groupe qu se réduit régulièrement à q (ainsi qi <ref
+                        corresp="#edGLM2_w_000033 #edGLM2_w_000232">5, 31,</ref>
+                    <lb/>qe <ref corresp="#edGLM2_w_000182 #edGLM2_w_000257 #edGLM2_w_000300">25,
+                        35, 41</ref>, qant <ref corresp="#edGLM2_w_000744">102</ref>, qel <ref
+                        corresp="#edGLM2_w_000139">19</ref>, adonqes <ref corresp="#edGLM2_w_000439"
+                        >59</ref>, etc.), fait de pure gra<lb break="no" rend="hyphen"/>phie dont on
+                    a d‘assez nombreux exemples dans des manuscrits <lb/>exécutés dans la France
+                    centrale <note resp="#Meyer"><lb/>2. Ce fait est très fréquent dans les
+                        manuscrits français executés en Italie. J‘ai eu tort de dire qu‘il était
+                        rare en France (Raoul de Cambrai , p. lxxxiij). Il est habituel dans les
+                        fragments de Girart de Vienne publiés plus loin .</note>. Remarquons encore
+                    que <lb/>rompi <ref corresp="#edGLM2_w_000327">44</ref>, ronpi <ref
+                        corresp="#edGLM2_w_000582">79</ref>, rompent <ref corresp="#edGLM2_w_000585"
+                        >80</ref>, sont écrits en toutes lettres : de <lb/>même con <ref
+                        corresp="#edGLM2_w_000041 #edGLM2_w_000425">6, 57</ref>, com <ref
+                        corresp="#edGLM2_w_000622">85</ref>. Aux <ref
+                        corresp="#edGLM2_w_000643 #edGLM2_w_000994">vers 88 et 136</ref> il y a
+                    clairement<lb/> fuiz<note resp="#Meyer"><lb/>3. On sait que cette notation est
+                        ordinaire dans les textes français écrits en Angleterre, mais il y en a bien
+                        des exemples dans des manuscrits propre<lb break="no" rend="hyphen"/>ment
+                        français .</note> ; ailleurs il est difficile de se décider entre fiuz et
+                    fuiz.</p>
+            </div>
+        </front>
+        <body>
+            <lg>
+                <lb/>
+            <l><w>Del</w><w>linage</w><w>est</w><w>Fromont</w><w>le</w><w>poteïs</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Sor</w><w>une</w><w>roche</w><w>durement</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>abati</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Le</w><w>cou</w><w>desnoe</w><pc type="supplied"
+                    >,</pc><w>si</w><w>est</w><w>brisiez</w><w>par</w><w>mi</w><pc type="supplied"
+                    >;</pc></l>
+            <lb/>
+            <l><w>Li</w><w>cors</w><w rend="elision">s</w>
+                <pc type="supplied">'</pc><w>estent</w><w>et</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>ame</w><w rend="elision">s</w>
+                <pc type="supplied">'</pc><w>en</w><w>parti</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>B</w><pc type="supplied">.</pc><w>chevauche</w><pc type="supplied"
+                    >,</pc><w>qi</w><w>mort</w><w>trova</w><w>son</w><w>fil</w><pc type="supplied"
+                    >;</pc></l>
+            <lb/>
+            <l><w>Il</w><w>le</w><w>regrete</w><w>con</w><w>ja</w><w>porrez</w><w>oïr</w><pc
+                    type="supplied">:</pc></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Tant</w><w>mare</w><w>i</w><w>futes</w><pc
+                        type="supplied">!</pc><w>franc</w><w>chevalier</w><w>gentil</w><pc
+                        type="supplied">;</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Or</w><w>puis</w><w>je</w><w>dire</w><w>malement</w><w>sui</w><w>bailli</w><pc
+                        type="supplied">:</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Abatu</w><w><w rend="elision">m</w>
+                        <pc type="supplied"
+                        >'</pc>ont</w><w>mon</w><w>chastel</w><w>de</w><w>Nesil</w><pc
+                        type="supplied">,</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Et</w><w>je</w><w>vos</w><w>voi</w><w>a</w><w>la</w><w>terre</w><w>gesir</w><pc
+                        type="supplied">.</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Certes</w><pc type="supplied"
+                        >,</pc><w>ma</w><w>vie</w><w>pris</w><w>je</w><w>ore</w><w>petit</w><pc
+                        type="supplied">,</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Ne</w><w>moi</w><w>ne</w><w>chaut</w><w>qel</w><w>part</w><w>doie</w><w>ganchir</w><pc
+                        type="supplied">.</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Enz</w><w>enz</w><note>(sic)</note><w rend="elision">l</w>
+                <pc type="supplied"
+                >'</pc><w>estor</w><w>par</w><w>mautalent</w><w>se</w><w>mist</w></l>
+            <lb/>
+            <l><w>Et</w><w>fiert</w><w>Beraut</w><w>qi</w><w>fu</w><w>nez</w><w>de</w><w>Poissi</w><pc
+                    type="supplied">:</pc></l>
+
+            <!-- FRAGMENT DE GARIN LE LORRAIN 431 -->
+            <pb facs="0004.pdf.png" n="00004"/>
+            <l><w>Senglant</w><w>en</w><w>ot</w><w>la</w><w>poitrine</w><w>et</w><w>le</w><w>piz</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>De</w><w>Godefroi</w><w>en</w><w>a</w><w>la</w><w>teste</w><w>pris</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Qi</w><w>donc</w><w>veïst</w><w>Bernart</w><w>au</w><w>brant</w><w>ferir</w><pc
+                    type="supplied">!</pc></l>
+            <lb/>
+            <l><w>A</w><w>haute</w><w>voiz</w><w>a</w><w>escrié</w><pc type="supplied">:</pc><pc
+                    type="supplied">«</pc><q><w>Nesil</w><pc type="supplied">!</pc></q><pc
+                    type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Dist</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>un</w><w>a</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>autre</w><pc type="supplied">:</pc><pc type="supplied"
+                    >«</pc><q><w>Qel</w><w>chevalier</w><w>a</w><w>ci</w><pc type="supplied"
+                    >!</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Devant</w><w>lui</w><w>garde</w><pc type="supplied">,</pc><w rend="elision">s</w>
+                <pc type="supplied">'</pc><w>a</w><w><pc type="supplied">.</pc>j</w><pc
+                    type="supplied">.</pc><w>espié</w><w>choisi</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>De</w><w>son</w><w>chevau</w><w rend="elision">s</w>
+                <pc type="supplied">'</pc><w>abessa</w><pc type="supplied"
+                    >,</pc><w>si</w><w>le</w><w>prist</w></l>
+            <lb/>
+            <l><w>Et</w><w>vet</w><w>ferir</w><w>de</w><w>Mont</w><w rend="elision">d</w>
+                <pc type="supplied">'</pc><w>Ausois</w><w>Terri</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Icil</w><w>fu</w><w>oncles</w><w>au</w><w>Lohorenc</w><w>Garin</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w rend="elision">l</w>
+                <pc type="supplied"
+                    >'</pc><w>auberc</w><w>li</w><w>trenche</w><w>sor</w><w>le</w><w>peliçon</w><w>gris</w></l>
+            <lb/>
+            <l><w>Si</w><w>qe</w><w>la</w><w>pane</w><w>del</w><w>cuer</w><w>li</w><w>ront</w><w>par</w><w>mi</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Il</w><w>chiet</w><w>a</w><w>terre</w><w>et</w><w>crie</w><pc type="supplied"
+                    >:</pc><pc type="supplied">«</pc><q><w>Diex</w><pc type="supplied"
+                        >,</pc><w>merci</w><pc type="supplied">!</pc></q><pc type="supplied"
+                >»</pc></l>
+            <lb/>
+            <l><w>Garin</w><w>le</w><w>voit</w><pc type="supplied">,</pc><w>a</w><w>poi</w><w
+                    rend="elision">n</w>
+                <pc type="supplied">'</pc><w>enrage</w><w>vis</w><pc type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Le</w><w>destrier</w><w>broche</w><w>des</w><w>esperons</w><w rend="elision">d</w>
+                <pc type="supplied">'</pc><w>or</w><w>fin</w><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Brandist</w><w>la</w><w>hante</w><w>de</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>espié</w><w>poitevin</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Dont</w><w>li</w><w>remenbre</w><w>de</w><w>Huon</w><w>le</w><w>meschin</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Le</w><w>riche</w><w>conte</w><w>qi</w><w>tenoit</w><w>Cambresin</w></l>
+            <lb/>
+            <l><w>Qe</w><w>dant</w><w>Bernart</w><w>par</w><w>traïson</w><w>ocist</w><pc
+                    type="supplied">:</pc></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Sainte</w><w>Marie</w><pc type="supplied"
+                >!</pc></q><pc type="supplied">»</pc>ce<w>dit</w><w>li</w><w>dus</w><w><choice><abbr cert="low">Ga</abbr><expan>Garin</expan></choice></w><pc
+                    type="supplied">.</pc><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Ja</w><w>voi</w><w>je</w><w>ci</w><w>mon</w><w>mortel</w><w>anemi</w><pc
+                        type="supplied">,</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Le</w><w>plus</w><w>felon</w><w>qe</w><w>deables</w><w>feïst</w><pc
+                        type="supplied">,</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Qi</w><w>devant</w><w>moi</w><w><w rend="elision"
+                            >m</w>
+                        <pc type="supplied">'</pc>a</w><w>ci</w><w>mon</w><w>oncle</w><w>ocis</w><pc
+                        type="supplied">;</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>En</w><w>traïson</w><w>vers</w><w>Huon</w><w>entreprist</w><pc
+                        type="supplied">.</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Se</w><w>einsi</w><w>me</w><w>eschape</w><w>je</w><w>me</w><w>prise</w><w>petit</w><pc
+                        type="supplied">:</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Ou</w><w>je</w><w>morré</w><w>ou</w><w>li</w><w>covient</w><w>morir</w><pc
+                        type="supplied">;</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Or</w><w>me</w><w>comant</w><w>au</w><w>roi</w><w>de</w><w>paradis</w><pc
+                        type="supplied">.</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Ahi<pc type="supplied">!</pc></w><w>Rigaut</w><pc
+                        type="supplied">,</pc><w>biax</w><w>niés</w><pc type="supplied"
+                        >,</pc><w>qe</w><w rend="elision">n</w>
+                    <pc type="supplied">'</pc><w>es</w><w>or</w><w>ci</w><pc type="supplied"
+                    >?</pc></q><pc type="supplied">»</pc><note>(b)</note></l>
+            <lb/>
+            <l><w>De</w><w>son</w><w>fin</w><w>cuer</w><w>ala</w><w>Bernart</w><w>ferir</w><pc
+                    type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Toute</w><w>sa</w><w>force</w><w>par</w><w>bon</w><w>corage</w><w>i</w><w>mist</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>escu</w><w>li</w><w>trenche</w><pc type="supplied"
+                    >,</pc><w>le</w><w>haubert</w><w>li</w><w>rompi</w><pc type="supplied"
+                >;</pc></l>
+            <lb/>
+            <l><w>Parmi</w><w>les</w><w>flans</w><w>li</w><w>a</w><w>son</w><w>espié</w><w>mis</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Del</w><w>bon</w><w>chevau</w><w>a</w><w>terre</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>abati</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Entre</w><w>les</w><w>piez</w><w>de</w><w>son</w><w>chevau</w><w>le</w><w>mist</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Par</w><w>deseur</w><w>lui</w><w>en</w><w>passerent</w><w>bien</w><w><pc
+                        type="supplied">.</pc>M</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w rend="elision">S</w>
+                <pc type="supplied">'</pc><w>il</w><w>ot</w><w>engoisse</w><pc type="supplied"
+                    >,</pc><w>li</w><w>covient</w><w>a</w><w>sofrir</w><pc type="supplied"
+                >.</pc></l>
+            <lb/>
+            <l><w>Moines</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>en</w><w>portent</w><pc type="supplied"
+                    >;</pc><w>sor</w><w><pc type="supplied">.</pc>j</w><pc type="supplied"
+                    >.</pc><w>escu</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>ont</w><w>mis</w><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Jusqe</w><w>a</w><w>Saint</w><w>Vane</w><w>en</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>encloistre</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>ont</w><w>mis</w></l>
+            <lb/>
+            <l><w>Dont</w><w>il</w><w>fu</w><w>moine</w><pc type="supplied"
+                    >,</pc><w>mès</w><w>li</w><w>gloz</w><w rend="elision">s</w>
+                <pc type="supplied">'</pc><w>en</w><w>issi</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Li</w><w>moine</w><w>doute[nt]</w><w>q‘il</w><w>en</w><w>doie</w><w>morir</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Moine</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>ont</w><w>fet</w><pc type="supplied"
+                    >,</pc><w>les</w><w>dras</w><w>li</w><w>font</w><w>vestir</w><pc type="supplied"
+                    >;</pc></l>
+            <lb/>
+            <l><w>Après</w><w>entendent</w><w>le</w><w>vassal</w><w>a</w><w>guerir</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Or</w><w>redevons</w><w>a</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>estor</w><w>revenir</w><pc type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Dex</w><pc type="supplied"
+                    >!</pc><w>con</w><w>le</w><w>fet</w><w>li</w><w>alemant</w><w>Orris</w><pc
+                    type="supplied">!</pc></l>
+            <lb/>
+            <!--<p>FRAGMENT DE GARIN LE LORRAIN 433</p>-->
+            <pb facs="0006.pdf.png" n="00006"/>
+            <lb/>
+            <l><w>Des</w><w>genz</w><w><abbr>Fro</abbr></w><pc type="supplied"
+                    >.</pc><w>nos</w><w>a</w><w>a</w><w>terre</w><w>mis</w><pc type="supplied"
+                    >.</pc></l>
+            <lb/>
+            <l><w>Adonqes</w><w>point</w><w>li</w><w>aguèz</w><w>Frod</w><pc type="supplied"
+                >'</pc></l>
+            <lb/>
+            <l><w>Tant</w><w>durement</w><w>qe</w><w>rien</w><w>ne</w><w>pot</w><w>sofrir</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Dejoste</w><w>lui</w><w><choice><abbr cert="low">Guill</abbr><expan>Guillaume</expan></choice></w><pc type="supplied"
+                    >.</pc><w>de</w><w>Monclin</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>La</w><w>veïssiez</w><w>tant</w><w>roit</w><w>espié</w><w>forbi</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Tant</w><w>blanc</w><w>hauberc</w><w>derompre</w><w>et</w><w>departir</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Tante</w><w>baniere</w><w>contre</w><w>terre</w><w>flatir</w></l>
+            <lb/>
+            <l><w>Et</w><w>tant</w><w>vassal</w><w>a</w><w>angoisse</w><w>morir</w><pc
+                    type="supplied">!</pc></l>
+            <lb/>
+            <l><w>Sor</w><w>le</w><w>conroi</w><w>li</w><note resp="#Meyer"><mentioned>le</mentioned></note><w>Borgoinz</w><w>Auberi</w></l>
+            <lb/>
+            <l><w>Les</w><w>ont</w><w>arriere</w><w>contre</w><w>terre</w><w>flati</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Lohorenc</w><w>poignent</w><w>qi</w><w>furent</w><w>plus</w><w>de</w><w><pc
+                        type="supplied">.</pc>M</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Et</w><w>Borguegnon</w><w>qi</w><w>sont</w><w>chevalier</w><w>fin</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Sor</w><w>les</w><w>conroiz</w><w>les</w><w>ont</w><w>arriere</w><w>mis</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Adonqes</w><w>point</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>evesque</w><w>Lancelin</w><pc type="supplied"
+                >;</pc></l>
+            <lb/>
+            <l><w>Bien</w><w>fu</w><w>armez</w><w>et</w><w>sor</w><w><pc type="supplied"
+                    >.</pc>j</w><pc type="supplied">.</pc><w>chevau</w><w>sist</w><pc
+                    type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Poinçon</w><w>de</w><w>Mez</w><w>nos</w><w>a</w><w>par</w><w>terre</w><w>mis</w></l>
+            <lb/>
+            <l><w>De</w><w>la</w><w>mesniée</w><w>Girbert</w><w>le</w><w>fiuz</w><w><choice><abbr cert="low">Ga</abbr><expan>Garin</expan></choice></w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Girbert</w><w>le</w><w>voit</w><pc type="supplied">,</pc><w>a</w><w>poi</w><w
+                    rend="elision">n</w>
+                <pc type="supplied">'</pc><w>enrage</w><w>vis</w><pc type="supplied">:</pc></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Par</w><w>Dieu</w><pc type="supplied"
+                        >!</pc><w>fox</w><w>clers</w><pc type="supplied"
+                        >,</pc><w>ne</w><w>la</w><w>porrez</w><w>guerir</w><pc type="supplied"
+                        >.</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Grant</w><w>cop</w><w>li</w><w>done</w><w>sor</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>escu</w><w>qe</w><w>il</w><w>tint</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Desoz</w><w>la</w><w>boucle</w><w>li</w><w>fet</w><w>fendre</w><w>et</w><w>croissir</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Fort</w><w>fu</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>auberc</w><pc type="supplied"
+                    >,</pc><w>qe</w><w>maille</w><w rend="elision">n</w>
+                <pc type="supplied">'</pc><w>en</w><w>ronpi</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Li</w><w>estrier</w><w>rompent</w><pc type="supplied"
+                    >,</pc><w>ne</w><w>se</w><w>porent</w><w>tenir</w><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Si</w><w>qe</w><w rend="elision">l</w>
+                <pc type="supplied"
+                    >'</pc><w>escu</w><w>li</w><w>fet</w><w>el</w><w>cors</w><w>flatir</w><pc
+                    type="supplied">;</pc><note>(c)</note></l>
+            <lb/>
+            <l><w>Del</w><w>bon</w><w>destrier</w><w>a</w><w>terre</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>abati</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Gerin</w><w>li</w><w>preuz</w><w>nos</w><w>abat</w><w>Frod</w><pc type="supplied"
+                    >‘</pc><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Et</w><w>Hernaudin</w><w>vet</w><w>ferir</w><w>Baud</w><pc type="supplied"
+                    >‘</pc><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Nez</w><w>fu</w><w rend="elision">d</w>
+                <pc type="supplied">'</pc><w>Amiens</w><pc type="supplied"
+                    >,</pc><w>si</w><w>com</w><w>la</w><w>chançon</w><w>dit</w><pc type="supplied"
+                    >;</pc></l>
+            <lb/>
+            <l><w>Mort</w><w>le</w><w>trebuche</w><w>del</w><w>cheval</w><w>o</w><w>il</w><w>sist</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>A</w><w>la</w><w>rescousse</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>evesqe</w><w>Lancelin</w></l>
+            <lb/>
+            <l><w>Et</w><w>a</w><w>son</w><w>fuiz</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>orgueiliox</w><w>Frod</w><pc type="supplied">‘</pc></l>
+            <lb/>
+            <l><w>Il</w><note><mentioned>l</mentioned></note><w>est</w><w>venuz</w><w><abbr>Fro</abbr></w><pc type="supplied"
+                    >.</pc><w>le</w><w>viel</w><w>antis</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>La</w><w>veïssiez</w><w>cez</w><w>chevaliers</w><w>venir</w><pc type="supplied"
+                    >;</pc></l>
+            <lb/>
+            <l><w>Et</w><w><abbr>Fro</abbr></w><pc type="supplied"
+                    >.</pc><w>point</w><w>qi</w><w>malement</w><w>le</w><w>fist</w><pc
+                    type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Girart</w><w>del</w><w>Liege</w><w>nos</w><w>a</w><w>le</w><w>jor</w><w>ocis</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Li</w><w>quens</w><w><choice><abbr cert="low">Guill</abbr><expan>Guillaume</expan></choice></w><pc type="supplied">.</pc><pc type="supplied"
+                    >,</pc><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>orgueillox</w><w>de</w><w>Monclin</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Rala</w><w>joster</w><w>a</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>alemant</w><w>Orri<pc type="supplied">;</pc></w></l>
+            <lb/>
+            <l><w rend="elision">N</w>
+                <pc type="supplied">'</pc><w>ot</w><w>point</w><w rend="elision">d</w>
+                <pc type="supplied">'</pc><w>escu</w><pc type="supplied"
+                    >,</pc><w>a</w><w>descovert</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>a</w><w>pris</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Chaut</w><w>fu</w><w>le</w><w>fer<pc type="supplied"
+                    >;</pc></w><w>ne</w><w>pot</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>acier</w><w>soufrir</w><pc type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Tout</w><w>li</w><w>detrenche</w><w>et</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>eschine</w><w>et</w><w>le</w><w>piz</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Dex</w><pc type="supplied"
+                    >!</pc><w>qel</w><w>douleur</w><w>de</w><w>chevalier</w><w>de</w><w>pris</w><pc
+                    type="supplied">,</pc></l>
+            <!-- Romania, XXXIV 28 -->
+
+            <!--434 P.MEYER  -->
+            <pb facs="0007.pdf.png" n="00007"/>
+            <lb/>
+            <l><w>Et</w><w>qel</w><w>damage</w><w>au</w><w>Lohorenc</w><w><choice><abbr cert="low">Ga</abbr><expan>Garin</expan></choice></w><pc type="supplied"
+                    >.</pc><pc type="supplied">!</pc></l>
+            <lb/>
+            <l><w>Ci</w><w>a</w><w>perdu</w><w><pc type="supplied">.</pc>ij</w><pc type="supplied"
+                    >.</pc><w>de</w><w>ses</w><w>bons</w><w>amis</w></l>
+            <lb/>
+            <l><w>Qi</w><w>li</w><w>aiderent</w><w>sa</w><w>guerre</w><w>a</w><w>meintenir</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Qant</w><w>la</w><w>novele</w><w>est</w><w>venue</w><w>a</w><w><choice><abbr cert="low">Ga</abbr><expan>Garin</expan></choice></w><pc
+                        type="supplied">.</pc><pc type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Engoisse</w><w>ot</w><w>grant</w><pc type="supplied"
+                    >;</pc><w>il</w><w>ne</w><w>se</w><w>pot</w><w>tenir</w><pc type="supplied"
+                    >:</pc></l>
+            <lb/>
+            <l><w><pc type="supplied">.</pc>iij</w><pc type="supplied"
+                    >.</pc><w>foiz</w><w>se</w><w>pasme</w><w>sor</w><w>le</w><w>destrier</w><w>de</w><w>pris</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Qant</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>en</w><w>redresce</w><w><abbr>H</abbr></w><pc type="supplied"
+                    >.</pc><w>qi</w><w>Moçon</w><w>tint</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Il</w><w>li</w><w>escrie</w><pc type="supplied">;</pc><pc type="supplied"
+                        >«</pc><q><w>Franc</w><w>duc</w><pc type="supplied"
+                        >,</pc><w>qe</w><w>fes</w><w>tu</w><w>ci</w><pc type="supplied"
+                >?</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>A</w><w rend="elision">l</w>
+                    <pc type="supplied">'</pc><w>estor</w><w>est</w><w rend="elision">l</w>
+                    <pc type="supplied"
+                >'</pc><w>enfant</w><w>Girbert</w><w>ton</w><w>fiz</w></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Et</w><w>ti</w><w>ne[ve]u</w><w>Hernaudet</w><w>et</w><w>Gerin</w><pc
+                        type="supplied">.</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Mout</w><w>se</w><w>desroie</w><w><choice><abbr cert="low">Guill</abbr><expan>Guillaume</expan></choice></w><pc type="supplied"
+                    >.</pc><w>de</w><w>Monclin</w><pc type="supplied">:</pc></l>
+            <lb/>
+            <l><w>Il</w><w>a</w><w>monté</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>evesqe</w><w>Lancelin</w></l>
+            <lb/>
+            <l><w>Et</w><w>son</w><w>neveu</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>orgueillox</w><w>Frod</w><pc type="supplied">'</pc><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Auberi</w><w>broche<pc type="supplied"
+                    >;</pc></w><w>vet</w><w>ferir</w><w>Rocelin</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Parmi</w><w>le</w><w>cors</w><w>li</w><w>met</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>espié</w><w>bruni</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>De</w><w>la</w><w>seror</w><w><abbr>Fro</abbr></w><pc type="supplied"
+                    >.</pc><w>estoit</w><w>icil</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Mort</w><w>le</w><w>trebuche</w><w>del</w><w>bon</w><w>destrier</w><w>de</w><w>pris</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Thomas</w><w>de</w><w>Fere</w><w>lor</w><w>a</w><w>ocis</w><w>Garin</w><pc
+                    type="supplied">.</pc></l></lg>
+            <lb/>
+            <lg><l><w>Granz</w><w>fu</w><w>la</w><w>noise</w><w>et</w><w>li</w><w>criz</w><w>est</w><w>levé</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Tomas</w><w>de</w><w>Fere</w><w>a</w><w><choice><abbr cert="low">Ga</abbr><expan>Garin</expan></choice></w><pc type="supplied"
+                    >.</pc><w>mort</w><w>gité</w><pc type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Girart</w><w>li</w><w>preuz</w><w>au</w><w>corage</w><w>aduré</w></l>
+            <lb/>
+            <l><w>A</w><w>Clarenbaut</w><w>de</w><w>Vanduel</w><w>encontré</w><pc type="supplied"
+                    >:</pc></l>
+            <lb/>
+            <l><w>Grant</w><w>coup</w><w>li</w><w>done</w><w>del</w><w>brant</w><w rend="elision"
+                    >d</w>
+                <pc type="supplied">'</pc><w>acier</w><w>letré</w><pc type="supplied"
+                    >,</pc><note>(d)</note></l>
+            <lb/>
+            <l><w>Qe</w><w>le</w><w>braz</w><w>destre</w><w>li</w><w>a</w><w>par</w><w>mi</w><w>coupé</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Fuiant</w><w rend="elision">s</w>
+                <pc type="supplied"
+                    >'</pc><w>en</w><w>torne</w><w>qant</w><w>il</w><w>fu</w><w>eschapé</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Parmi</w><w>les</w><w>portes</w><w>entrerent</w><w>li</w><w>navré</w></l>
+            <lb/>
+            <l><w>Dont</w><w>meint</w><w>boël</w><w>ot</w><w>hors</w><w>de</w><w>cors</w><w>gité</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Bien</w><w>i</w><w>parut</w><w>qe</w><w>Garin</w><w>fu</w><w>iré</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Si</w><w>anemi</w><w>nel</w><w>truevent</w><w>pas</w><w>privé</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Meint</w><w>en</w><w>ocist</w><w>et</w><w>meint</w><w>en</w><w>a</w><w>navré</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w rend="elision">l</w>
+                <pc type="supplied"
+                    >'</pc><w>enfant</w><w>Girbert</w><w>ne</w><w>fu</w><w>mie</w><w>emprunté</w></l>
+            <lb/>
+            <l><w>Il</w><w>ne</w><w>Gerin</w><w>ne</w><w>Hernaut</w><w>le</w><w>sené</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>Meint</w><w>blanc</w><w>hauberc</w><w>i</w><w>ot</w><w>le</w><w>jor</w><w>fausé</w></l>
+            <lb/>
+            <l><w>Et</w><w>meint</w><w>vert</w><w>hiaume</w><w>fret</w><w>et</w><w>esqartelé</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Li</w><w>un</w><w>fiert</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>autre</w><w>par</w><w>bone</w><w>volenté</w><pc
+                    type="supplied">;</pc></l>
+            <lb/>
+            <l><w>De</w><w>meint</w><w>prodome</w><w>fu</w><w>le</w><w>jor</w><w>esgardé</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Cil</w><w>qes</w><w>conoist</w><w>les</w><w>a</w><w rend="elision">l</w>
+                <pc type="supplied">'</pc><w>autre</w><w>mostré</w><pc type="supplied">;</pc></l>
+            <lb/>
+            <l><w>Cilz</w><w>furent</w><w>fuiz</w><w>au</w><w>prodome</w><w>honoré</w></l>
+            <lb/>
+            <l><w>Au</w><w>quens</w><w><abbr>Be</abbr></w><pc type="supplied"
+                    >.</pc><w>q‘el</w><w>bois</w><w>fu</w><w>mort</w><w>gité</w><pc type="supplied"
+                    >,</pc></l>
+            <lb/>
+            <l><w>Dont</w><w>tex</w><w>damages</w><w>et</w><w>tex</w><w>criz</w><w>est</w><w>levez</w></l>
+            <lb/>
+            <l><w>Jamès</w><w>nul</w><w>jor</w><w>ne</w><w>sera</w><w>recouvrez</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Granz</w><w>fu</w><w>li</w><w>chaples</w><w>et</w><w>la</w><w>mortalitez</w><pc
+                    type="supplied">;</pc></l>
+
+            <!--FRAGMENT DE GARIN LE LORRAIN 435 -->
+            <pb facs="0008.pdf.png" n="00008"/>
+            <lb/>
+            <l><w>Li</w><w>Alemant</w><w>sont</w><w>dolent</w><w>et</w><w>iré</w></l>
+            <lb/>
+            <l><w>De</w><w>lor</w><w>seignor</w><w>qe</w><w>il</w><w>ont</w><w>mort</w><w>trové</w></l>
+            <lb/>
+            <l><w>Mort</w><w>et</w><w>senglant</w><pc type="supplied"
+                    >,</pc><w>gisant</w><w>en</w><w>mi</w><w>le</w><w>prè</w><pc type="supplied"
+                    >.</pc></l>
+            <lb/>
+            <l><w>Girart</w><w>del</w><w>Liege</w><w>a</w><w>le</w><w>Borgoinz</w><w>trové</w><pc
+                    type="supplied">,</pc></l>
+            <lb/>
+            <l><w>—</w><w>Sor</w><w>son</w><w>cousin</w><w>est</w><w>Auberi</w><w>pasmé</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Las</w><pc type="supplied">!</pc></q><pc
+                    type="supplied">»</pc><w>dist</w><w>li</w><w>dus</w><pc type="supplied"
+                    >,</pc><pc type="supplied"
+                        >«</pc><q><w>come</w><w>avons</w><w>mal</w><w>erré</w><pc type="supplied"
+                        >!</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Ce</w><w>comença</w><w>par</w><w>grant</w><w>maleürté</w></l>
+            <lb/>
+            <l><w>Dont</w><w>meint</w><w>prodome</w><w>sont</w><w>mort</w><w>et</w><w>afolé</w></l>
+            <lb/>
+            <l><w>Et</w><w>meint</w><w>chastel</w><w>abatu</w><w>et</w><w>robé</w><pc
+                    type="supplied">.</pc></l></lg>
+            <lb/>
+           <lg> <l><w>Dus</w><w>Auberis</w><w>regrete</w><w>son</w><w>cousin</w><pc type="supplied"
+                    >:</pc></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Tant</w><w>mar</w><w>i</w><w>futes</w><pc
+                        type="supplied">,</pc><w>franc</w><w>chevalier</w><w>gentil</w><pc
+                        type="supplied">!</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Qi</w><w>vos</w><w>a</w><w>mort</w><w>il</w><w
+                        rend="elision">n</w>
+                    <pc type="supplied">'</pc><w>est</w><w>pas</w><w>mes</w><w>amis</w><pc
+                        type="supplied">.</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Senglant</w><w>li</w><w>bese</w><w>et</w><w>la</w><w>bouche</w><w>et</w><w>le</w><w>vis</w><pc
+                    type="supplied">.</pc></l>
+            <lb/>
+            <l><w>Uns</w><w>escuiers</w><note>(sic)</note><w>apele</w><pc type="supplied"
+                    >,</pc><w>si</w><w>li</w><w>dist</w><pc type="supplied">:</pc></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Prenz</w><w>tost</w><w>cez</w><w>morz</w><w>que</w><w>tu</w><w>voiz</w><w>ci</w><w>gesir</w><pc
+                        type="supplied">,</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>A</w><w>une</w><w>part</w><w>les</w><w>porte</w><pc
+                        type="supplied">,</pc><w>biax</w><w>amis</w><pc type="supplied"
+                >.</pc></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Et</w><w>vet</w><w>a</w><w rend="elision">l</w>
+                    <pc type="supplied"
+                        >'</pc><w>autre</w><w>qi</w><w>a</w><w>a</w><w>non</w><w>Orris</w><pc
+                        type="supplied">.</pc></q></l>
+            <lb/>
+            <l><pc type="supplied"
+                        >«</pc><q><w>Tout</w><w>coste</w><w>a</w><w>coste</w><w>les</w><w>me</w><w>metez</w><w>gesir</w></q></l>
+            <lb/>
+            <l><pc type="supplied">«</pc><q><w>Tant</w><w>ge</w><w rend="elision">l</w>
+                    <pc type="supplied"
+                        >'</pc><w>estor</w><w>soit</w><w>senpres</w><w>departiz</w><pc
+                        type="supplied">.</pc></q><pc type="supplied">»</pc></l>
+            <lb/>
+            <l><w>Il</w><w>est</w><w>montez</w><w>sor</w><w><pc type="supplied">.</pc>j</w><pc
+                    type="supplied">.</pc><w>chevau</w><w>de</w><w>pris</w><pc type="supplied"
+                    >.</pc></l></lg>
+        </body>
+    </text>
+</TEI>
