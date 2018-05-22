@@ -1,0 +1,43 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}
+    {%if issue %}| Edition : {{issue.edition_id}} {% endif %}
+{% endblock %}
+
+{% block corps %}
+    {% if issue %}
+        <h1>Edition</h1>
+        <dl>
+            <dt>Title</dt><dd>{{issue.edition_short_title}}</dd>
+            <dt>Premier auteur</dt><dd>{{issue.edition_author_first}}</dd>
+            <dt>Deuxième auteur</dt><dd>{{issue.edition_author_second}}</dd>
+            <dt>Éditeur</dt><dd>{{issue.edition_publisher}}</dd>
+            <dt>Traducteur</dt><dd>{{issue.edition_translator}}</dd>
+            <dt>Date Inferred</dt><dd>{{issue.edition_dateInferred}}</dd>
+            <dt>Display Date</dt><dd>{{issue.edition_displayDate}}</dd>
+            <dt>Clean Date</dt><dd>{{issue.edition_cleanDate}}</dd>
+            <dt>Langue</dt><dd>{{issue.edition_languages}}</dd>
+            <dt>Place Inferred</dt><dd>{{issue.edition_placeInferred}}</dd>
+            <dt>Place</dt><dd>{{issue.edition_place}}</dd>
+            <dt>Place Clean</dt><dd>{{issue.edition_placeClean}}</dd>
+            <dt>Pays</dt><dd>{{issue.edition_country}}</dd>
+            <dt>Imprint</dt><dd>{{issue.edition_imprint}}</dd>
+            <dt>Class 0</dt><dd>{{issue.edition_class0}}</dd>
+            <dt>Class 1</dt><dd>{{issue.edition_class1}}</dd>
+            <dt>Class 2</dt><dd>{{issue.edition_class2}}</dd>
+            <dt>Digital</dt><dd>{{issue.edition_digital}}</dd>
+            <dt>Full text</dt><dd>{{issue.edition_fulltext}}</dd>
+            <dt>TP Image</dt><dd>{{issue.edition_tpimage}}</dd>
+            <dt>Privelege</dt><dd>{{issue.edition_privelege}}</dd>
+            <dt>Dedication</dt><dd>{{issue.edition_dedication}}</dd>
+            <dt>Permission</dt><dd>{{issue.edition_permission}}</dd>
+            <dt>Reference</dt><dd>{{issue.edition_reference}}</dd>
+            <dt>Location</dt><dd>{{issue.edition_location}}</dd>
+            <dt>Citation</dt><dd>{{issue.edition_citation}}</dd>
+        </dl>
+
+    {% else %}
+        <p>La base de données est en cours de constitution</p>
+    {% endif %}
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "conteneur.html" %}
+{% block afternav %}
+{%endblock%}
+{% block corps %}
+<h1>Tous les auteurs </h1>
+    {% if authors %}
+        <ul>
+            {% for author in authors.items %}
+                <li><a href="{{url_for('author', autorite_id=author.authorite_id)}}">{{author.authorite_forme_retenue}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>La base de données est en cours de constitution</p>
+
+    {% endif %}
+<nav aria-label="research-pagination">
+      <ul class="pagination">
+        {%- for page in authors.iter_pages() %}
+            {% if page %}
+
+              {% if page != authors.page %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for("all_authors", page=page) }}">{{page}}</a>
+                </li>
+              {% else %}
+                <li class="page-item active disabled">
+                  <a class="page-link">{{page}} <span class="sr-only">(actuelle)</span></a>
+                </li>
+              {% endif %}
+
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">...</a>
+                </li>
+            {% endif %}
+
+        {%- endfor %}
+      </ul>
+    </nav>
+
+<p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+
+{% endblock %}

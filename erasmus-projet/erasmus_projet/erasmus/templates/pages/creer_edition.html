@@ -1,0 +1,182 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Édition {%endblock%}
+
+{% block corps %}
+
+<h1>Édition d'Erasmus</h1>
+<p>Complétez le formulaire et cliquez sur "Enregistrer".</p>
+<form class="form" method="POST" action="{{url_for("creer_edition")}}">
+  <div class="form-group row">
+    <label for="short-title" class="col-sm-2 col-form-label">Titre court</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="short-title" placeholder="titre court de l'édition" name="short_title">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="author_first" class="col-sm-2 col-form-label">Premier auteur</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="author_first" placeholder="premier auteur d'édition" name="author_first">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="author_second" class="col-sm-2 col-form-label">Deuxième auteur</label>
+    <div class="col-sm-10">
+      <input type="text"
+        class="form-control"
+        id="author_second"
+        placeholder="deuxième auteur d'édition"
+        name="author_second">
+      </input>
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="publisher" class="col-sm-2 col-form-label">Éditeur</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="publisher" placeholder="éditeur d'édition" name="publisher">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="translator" class="col-sm-2 col-form-label">Traducteur</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="translator" placeholder="traducteur d'édition" name="translator">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="dateInferred" class="col-sm-2 col-form-label">Date Inferred</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="dateInferred" placeholder="date Inferred" name="dateInferred">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="displayDate" class="col-sm-2 col-form-label">Display Date</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="displayDate" placeholder="display Date" name="displayDate">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="cleanDate" class="col-sm-2 col-form-label">Clean Date</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cleanDate" placeholder="clean Date" name="cleanDate">
+    </div>
+  </div>
+
+ <div class="form-group row">
+    <label for="languages" class="col-sm-2 col-form-label">Langues</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="languages" placeholder="langues" name="languages">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="placeInferred" class="col-sm-2 col-form-label">Place Inferred</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="placeInferred" placeholder="place Inferred" name="placeInferred">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="place" class="col-sm-2 col-form-label">Place</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="place" placeholder="place" name="place">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="placeClean" class="col-sm-2 col-form-label">Place Clean</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="placeClean" placeholder="place Clean" name="placeClean">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="country" class="col-sm-2 col-form-label">Pays</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="country" placeholder="pays" name="country">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="imprint" class="col-sm-2 col-form-label">Imprint</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="imprint" placeholder="imprint" name="imprint">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="class0" class="col-sm-2 col-form-label">Class 0</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="class0" placeholder="class0" name="class0">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="class1" class="col-sm-2 col-form-label">Class 1</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="class1" placeholder="class1" name="class1">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="class2" class="col-sm-2 col-form-label">Class 2</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="class2" placeholder="class2" name="class2">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="digital" class="col-sm-2 col-form-label">Digital</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="digital" placeholder="digital" name="digital">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="fulltext" class="col-sm-2 col-form-label">Full text</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fulltext" placeholder="fulltext" name="fulltext">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="tpimage" class="col-sm-2 col-form-label">TP image</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="tpimage" placeholder="tpimage" name="tpimage">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="class2" class="col-sm-2 col-form-label">Class 2</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="class2" placeholder="class2" name="class2">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="privelege" class="col-sm-2 col-form-label">Privelege</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="privelege" placeholder="privelege" name="privelege">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="dedication" class="col-sm-2 col-form-label">Dedication</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="dedication" placeholder="dedication" name="dedication">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="permission" class="col-sm-2 col-form-label">Permission</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="permission" placeholder="permission" name="permission">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="reference" class="col-sm-2 col-form-label">Reference</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="reference" placeholder="reference" name="reference">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="location" class="col-sm-2 col-form-label">Location</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="location" placeholder="location" name="location">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="citation" class="col-sm-2 col-form-label">Citation</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="citation" placeholder="citation" name="citation">
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </div>
+</form>
+{% endblock %}

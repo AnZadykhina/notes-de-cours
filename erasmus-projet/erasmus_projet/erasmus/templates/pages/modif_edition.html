@@ -1,0 +1,34 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Contribuer{%endblock%}
+
+{% block corps %}
+
+<h1>Editer</h1>
+<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier commentaire.</p>
+<form class="form" method="POST" action="{{url_for('modif_commentaire', comment_id=commentaire.comment_id)}}">
+
+     <div class="form-group row">
+    <label for="nom" class="col-sm-4 col-form-label">Nom du commentaire</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="nom" name="nom" value="{{commentaire.comment_nom}}">
+    </div>
+</div>
+  <div class="form-group row">
+    <label for="lien" class="col-sm-4 col-form-label">Lien</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="lien" name="lien" value="{{commentaire.comment_lien}}" >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="commentaire" class="col-sm-4 col-form-label">Commentaire</label>
+    <div class="col-sm-8">
+      <textarea type="text" class="form-control" id="commentaire" name="commentaire" value="{{commentaire.comment_commentaire}}">{{commentaire.comment_commentaire}}</textarea>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary">Contribuer</button>
+  </div>
+</form>
+{% endblock %}

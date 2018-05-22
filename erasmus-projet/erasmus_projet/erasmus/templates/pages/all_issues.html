@@ -1,0 +1,43 @@
+{% extends "conteneur.html" %}
+{% block afternav %}
+{%endblock%}
+{% block corps %}
+<h1>Tous les édition d'images</h1>
+    {% if issues %}
+        <ul>
+            {% for issue in issues.items %}
+                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>La base de données est en cours de constitution</p>
+
+    {% endif %}
+<nav aria-label="research-pagination">
+      <ul class="pagination">
+        {%- for page in issues.iter_pages() %}
+            {% if page %}
+
+              {% if page != issues.page %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for("all_issues", page=page) }}">{{page}}</a>
+                </li>
+              {% else %}
+                <li class="page-item active disabled">
+                  <a class="page-link">{{page}} <span class="sr-only">(actuelle)</span></a>
+                </li>
+              {% endif %}
+
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">...</a>
+                </li>
+            {% endif %}
+
+        {%- endfor %}
+      </ul>
+    </nav>
+
+<p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+
+{% endblock %}

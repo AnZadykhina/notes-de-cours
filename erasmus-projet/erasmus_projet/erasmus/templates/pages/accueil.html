@@ -1,0 +1,27 @@
+{% extends "conteneur.html" %}
+{% block afternav %}
+
+{%endblock%}
+{% block corps %}
+<h1>Bienvenue !</h1>
+<div class="row">
+    <div class="col-6 col-sm-6">
+        <a href="auteurs"><img src="{{url_for("static", filename="images/auteurs.png")}}" width="250"
+        height="100" border="0" alt="auteurs"></a>
+    </div>
+    <div class="col-6 col-sm-6">
+        <a href="bibliotheques"><img src="{{url_for("static", filename="images/bibliotheque.png")}}" width="300"
+        height="100" border="0" alt="bibliotheques"></a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 col-sm-6">
+        <a href="editions"><img src="{{url_for("static", filename="images/editions.png")}}" width="250"
+        height="100" border="0" alt="éditions"></a>
+    </div>
+    <div class="col-6 col-sm-6">
+        <a href="exemplaires"><img src="{{url_for("static", filename="images/exemplaires.png")}}" width="300"
+        height="100" border="0" alt="exemplaires"></a>
+    </div>
+</div>
+{% endblock %}
