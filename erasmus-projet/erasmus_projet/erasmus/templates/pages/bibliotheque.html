@@ -1,22 +1,15 @@
 {% extends "conteneur.html" %}
 
 {% block titre %}
-    {%if exemplar %}| Edition : {{exemplar.exemplaire_id}} {% endif %}
+    {%if exemplar %}| Edition : {{bibliotheque.bibliothecae_library}} {% endif %}
 {% endblock %}
 
 {% block corps %}
-    {% if exemplar %}
+    {% if bibliotheque %}
         <h1>Exemplaire</h1>
         <dl>
-            <dt>SN</dt><dd>{{exemplar.exemplaire_sn}}</dd>
-            <dt>Bibliothèque</dt><dd>{{exemplar.exemplaire_library}}</dd>
-            <dt>Code de texte</dt><dd>{{exemplar.exemplaire_library_code_text}}</dd>
-            <dt>Pressmark</dt><dd>{{exemplar.exemplaire_pressmark}}</dd>
-            <dt>Taille</dt><dd>{{exemplar.exemplaire_size}}</dd>
-            <dt>Status d'exemplaire</dt><dd>{{exemplar.exemplaire_exemp_status}}</dd>
-            <dt>Digital URL</dt><dd>{{exemplar.exemplaire_digitalURL}}</dd>
-            <dt>Provider</dt><dd>{{exemplar.exemplaire_provider}}</dd>
-            <dt>Notes</dt><dd>{{exemplar.exemplaire_notes}}</dd>
+            <dt>Le nom de bibliothèque</dt><dd>{{bibliotheque.bibliothecae_library}}</dd>
+            <dt>Adresse</dt><dd><a href="{{bibliotheque.bibliothecae_web}}">{{bibliotheque.bibliothecae_web}}</a></dd>
 
         </dl>
 

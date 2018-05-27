@@ -5,38 +5,14 @@
 <h1>Tous les exemplaires</h1>
     {% if exemplars %}
         <ul>
-            {% for exemplar in exemplars.items %}
-                <li><a href="{{url_for('exemplar', exemplaire_id=exemplar.exemplaire_id)}}">{{exemplar.exemplaire_id}}</a></li>
+            {% for exemplar in exemplars %}
+                <li><a href="{{url_for('exemplar', exemplaire_id=exemplar.exemplaire_id)}}">{{editions.edition_short_title}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>La base de données est en cours de constitution</p>
 
     {% endif %}
-<nav aria-label="research-pagination">
-      <ul class="pagination">
-        {%- for page in exemplars.iter_pages() %}
-            {% if page %}
-
-              {% if page != exemplars.page %}
-                <li class="page-item">
-                    <a class="page-link" href="{{ url_for("all_exemplar", page=page) }}">{{page}}</a>
-                </li>
-              {% else %}
-                <li class="page-item active disabled">
-                  <a class="page-link">{{page}} <span class="sr-only">(actuelle)</span></a>
-                </li>
-              {% endif %}
-
-            {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link">...</a>
-                </li>
-            {% endif %}
-
-        {%- endfor %}
-      </ul>
-    </nav>
 
 <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
 

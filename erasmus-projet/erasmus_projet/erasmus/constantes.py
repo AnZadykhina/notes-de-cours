@@ -1,6 +1,6 @@
 from warnings import warn
 
-EDITION_PAR_PAGE = 2
+EDITION_PAR_PAGE = 15
 SECRET_KEY = "PROJET ERASMUS"
 
 if SECRET_KEY == "JE SUIS UN SECRET !":

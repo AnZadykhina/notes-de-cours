@@ -11,7 +11,10 @@
             <dt>Title</dt><dd>{{issue.edition_short_title}}</dd>
             <dt>Premier auteur</dt><dd>{{issue.edition_author_first}}</dd>
             <dt>Deuxième auteur</dt><dd>{{issue.edition_author_second}}</dd>
+            {% if issue.edition_publisher %}
             <dt>Éditeur</dt><dd>{{issue.edition_publisher}}</dd>
+            {% endif %}
+
             <dt>Traducteur</dt><dd>{{issue.edition_translator}}</dd>
             <dt>Date Inferred</dt><dd>{{issue.edition_dateInferred}}</dd>
             <dt>Display Date</dt><dd>{{issue.edition_displayDate}}</dd>
@@ -24,20 +27,31 @@
             <dt>Imprint</dt><dd>{{issue.edition_imprint}}</dd>
             <dt>Class 0</dt><dd>{{issue.edition_class0}}</dd>
             <dt>Class 1</dt><dd>{{issue.edition_class1}}</dd>
+            {% if issue.edition_class2 %}
             <dt>Class 2</dt><dd>{{issue.edition_class2}}</dd>
+             {% endif %}
             <dt>Digital</dt><dd>{{issue.edition_digital}}</dd>
             <dt>Full text</dt><dd>{{issue.edition_fulltext}}</dd>
             <dt>TP Image</dt><dd>{{issue.edition_tpimage}}</dd>
             <dt>Privelege</dt><dd>{{issue.edition_privelege}}</dd>
-            <dt>Dedication</dt><dd>{{issue.edition_dedication}}</dd>
-            <dt>Permission</dt><dd>{{issue.edition_permission}}</dd>
+            <dt>Dedication</dt><dd>{{issue.edition_dedication}}</dd
             <dt>Reference</dt><dd>{{issue.edition_reference}}</dd>
             <dt>Location</dt><dd>{{issue.edition_location}}</dd>
             <dt>Citation</dt><dd>{{issue.edition_citation}}</dd>
-        </dl>
 
-    {% else %}
+        </dl>
+    {% for exemplair in exemplaires %}
+    <dt><a href="{{url_for('exemplar', exemplaire_id=exemplair.exemplaire_id)}}">Exemplaires: {{exemplair.exemplaire_id}}</a>
+
+
+        {% endfor %}
+        <p><a href="{{url_for('ajout_exemplaire')}}">Ajout exemplaire</a></p>
+        {% else %}
+
+
         <p>La base de données est en cours de constitution</p>
-    {% endif %}
+
+
+{% endif %}
     <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
 {% endblock %}

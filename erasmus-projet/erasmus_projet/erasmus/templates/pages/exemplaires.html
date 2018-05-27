@@ -8,15 +8,17 @@
     {% if exemplar %}
         <h1>Exemplaire</h1>
         <dl>
-            <dt>SN</dt><dd>{{exemplar.exemplaire_sn}}</dd>
-            <dt>Bibliothèque</dt><dd>{{exemplar.exemplaire_library}}</dd>
+            <dt>Short title</dt><dd>{{edition.edition_short_title}}</dd>
+            <dt>PPFF</dt><dd>{{exemplar.exemplaire_collator_PpFf}}</dd>
             <dt>Code de texte</dt><dd>{{exemplar.exemplaire_library_code_text}}</dd>
             <dt>Pressmark</dt><dd>{{exemplar.exemplaire_pressmark}}</dd>
             <dt>Taille</dt><dd>{{exemplar.exemplaire_size}}</dd>
             <dt>Status d'exemplaire</dt><dd>{{exemplar.exemplaire_exemp_status}}</dd>
             <dt>Digital URL</dt><dd>{{exemplar.exemplaire_digitalURL}}</dd>
-            <dt>Provider</dt><dd>{{exemplar.exemplaire_provider}}</dd>
             <dt>Notes</dt><dd>{{exemplar.exemplaire_notes}}</dd>
+            {% for bibliotheque in bibliotheques %}
+            <dt>Library</dt><dd>{{bibliotheque.bibliothecae_id}}</dd>
+            {% endfor %}
 
         </dl>
 
