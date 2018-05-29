@@ -13,6 +13,30 @@
       <input type="text" class="form-control" id="short-title" placeholder="titre court de l'édition" name="short_title">
     </div>
   </div>
+<div class="form-group row">
+    <label for="uniform_title" class="col-sm-2 col-form-label"> Titre uniforme </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="uniform_title" placeholder="uniform_title" name="uniform_title">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="parallel_title" class="col-sm-2 col-form-label">Titre entier </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="parallel_title" placeholder="parallel_title" name="parallel_title">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="tpt" class="col-sm-2 col-form-label">Transcription de la page de titre</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="tpt" placeholder="tpt" name="tpt">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="title_notes" class="col-sm-2 col-form-label"> Notes sur le titre</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="title_notes" placeholder="title_notes" name="title_notes">
+    </div>
+  </div>
   <div class="form-group row">
     <label for="author_first" class="col-sm-2 col-form-label">Premier auteur</label>
     <div class="col-sm-10">
@@ -36,31 +60,47 @@
       <input type="text" class="form-control" id="publisher" placeholder="éditeur d'édition" name="publisher">
     </div>
   </div>
+<div class="form-group row">
+    <label for="printer" class="col-sm-2 col-form-label">Imprimeur</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="printer" placeholder="printer" name="printer">
+    </div>
+  </div>
  <div class="form-group row">
     <label for="translator" class="col-sm-2 col-form-label">Traducteur</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="translator" placeholder="traducteur d'édition" name="translator">
     </div>
   </div>
+<div class="form-group row">
+    <label for="prefaceur" class="col-sm-2 col-form-label">Préfacier</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="prefaceur" placeholder="prefaceur" name="prefaceur">
+    </div>
+  </div>
  <div class="form-group row">
-    <label for="dateInferred" class="col-sm-2 col-form-label">Date Inferred</label>
+    <label for="dateInferred" class="col-sm-2 col-form-label">Date déduite</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="dateInferred" placeholder="date Inferred" name="dateInferred">
     </div>
   </div>
  <div class="form-group row">
-    <label for="displayDate" class="col-sm-2 col-form-label">Display Date</label>
+    <label for="displayDate" class="col-sm-2 col-form-label">Date affichée</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="displayDate" placeholder="display Date" name="displayDate">
     </div>
   </div>
  <div class="form-group row">
-    <label for="cleanDate" class="col-sm-2 col-form-label">Clean Date</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="cleanDate" placeholder="clean Date" name="cleanDate">
+    <label for="cleanDate" class="col-sm-2 col-form-label">Date propre</label>
+    <div class="input-group">
+     <select class="selectpicker form-control" id="cleanDate" placeholder="cleanDate" name="cleanDate">
+       <option></option>
+       {% for edition in editions %}
+        <option value="{{ edition.edition_cleanDate}}">{{edition.edition_cleanDate}}</option>
+        {% endfor %}
+     </select>
     </div>
   </div>
-
  <div class="form-group row">
     <label for="languages" class="col-sm-2 col-form-label">Langues</label>
     <div class="col-sm-10">
@@ -68,19 +108,25 @@
     </div>
   </div>
  <div class="form-group row">
-    <label for="placeInferred" class="col-sm-2 col-form-label">Place Inferred</label>
+    <label for="placeInferred" class="col-sm-2 col-form-label">Lieu déduit</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="placeInferred" placeholder="place Inferred" name="placeInferred">
     </div>
   </div>
  <div class="form-group row">
-    <label for="place" class="col-sm-2 col-form-label">Place</label>
+    <label for="place" class="col-sm-2 col-form-label">Lieu</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="place" placeholder="place" name="place">
     </div>
   </div>
  <div class="form-group row">
-    <label for="placeClean" class="col-sm-2 col-form-label">Place Clean</label>
+    <label for="place2" class="col-sm-2 col-form-label">Lieu formes rejetées</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="place2" placeholder="place2" name="place2">
+    </div>
+  </div>
+ <div class="form-group row">
+    <label for="placeClean" class="col-sm-2 col-form-label">Lieu Propre</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="placeClean" placeholder="place Clean" name="placeClean">
     </div>
@@ -92,68 +138,62 @@
     </div>
   </div>
  <div class="form-group row">
-    <label for="imprint" class="col-sm-2 col-form-label">Imprint</label>
+    <label for="imprint" class="col-sm-2 col-form-label">Adresse</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="imprint" placeholder="imprint" name="imprint">
     </div>
   </div>
  <div class="form-group row">
-    <label for="class0" class="col-sm-2 col-form-label">Class 0</label>
+    <label for="class0" class="col-sm-2 col-form-label">Thématique 0</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="class0" placeholder="class0" name="class0">
     </div>
   </div>
  <div class="form-group row">
-    <label for="class1" class="col-sm-2 col-form-label">Class 1</label>
+    <label for="class1" class="col-sm-2 col-form-label">Thématique 1</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="class1" placeholder="class1" name="class1">
     </div>
   </div>
  <div class="form-group row">
-    <label for="class2" class="col-sm-2 col-form-label">Class 2</label>
+    <label for="class2" class="col-sm-2 col-form-label">Thématique 2</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="class2" placeholder="class2" name="class2">
     </div>
   </div>
 <div class="form-group row">
-    <label for="digital" class="col-sm-2 col-form-label">Digital</label>
+    <label for="digital" class="col-sm-2 col-form-label">Numérisation</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="digital" placeholder="digital" name="digital">
     </div>
   </div>
 <div class="form-group row">
-    <label for="fulltext" class="col-sm-2 col-form-label">Full text</label>
+    <label for="fulltext" class="col-sm-2 col-form-label">Version texte</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="fulltext" placeholder="fulltext" name="fulltext">
     </div>
   </div>
 <div class="form-group row">
-    <label for="tpimage" class="col-sm-2 col-form-label">TP image</label>
+    <label for="tpimage" class="col-sm-2 col-form-label">Reproduction page de titre</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="tpimage" placeholder="tpimage" name="tpimage">
     </div>
   </div>
 
 <div class="form-group row">
-    <label for="privelege" class="col-sm-2 col-form-label">Privelege</label>
+    <label for="privelege" class="col-sm-2 col-form-label">Privilège</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="privelege" placeholder="privelege" name="privelege">
     </div>
   </div>
 <div class="form-group row">
-    <label for="dedication" class="col-sm-2 col-form-label">Dedication</label>
+    <label for="dedication" class="col-sm-2 col-form-label">Dédicace</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="dedication" placeholder="dedication" name="dedication">
     </div>
   </div>
 <div class="form-group row">
-    <label for="permission" class="col-sm-2 col-form-label">Permission</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="permission" placeholder="permission" name="permission">
-    </div>
-  </div>
-<div class="form-group row">
-    <label for="reference" class="col-sm-2 col-form-label">Reference</label>
+    <label for="reference" class="col-sm-2 col-form-label">Références</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="reference" placeholder="reference" name="reference">
     </div>
@@ -170,6 +210,137 @@
       <input type="text" class="form-control" id="citation" placeholder="citation" name="citation">
     </div>
   </div>
+<div class="form-group row">
+    <label for="format" class="col-sm-2 col-form-label">Format</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="format" placeholder="format" name="format">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="formatNotes" class="col-sm-2 col-form-label"> Notes sur le format</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="formatNotes" placeholder="formatNotess" name="formatNotes">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="signatures" class="col-sm-2 col-form-label">Signatures</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="signatures" placeholder="signatures" name="signatures">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="PpFf" class="col-sm-2 col-form-label">PP/FF</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="PpFf" placeholder="PpFf" name="PpFf">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="pages" class="col-sm-2 col-form-label">Pages</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="pages" placeholder="pages" name="pages">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="remarks" class="col-sm-2 col-form-label">Remarques</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="remarks" placeholder="remarkss" name="remarks">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="colophon" class="col-sm-2 col-form-label">Colophon</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="colophon" placeholder="colophon" name="colophon">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="illustrated" class="col-sm-2 col-form-label">Illustré</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="illustrated" placeholder="illustrated" name="illustrated">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="typographicMaterial" class="col-sm-2 col-form-label">Matériel typographique </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="typographicMaterial" placeholder="typographicMaterial" name="typographicMaterial">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="sheets" class="col-sm-2 col-form-label">Feuilles</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="sheets" placeholder="sheets" name="sheets">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="typeNotes" class="col-sm-2 col-form-label">Notes sur la composition typographique</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="typeNotes" placeholder="typeNotes" name="typeNotes">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="stcNotes" class="col-sm-2 col-form-label">STC Notes</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="stcNotes" placeholder="stcNotes" name="stcNotes">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="fb" class="col-sm-2 col-form-label">FB</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="fb" placeholder="fb" name="fb">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="nb" class="col-sm-2 col-form-label">NB</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nb" placeholder="nb" name="nb">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="ib" class="col-sm-2 col-form-label">IB</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ib" placeholder="ib" name="ib">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="correct" class="col-sm-2 col-form-label">Collation correcte</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="correct" placeholder="correct" name="correct">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="locFingerprints" class="col-sm-2 col-form-label">Empreinte LOC </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="locFingerprints" placeholder="locFingerprints" name="locFingerprints">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="stcnFingerprints" class="col-sm-2 col-form-label">Empreinte STCN</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="stcnFingerprints" placeholder="stcnFingerprints" name="stcnFingerprints">
+    </div>
+  </div>
+
+<div class="form-group row">
+    <label for="notes" class="col-sm-2 col-form-label">Notes</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="notes" placeholder="notes" name="notes">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="urlImage" class="col-sm-2 col-form-label"> urlImage</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="urlImage" placeholder="urlImage" name="urlImage">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="internal" class="col-sm-2 col-form-label">Internal</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="internal" placeholder="internal" name="internal">
+    </div>
+  </div>
+
+
+
+
   <div>
     <button type="submit" class="btn btn-primary">Enregistrer</button>
   </div>

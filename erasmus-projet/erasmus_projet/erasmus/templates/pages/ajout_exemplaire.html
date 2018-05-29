@@ -1,29 +1,146 @@
 {% extends "conteneur.html" %}
 
-{% block titre %}| Édition {%endblock%}
+{% block titre %}| Exemplaire {%endblock%}
 
 {% block corps %}
 
 <h1>Édition d'Erasmus</h1>
 <p>Complétez le formulaire et cliquez sur "Enregistrer".</p>
-<form class="form" method="POST" action="{{url_for("ajout_exemplaire", )}}">
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("ajout_exemplaire", )}}">
   <div class="form-group row">
     <label for="pressmark" class="col-sm-2 col-form-label">pressmark</label>
-    <div class="col-sm-10">
+    <div class="col-sm-6">
       <input type="text" class="form-control" id="pressmark" placeholder="pressmark" name="pressmark">
     </div>
   </div>
-
   <div class="form-group row">
     <label for="library" class="col-sm-2 col-form-label">Bibliotheque</label>
-    <div class="input-group">
+    <div class="col-6 col-sm-6">
+      <div class="input-group" >
      <select class="selectpicker form-control" id="library" placeholder="library" name="library">
-        {% for bibliotheque in bibliotheques %}
+       <option></option>
+       {% for bibliotheque in bibliotheques %}
         <option value="{{ bibliotheque.bibliothecae_id}}">{{bibliotheque.bibliothecae_library}}</option>
         {% endfor %}
      </select>
     </div>
   </div>
+      </div>
+<div class="form-group row">
+    <label for="library_code_text" class="col-sm-2 col-form-label">Library code text</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="library_code_text" placeholder="library_code_text" name="library_code_text">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="size" class="col-sm-2 col-form-label">Taille</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="size" placeholder="size" name="size">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="exemp_status" class="col-sm-2 col-form-label">Status d'exemplaire</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="exemp_status" placeholder="exemp_status" name="exemp_status">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="digitalURL" class="col-sm-2 col-form-label">Digital URL</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="digitalURL" placeholder="digitalURL" name="digitalURL">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="PpFf" class="col-sm-2 col-form-label">PP/FF</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="PpFf" placeholder="PpFf" name="PpFf">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="notes" class="col-sm-2 col-form-label">Notes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="notes" placeholder="notes" name="notes">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="provenance" class="col-sm-2 col-form-label">Provenance</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="provenance" placeholder="provenance" name="provenance">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="locFingerprint" class="col-sm-2 col-form-label">LOC Fingerprint</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="locFingerprint" placeholder="locFingerprint" name="locFingerprint">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="stcnFingerprint" class="col-sm-2 col-form-label">STCN Fingerprint</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="stcnFingerprint" placeholder="stcnFingerprint" name="stcnFingerprint">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="statusLevel" class="col-sm-2 col-form-label">Status Level</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="statusLevel" placeholder="statusLevel" name="statusLevel">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="In" class="col-sm-2 col-form-label">IN</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="In" placeholder="In" name="In">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="dateSeen" class="col-sm-2 col-form-label">Date Seen</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="dateSeen" placeholder="dateSeen" name="dateSeen">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="dimensions" class="col-sm-2 col-form-label">Dimensions</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="dimensions" placeholder="dimensions" name="dimensions">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="digitalLink" class="col-sm-2 col-form-label">Digital link</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="digitalLink" placeholder="digitalLink" name="digitalLink">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="material" class="col-sm-2 col-form-label">Matériau</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="material" placeholder="material" name="material">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="description_det" class="col-sm-2 col-form-label">Description détaillée</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="description_det" placeholder="description_det" name="description_det">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="attribution" class="col-sm-2 col-form-label">Attribution</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="attribution" placeholder="attribution" name="attribution">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="century" class="col-sm-2 col-form-label">Siècle</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="century" placeholder="century" name="century">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="place" class="col-sm-2 col-form-label">Lieu</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="place" placeholder="placek" name="place">
+    </div>
+  </div>
+
 
   <div>
     <button type="submit" class="btn btn-primary">Enregistrer</button>

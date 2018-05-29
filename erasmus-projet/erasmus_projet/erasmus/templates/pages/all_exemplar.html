@@ -6,7 +6,7 @@
     {% if exemplars %}
         <ul>
             {% for exemplar in exemplars %}
-                <li><a href="{{url_for('exemplar', exemplaire_id=exemplar.exemplaire_id)}}">{{editions.edition_short_title}}</a></li>
+                <li><a href="{{url_for('exemplar', exemplaire_id=exemplar.exemplaire_id)}}">{{editions.edition_short_title}}, {{}}{{}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

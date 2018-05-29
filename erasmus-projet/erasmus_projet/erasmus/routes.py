@@ -59,7 +59,7 @@ def all_issues():
     else:
         page = 1
 
-    issues = Edition.query.order_by(Edition.edition_id).paginate(page=page, per_page=EDITION_PAR_PAGE)
+    issues = Edition.query.order_by(Edition.edition_short_title).paginate(page=page, per_page=EDITION_PAR_PAGE)
     return render_template("pages/all_issues.html", nom="Erasmus", issues=issues, page=page)
 
 @app.route("/edition/<int:edition_id>")
@@ -68,8 +68,13 @@ def issue(edition_id):
     # On a bien sûr aussi modifié le template pour refléter le changement
     unique_issue = Edition.query.get(edition_id)
     exemplaires=unique_issue.exemplaire
+    citations=unique_issue.citation
 
-    return render_template("pages/issue.html", nom="Erasmus", issue=unique_issue, exemplaires=exemplaires)
+
+
+    return render_template("pages/issue.html", nom="Erasmus", issue=unique_issue, exemplaires=exemplaires, citations=citations)
+
+
 
 
 
@@ -87,9 +92,9 @@ def exemplar(exemplaire_id):
     # On a bien sûr aussi modifié le template pour refléter le changement
     unique_exemplar = Exemplaire.query.get(exemplaire_id)
     edition_exemplaire = Edition.query.get(unique_exemplar.exemplaire_edition_id)
-    bibliotheques=Bibliothecae.query.all()
 
-    return render_template("pages/exemplaires.html", nom="Erasmus", exemplar=unique_exemplar, edition=edition_exemplaire, bibliotheques=bibliotheques)
+
+    return render_template("pages/exemplaires.html", nom="Erasmus", exemplar=unique_exemplar, edition=edition_exemplaire)
 '''
 @app.route("/exemplaires")
 def all_exemplars():
@@ -112,6 +117,7 @@ def all_exemplars():
 @app.route("/creer_edition", methods=["GET", "POST"])
 
 def creer_edition():
+    editions = Edition.query.order_by(Edition.edition_cleanDate.asc()).all()
     """ Route gérant les ajouts des commentaires
     :return: page html d'ajout de commentaire
     """
@@ -120,7 +126,7 @@ def creer_edition():
             short_title=request.form.get("short_title", None),
             title_notes=request.form.get("title_notes"),
             uniform_title=request.form.get("uniform_title"),
-            parallel_title=request.form.get("parallel_title"),
+            full_title=request.form.get("parallel_title"),
             author_first=request.form.get("author_first", None),
             author_second=request.form.get("lien"),
             publisher=request.form.get("publisher", None),
@@ -178,9 +184,9 @@ def creer_edition():
             return redirect("/")
         else:
             flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
-            return render_template("pages/creer_edition.html")
+            return render_template("pages/creer_edition.html", editions=editions)
     else:
-        return render_template("pages/creer_edition.html")
+        return render_template("pages/creer_edition.html", editions=editions)
 
 @app.route("/ajout_exemplaire", methods=["GET", "POST"])
 
@@ -220,9 +226,9 @@ def ajout_exemplaire():
             return redirect("/")
         else:
             flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
-            return render_template("pages/ajout_exemplaire.html")
+            return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques)
     else:
-        return render_template("pages/ajout_exemplaire.html")
+        return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques)
 
 
 @app.route("/recherche")
@@ -248,14 +254,13 @@ def recherche():
     if motclef:
         resultats = Edition.query.filter(db.or_(
             Edition.edition_short_title.like("%{}%".format(motclef)),
-            Edition.edition_title.like("%{}%".format(motclef)),
-            Edition.edition_parallel_title.like("%{}%".format(motclef)),
+            Edition.edition_full_title.like("%{}%".format(motclef)),
             Edition.edition_uniform_title.like("%{}%".format(motclef)),
             Edition.edition_author_first.like("%{}%".format(motclef)),
             Edition.edition_author_second.like("%{}%".format(motclef)),
             Edition.edition_country.like("%{}%".format(motclef)))
 
-        ).paginate(page=page, per_page=EDITION_PAR_PAGE)
+        ).order_by(Edition.edition_short_title.asc()).paginate(page=page, per_page=EDITION_PAR_PAGE)
         titre = "Résultat pour la recherche `" + motclef + "`"
 
     return render_template(

@@ -7,7 +7,7 @@ class Edition(db.Model):
     edition_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     edition_short_title = db.Column(db.Text)
     edition_title_notes = db.Column(db.Text)
-    edition_parallel_title = db.Column(db.Text)
+    edition_full_title = db.Column(db.Text)
     edition_uniform_title = db.Column(db.Text)
     edition_author_first = db.Column(db.Text, nullable=False)
     edition_author_second = db.Column(db.Text)
@@ -65,7 +65,7 @@ class Edition(db.Model):
     digital = db.relationship("Digital", back_populates="edition")
 
 
-    def creer_edition(short_title, title_notes, uniform_title, parallel_title, author_first, author_second, publisher, prefaceur, translator, dateInferred, displayDate, cleanDate, languages, placeInferred, place, placeClean, place2, country, format, formatNotes, imprint, signatures, PpFf, pages, remarks, colophon, illustrated, typographicMaterial, sheets, typeNotes, stcNotes, fb, nb, ib, correct, locFingerprints, stcnFingerprints, tpt, notes, printer, urlImage, class0, class1, internal, class2, digital, fulltext, tpimage, privelege, dedication, reference, location, citation):
+    def creer_edition(short_title, title_notes, uniform_title, full_title, author_first, author_second, publisher, prefaceur, translator, dateInferred, displayDate, cleanDate, languages, placeInferred, place, placeClean, place2, country, format, formatNotes, imprint, signatures, PpFf, pages, remarks, colophon, illustrated, typographicMaterial, sheets, typeNotes, stcNotes, fb, nb, ib, correct, locFingerprints, stcnFingerprints, tpt, notes, printer, urlImage, class0, class1, internal, class2, digital, fulltext, tpimage, privelege, dedication, reference, location, citation):
         erreurs = []
         if not short_title:
             erreurs.append("Le titre fourni est vide")
@@ -81,7 +81,7 @@ class Edition(db.Model):
             edition_short_title=short_title,
             edition_title_notes=title_notes,
             edition_uniform_title=uniform_title,
-            edition_parallel_title=parallel_title,
+            edition_full_title=full_title,
             edition_author_first=author_first,
             edition_author_second=author_second,
             edition_publisher=publisher,
@@ -373,7 +373,7 @@ class Citation(db.Model):
     citation_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     citation_dbname = db.Column(db.Text)
     citation_dbnumber = db.Column(db.Integer)
-    citation_numberOfDumps = db.Column(db.Integer)
+    citation_numberOfDups = db.Column(db.Integer)
     citation_url = db.Column(db.Text)
     citation_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
     edition = db.relationship("Edition", back_populates="citation")

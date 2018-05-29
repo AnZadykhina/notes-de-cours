@@ -6,7 +6,7 @@
     {% if issues %}
         <ul>
             {% for issue in issues.items %}
-                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}</a></li>
+                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}, {{issue.edition_displayDate}}, {{issue.edition_place}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
