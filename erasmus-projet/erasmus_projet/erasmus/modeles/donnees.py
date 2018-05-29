@@ -5,6 +5,7 @@ from ..app import db
 # On crée notre modèle
 class Edition(db.Model):
     edition_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
+    edition_sn = db.Column(db.Integer, unique=True)
     edition_short_title = db.Column(db.Text)
     edition_title_notes = db.Column(db.Text)
     edition_full_title = db.Column(db.Text)
@@ -19,7 +20,7 @@ class Edition(db.Model):
     edition_cleanDate = db.Column(db.Text)
     edition_languages = db.Column(db.Text)
     edition_placeInferred = db.Column(db.Text)
-    edition_place = db.Column(db.Text)
+    edition_place1 = db.Column(db.Text)
     edition_place2 = db.Column(db.Text)
     edition_placeClean = db.Column(db.Text)
     edition_country = db.Column(db.Text)
@@ -27,18 +28,14 @@ class Edition(db.Model):
     edition_collator_formatNotes = db.Column(db.Text)
     edition_imprint = db.Column(db.Text)
     edition_collator_signatures = db.Column(db.Text)
-    edition_collator_PpFf    = db.Column(db.Text)
-    edition_collator_pages  = db.Column(db.Text)
-    edition_collator_remarks  = db.Column(db.Text)
-    edition_collator_colophon  = db.Column(db.Text)
-    edition_collator_illustrated   = db.Column(db.Text)
+    edition_collator_PpFf = db.Column(db.Text)
+    edition_collator_remarks = db.Column(db.Text)
+    edition_collator_colophon = db.Column(db.Text)
+    edition_collator_illustrated = db.Column(db.Text)
     edition_collator_typographicMaterial  = db.Column(db.Text)
     edition_collator_sheets = db.Column(db.Text)
     edition_collator_typeNotes = db.Column(db.Text)
-    edition_collator_stcNotes   = db.Column(db.Text)
     edition_collator_fb = db.Column(db.Text)
-    edition_collator_nb = db.Column(db.Text)
-    edition_collator_ib  = db.Column(db.Text)
     edition_collator_correct  = db.Column(db.Text)
     edition_collator_locFingerprints = db.Column(db.Text)
     edition_collator_stcnFingerprints = db.Column(db.Text)
@@ -49,14 +46,12 @@ class Edition(db.Model):
     edition_class0 = db.Column(db.Text)
     edition_class1 = db.Column(db.Text)
     edition_class2 = db.Column(db.Text)
-    edition_internal = db.Column(db.Text)
     edition_digital = db.Column(db.Text)
     edition_fulltext = db.Column(db.Text)
     edition_tpimage = db.Column(db.Text)
     edition_privelege = db.Column(db.Text)
     edition_dedication = db.Column(db.Text)
     edition_reference = db.Column(db.Text)
-    edition_location = db.Column(db.Text)
     edition_citation = db.Column(db.Integer)
     exemplaire = db.relationship("Exemplaire", back_populates="edition", lazy='dynamic')
     edit_author = db.relationship("Edit_author", back_populates="edition")
@@ -65,7 +60,7 @@ class Edition(db.Model):
     digital = db.relationship("Digital", back_populates="edition")
 
 
-    def creer_edition(short_title, title_notes, uniform_title, full_title, author_first, author_second, publisher, prefaceur, translator, dateInferred, displayDate, cleanDate, languages, placeInferred, place, placeClean, place2, country, format, formatNotes, imprint, signatures, PpFf, pages, remarks, colophon, illustrated, typographicMaterial, sheets, typeNotes, stcNotes, fb, nb, ib, correct, locFingerprints, stcnFingerprints, tpt, notes, printer, urlImage, class0, class1, internal, class2, digital, fulltext, tpimage, privelege, dedication, reference, location, citation):
+    def creer_edition(short_title, title_notes, uniform_title, full_title, author_first, author_second, publisher, prefaceur, translator, dateInferred, displayDate, cleanDate, languages, placeInferred, place1, placeClean, place2, country, format, formatNotes, imprint, signatures, PpFf, remarks, colophon, illustrated, typographicMaterial, sheets, typeNotes, fb, correct, locFingerprints, stcnFingerprints, tpt, notes, printer, urlImage, class0, class1, internal, class2, digital, fulltext, tpimage, privelege, dedication, reference, citation):
         erreurs = []
         if not short_title:
             erreurs.append("Le titre fourni est vide")
@@ -92,7 +87,7 @@ class Edition(db.Model):
             edition_cleanDate=cleanDate,
             edition_languages=languages,
             edition_placeInferred=placeInferred,
-            edition_place=place,
+            edition_place1=place1,
             edition_place2=place2,
             edition_placeClean=placeClean,
             edition_country=country,
@@ -101,17 +96,13 @@ class Edition(db.Model):
             edition_imprint=imprint,
             edition_collator_signatures=signatures,
             edition_collator_PpFf=PpFf,
-            edition_collator_pages=pages,
             edition_collator_remarks=remarks,
             edition_collator_colophon=colophon,
             edition_collator_illustrated=illustrated,
             edition_collator_typographicMaterial=typographicMaterial,
             edition_collator_sheets=sheets,
             edition_collator_typeNotes=typeNotes,
-            edition_collator_stcNotes=stcNotes,
             edition_collator_fb=fb,
-            edition_collator_nb=nb,
-            edition_collator_ib=ib,
             edition_collator_correct=correct,
             edition_collator_locFingerprints=locFingerprints,
             edition_collator_stcnFingerprints=stcnFingerprints,
@@ -129,7 +120,6 @@ class Edition(db.Model):
             edition_privelege=privelege,
             edition_dedication=dedication,
             edition_reference=reference,
-            edition_location=location,
             edition_citation=citation,
             
         )
@@ -204,27 +194,21 @@ class Bibliothecae(db.Model):
 
 class Exemplaire(db.Model):
     exemplaire_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
-    exemplaire_library_code_text = db.Column(db.Text)
     exemplaire_pressmark = db.Column(db.Text)
-    exemplaire_size = db.Column(db.Text)
-    exemplaire_exemp_status = db.Column(db.Text)
+    exemplaire_hauteur = db.Column(db.Text)
+    exemplaire_variantesEdition = db.Column(db.Text)
     exemplaire_digitalURL = db.Column(db.Text)
     exemplaire_notes = db.Column(db.Text)
-    exemplaire_provenance = db.Column(db.Text)
+    exemplaire_provenances = db.Column(db.Text)
     exemplaire_locFingerprint = db.Column(db.Text)
     exemplaire_stcnFingerprint = db.Column(db.Text)
-    exemplaire_statusLevel = db.Column(db.Text)
-    exemplaire_in = db.Column(db.Text)
-    exemplaire_collator_PpFf = db.Column(db.Text)
-    exemplaire_dateSeen = db.Column(db.Text)
-    exemplaire_collator_dimensions = db.Column(db.Text)
-    exemplaire_collator_digitaLink= db.Column(db.Text)
-    exemplaire_reliure_material = db.Column(db.Text)
-    exemplaire_reliure_description_det  = db.Column(db.Text)
-    exemplaire_reliure_attribution = db.Column(db.Text)
-    exemplaire_reliure_century  = db.Column(db.Text)
-    exemplaire_reliure_place= db.Column(db.Text)
-    exemplaire_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
+    exemplaire_annotationManuscrite = db.Column(db.Text)
+    exemplaire_collator_etatMateriel = db.Column(db.Text)
+    exemplaire_collator_largeur = db.Column(db.Text)
+    exemplaire_reliure_recueilFactice = db.Column(db.Text)
+    exemplaire_reliure_reliure  = db.Column(db.Text)
+    exemplaire_reliure_reliureXVI = db.Column(db.Text)
+    exemplaire_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
     exemplaire_bibliothecae_id = db.Column(db.Text, db.ForeignKey('bibliothecae.bibliothecae_id'))
     edition = db.relationship("Edition", back_populates="exemplaire")
     bibliothecae = db.relationship("Bibliothecae", back_populates="exemplaire")
@@ -233,30 +217,24 @@ class Exemplaire(db.Model):
     
 
 
-    def ajout_exemplaire(library_code_text, pressmark, size, exemp_status, digitalURL, PpFf, notes, provenance, locFingerprint, stcnFingerprint, statusLevel, In, dateSeen, dimensions, digitalLink, material, description_det, attribution, century, place, edition_id, bibliothecae_id):
+    def ajout_exemplaire(pressmark, hauteur, variantesEdition, digitalURL, etatMateriel, notes, provenances, locFingerprint, stcnFingerprint, annotationManuscrite, largeur, recueilFactice, reliure, reliureXVI, edition_id, bibliothecae_id):
 
         # On crée un commentaire
         exemplars = Exemplaire(
-            exemplaire_library_code_text=library_code_text,
             exemplaire_pressmark=pressmark,
-            exemplaire_size=size,
-            exemplaire_exemp_status=exemp_status,
+            exemplaire_hauteur=hauteur,
+            exemplaire_variantesEdition=variantesEdition,
             exemplaire_digitalURL=digitalURL,
-            exemplaire_collator_PpFf=PpFf,
+            exemplaire_collator_etatMateriel=etatMateriel,
             exemplaire_notes=notes,
-            exemplaire_provenance=provenance,
+            exemplaire_provenances=provenances,
             exemplaire_locFingerprint=locFingerprint,
             exemplaire_stcnFingerprint=stcnFingerprint,
-            exemplaire_statusLevel=statusLevel,
-            exemplaire_in=In,
-            exemplaire_dateSeen=dateSeen,
-            exemplaire_collator_dimensions=dimensions,
-            exemplaire_collator_digitaLink=digitalLink,
-            exemplaire_reliure_material=material,
-            exemplaire_reliure_description_det=description_det,
-            exemplaire_reliure_attribution=attribution,
-            exemplaire_reliure_century=century,
-            exemplaire_reliure_place=place,
+            exemplaire_annotationManuscrite=annotationManuscrite,
+            exemplaire_collator_largeur=largeur,
+            exemplaire_reliure_recueilFactice=recueilFactice,
+            exemplaire_reliure_reliure=reliure,
+            exemplaire_reliure_reliureXVI=reliureXVI,
             exemplaire_edition_id=edition_id,
             exemplaire_bibliothecae_id=bibliothecae_id
         )
@@ -277,7 +255,7 @@ class Exemplaire(db.Model):
 class Edit_author(db.Model):
     __tablename__ = "edit_auteur"
     edit_author_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
-    edit_author_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
+    edit_author_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
     edit_author_autorite_id = db.Column(db.Integer, db.ForeignKey('authorite.authorite_id'))
     edition = db.relationship("Edition", back_populates="edit_author")
     authorite = db.relationship("Authorite", back_populates="edit_author")
@@ -318,7 +296,7 @@ class Reference(db.Model):
     reference_note = db.Column(db.Text)
     reference_referencesSequential = db.Column(db.Text)
     reference_bibliographie_id = db.Column(db.Integer, db.ForeignKey('bibliographie.bibliographie_id'))
-    reference_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
+    reference_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
     edition = db.relationship("Edition", back_populates="reference")
     bibliographie = db.relationship("Bibliographie", back_populates="reference")
 
@@ -375,7 +353,7 @@ class Citation(db.Model):
     citation_dbnumber = db.Column(db.Integer)
     citation_numberOfDups = db.Column(db.Integer)
     citation_url = db.Column(db.Text)
-    citation_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
+    citation_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
     edition = db.relationship("Edition", back_populates="citation")
 
     def ajout_citation(dbname, dbnumber, numberOfDumps, url):
@@ -397,7 +375,7 @@ class Digital(db.Model):
     digital_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     digital_url = db.Column(db.Text)
     digital_provider = db.Column(db.Text, nullable=False)
-    digital_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
+    digital_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
     digital_digitization_id = db.Column(db.Integer, db.ForeignKey('digitization.digitization_id'))
     edition = db.relationship("Edition", back_populates="digital")
     digitization = db.relationship("Digitization", back_populates="digital")

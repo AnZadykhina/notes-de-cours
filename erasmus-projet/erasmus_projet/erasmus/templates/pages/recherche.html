@@ -13,7 +13,7 @@
         <p>Il y a {{resultats.total}} lieux qui répondent à votre requête :</p>
         <ul>
             {% for issue in resultats.items %}
-                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}, {{issue.edition_displayDate}}, {{issue.edition_place}}</a></li>
+                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}, {{issue.edition_displayDate}}, {{issue.edition_place1}}</a></li>
             {% endfor %}
         </ul>
     <nav aria-label="research-pagination">

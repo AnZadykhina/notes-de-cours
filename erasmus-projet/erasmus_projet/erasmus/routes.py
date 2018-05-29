@@ -137,7 +137,7 @@ def creer_edition():
             cleanDate=request.form.get("cleanDate", None),
             languages=request.form.get("languages", None),
             placeInferred=request.form.get("placeInferred", None),
-            place=request.form.get("place", None),
+            place1=request.form.get("place", None),
             place2=request.form.get("place2", None),
             placeClean=request.form.get("placeClean", None),
             country=request.form.get("country", None),
@@ -146,17 +146,13 @@ def creer_edition():
             imprint=request.form.get("imprint", None),
             signatures=request.form.get("sigantures"),
             PpFf=request.form.get("PpFf"),
-            pages=request.form.get("pages"),
             remarks=request.form.get("remarks"),
             colophon=request.form.get("colophon"),
             illustrated=request.form.get("illustrated"),
             typographicMaterial=request.form.get("typographicMaterial"),
             sheets=request.form.get("sheets"),
             typeNotes=request.form.get("typeNotes"),
-            stcNotes=request.form.get("stcNotes"),
             fb=request.form.get("fb"),
-            nb=request.form.get("nb"),
-            ib=request.form.get("ib"),
             correct=request.form.get("correct"),
             locFingerprints=request.form.get("locFingerprints"),
             stcnFingerprints=request.form.get("stcnFingerprints"),
@@ -174,7 +170,6 @@ def creer_edition():
             privelege=request.form.get("privelege", None),
             dedication=request.form.get("dedication", None),
             reference=request.form.get("reference", None),
-            location=request.form.get("location", None),
             citation=request.form.get("citation", None),
 
 
@@ -189,6 +184,7 @@ def creer_edition():
         return render_template("pages/creer_edition.html", editions=editions)
 
 @app.route("/ajout_exemplaire", methods=["GET", "POST"])
+@app.route("/edition/<int:edition_id>")
 
 def ajout_exemplaire():
     """ Route gérant les ajouts des commentaires
@@ -199,25 +195,19 @@ def ajout_exemplaire():
     if request.method == "POST":
         statut, donnees = Exemplaire.ajout_exemplaire(
             pressmark=request.form.get("pressmark"),
-            library_code_text=request.form.get("library_code_text"),
-            size=request.form.get('size'),
-            exemp_status=request.form.get('exemp_status'),
+            hauteur=request.form.get('hauteur'),
+            variantesEdition=request.form.get('variantesEdition'),
             digitalURL=request.form.get('digitalURL'),
-            PpFf=request.form.get('PpFf'),
+            etatMateriel=request.form.get('etatMateriel'),
             notes=request.form.get('notes'),
-            provenance=request.form.get('provenance'),
+            provenances=request.form.get('provenances'),
             locFingerprint=request.form.get('locFingerprint'),
             stcnFingerprint=request.form.get('stcnFingerprint'),
-            statusLevel=request.form.get('statusLevel'),
-            In=request.form.get('In'),
-            dateSeen=request.form.get('dateSeen'),
-            dimensions=request.form.get('dimensions'),
-            digitalLink=request.form.get('digitalLink'),
-            material=request.form.get('material'),
-            description_det=request.form.get('description_det'),
-            attribution=request.form.get('attribution'),
-            century=request.form.get('century'),
-            place=request.form.get('place'),
+            annotationManuscrite=request.form.get('annotationManuscrite'),
+            largeur=request.form.get('largeur'),
+            recueilFactice=request.form.get('recueilFactice'),
+            reliure=request.form.get('reliure'),
+            reliureXVI=request.form.get('reliureXVI'),
             edition_id=unique_issue,
             bibliothecae_id=request.form.get('library'),
     )
@@ -258,7 +248,8 @@ def recherche():
             Edition.edition_uniform_title.like("%{}%".format(motclef)),
             Edition.edition_author_first.like("%{}%".format(motclef)),
             Edition.edition_author_second.like("%{}%".format(motclef)),
-            Edition.edition_country.like("%{}%".format(motclef)))
+            Edition.edition_country.like("%{}%".format(motclef)),
+            Edition.edition_place1.like("%{}%".format(motclef)))
 
         ).order_by(Edition.edition_short_title.asc()).paginate(page=page, per_page=EDITION_PAR_PAGE)
         titre = "Résultat pour la recherche `" + motclef + "`"
