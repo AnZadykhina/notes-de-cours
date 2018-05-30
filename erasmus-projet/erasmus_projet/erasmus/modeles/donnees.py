@@ -5,7 +5,7 @@ from ..app import db
 # On crée notre modèle
 class Edition(db.Model):
     edition_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
-    edition_sn = db.Column(db.Integer, unique=True)
+    edition_sn = db.Column(db.Integer, unique=True, autoincrement=True)
     edition_short_title = db.Column(db.Text)
     edition_title_notes = db.Column(db.Text)
     edition_full_title = db.Column(db.Text)
@@ -167,6 +167,9 @@ class Authorite(db.Model):
 class Bibliothecae(db.Model):
     bibliothecae_id = db.Column(db.Text, unique=True, nullable=False, primary_key=True, autoincrement=True)
     bibliothecae_library = db.Column(db.Text)
+    bibliothecae_adresse = db.Column(db.Text)
+    bibliothecae_ville = db.Column(db.Text)
+    bibliothecae_pays = db.Column(db.Text)
     bibliothecae_web = db.Column(db.Text)
     bibliothecae_weighting = db.Column(db.Text)
     exemplaire = db.relationship("Exemplaire", back_populates="bibliothecae")
@@ -208,7 +211,7 @@ class Exemplaire(db.Model):
     exemplaire_reliure_recueilFactice = db.Column(db.Text)
     exemplaire_reliure_reliure  = db.Column(db.Text)
     exemplaire_reliure_reliureXVI = db.Column(db.Text)
-    exemplaire_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
+    exemplaire_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
     exemplaire_bibliothecae_id = db.Column(db.Text, db.ForeignKey('bibliothecae.bibliothecae_id'))
     edition = db.relationship("Edition", back_populates="exemplaire")
     bibliothecae = db.relationship("Bibliothecae", back_populates="exemplaire")
@@ -255,7 +258,7 @@ class Exemplaire(db.Model):
 class Edit_author(db.Model):
     __tablename__ = "edit_auteur"
     edit_author_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
-    edit_author_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
+    edit_author_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
     edit_author_autorite_id = db.Column(db.Integer, db.ForeignKey('authorite.authorite_id'))
     edition = db.relationship("Edition", back_populates="edit_author")
     authorite = db.relationship("Authorite", back_populates="edit_author")
@@ -296,7 +299,7 @@ class Reference(db.Model):
     reference_note = db.Column(db.Text)
     reference_referencesSequential = db.Column(db.Text)
     reference_bibliographie_id = db.Column(db.Integer, db.ForeignKey('bibliographie.bibliographie_id'))
-    reference_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
+    reference_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
     edition = db.relationship("Edition", back_populates="reference")
     bibliographie = db.relationship("Bibliographie", back_populates="reference")
 
@@ -353,7 +356,7 @@ class Citation(db.Model):
     citation_dbnumber = db.Column(db.Integer)
     citation_numberOfDups = db.Column(db.Integer)
     citation_url = db.Column(db.Text)
-    citation_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
+    citation_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
     edition = db.relationship("Edition", back_populates="citation")
 
     def ajout_citation(dbname, dbnumber, numberOfDumps, url):
@@ -375,7 +378,7 @@ class Digital(db.Model):
     digital_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     digital_url = db.Column(db.Text)
     digital_provider = db.Column(db.Text, nullable=False)
-    digital_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_sn'))
+    digital_edition_id = db.Column(db.Integer, db.ForeignKey('edition.edition_id'))
     digital_digitization_id = db.Column(db.Integer, db.ForeignKey('digitization.digitization_id'))
     edition = db.relationship("Edition", back_populates="digital")
     digitization = db.relationship("Digitization", back_populates="digital")
@@ -445,10 +448,13 @@ class Provenance(db.Model):
     provenance_restitue = db.Column(db.Text)
     provenance_mentionEntree = db.Column(db.Text)
     provenance_estampillesCachets = db.Column(db.Text)
+    provenance_reliure_provenance = db.Column(db.Text)
+    provenance_possesseur = db.Column(db.Text)
+    provenance_possesseur_formeRejetee = db.Column(db.Text)
     provenance_exemplaire_id = db.Column(db.Integer, db.ForeignKey('exemplaire.exemplaire_id'))
     exemplaire = db.relationship("Exemplaire", back_populates="provenance")
 
-    def ajout_provenance(exlibris, exdono, envoi, notesManuscrites, armesPeintes, restitue, mentionEntree, estampillesCachets):
+    def ajout_provenance(exlibris, exdono, envoi, notesManuscrites, armesPeintes, restitue, mentionEntree, estampillesCachets, reliure_provenance, possesseur, possesseur_formeRejetee, exemplaire_id):
          provenances=Provenance(
              provenance_exLibris = exlibris,
              provenance_exDono = exdono,
@@ -457,7 +463,12 @@ class Provenance(db.Model):
              provenance_armesPeintes = armesPeintes,
              provenance_restitue = restitue,
              provenance_mentionEntree = mentionEntree,
-             provenance_estampillesCachets = estampillesCachets
+             provenance_estampillesCachets = estampillesCachets,
+             provenance_reliure_provenance = reliure_provenance,
+             provenance_possesseur = possesseur,
+             provenance_possesseur_formeRejetee = possesseur_formeRejetee,
+             provenance_exemplaire_id = exemplaire_id,
+
          )
          print(provenances)
          try:

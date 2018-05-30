@@ -4,11 +4,17 @@
 {% block corps %}
 <h1>Tous les édition d'images</h1>
     {% if issues %}
-        <ul>
-            {% for issue in issues.items %}
-                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}, {{issue.edition_displayDate}}, {{issue.edition_place1}}</a></li>
+
+            <table>
+                {% for issue in issues.items %}
+                <tr>
+                    <td width="890"><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}</a></td>
+                    <td width="100", valign="top">{{issue.edition_displayDate}}</td>
+                    <td width="100", valign="top">{{issue.edition_place1}}</td>
+                </tr>
             {% endfor %}
-        </ul>
+            </table>
+
     {% else %}
         <p>La base de données est en cours de constitution</p>
 

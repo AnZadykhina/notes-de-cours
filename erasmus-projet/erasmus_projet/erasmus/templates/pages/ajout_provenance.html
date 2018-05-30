@@ -1,0 +1,90 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Provenance {%endblock%}
+
+{% block corps %}
+
+<h1>Édition d'Erasmus</h1>
+<p>Complétez le formulaire et cliquez sur "Enregistrer".</p>
+    <form class="container" method="GET" action="{{url_for("ajout_provenance", identifier=exemplaire.exemplaire_id)}}">
+    <div class="form-group col">
+        <label for="idExemplaire" class="col-lg-4 col-form-label">ID Exemplaire</label>
+      <div class="col">
+        <input type="text" class="form-control" id="idExemplaire" name="idExemplaire" value="{{exemplaire.exemplaire_id}}">
+      </div>
+    </div>
+</form>
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("ajout_provenance", identifier=exemplaire.exemplaire_id)}}">
+<div class="form-group row">
+    <label for="exlibris" class="col-sm-2 col-form-label">Ex-libris</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="exlibris" placeholder="exlibris" name="exlibris">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="exdono" class="col-sm-2 col-form-label">Ex-dono</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="exdono" placeholder="exdono" name="exdono">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="envoi" class="col-sm-2 col-form-label">Envoi</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="envoi" placeholder="envoi" name="envoi">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="notesManuscrites" class="col-sm-2 col-form-label">Notes manuscrites relatives à la provenance</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="notesManuscrites" placeholder="notesManuscrites" name="notesManuscrites">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="armesPeintes" class="col-sm-2 col-form-label">Armes peintes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="armesPeintes" placeholder="armesPeintes" name="armesPeintes">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="restitue" class="col-sm-2 col-form-label">Provenance restituées d'après des sources externes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="restitue" placeholder="restitue" name="restitue">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="mentionEntree" class="col-sm-2 col-form-label">Mention d'entrée</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="mentionEntree" placeholder="mentionEntree" name="mentionEntree">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="estampillesCachets" class="col-sm-2 col-form-label">Estampilles et cachets</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="estampillesCachets" placeholder="estampillesCachets" name="estampillesCachets">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="reliure_provenance" class="col-sm-2 col-form-label">Provenanve de la reliure</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="reliure_provenance" placeholder="reliure_provenance" name="reliure_provenance">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="possesseur" class="col-sm-2 col-form-label">Nom de possesseur</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="possesseur" placeholder="possesseur" name="possesseur">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="possesseur_formeRejetee" class="col-sm-2 col-form-label">Nom de possesseur (formes rejétées)</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="possesseur_formeRejetee" placeholder="possesseur_formeRejetee" name="possesseur_formeRejetee">
+    </div>
+  </div>
+
+
+  <div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </div>
+</form>
+{% endblock %}

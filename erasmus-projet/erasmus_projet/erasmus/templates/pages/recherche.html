@@ -10,12 +10,17 @@
 
     <h1>{{titre}}</h1>
     {% if resultats %}
-        <p>Il y a {{resultats.total}} lieux qui répondent à votre requête :</p>
-        <ul>
-            {% for issue in resultats.items %}
-                <li><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}, {{issue.edition_displayDate}}, {{issue.edition_place1}}</a></li>
+        <p>Il y a {{resultats.total}} éditions qui répondent à votre requête :</p>
+            <table>
+                {% for issue in resultats.items %}
+                <tr>
+                    <td width="890"><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}</a></td>
+                    <td width="100", valign="top">{{issue.edition_displayDate}}</td>
+                    <td width="100", valign="top">{{issue.edition_place1}}</td>
+                </tr>
             {% endfor %}
-        </ul>
+            </table>
+
     <nav aria-label="research-pagination">
       <ul class="pagination">
         {%- for page in resultats.iter_pages() %}

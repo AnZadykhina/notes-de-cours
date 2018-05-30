@@ -1,27 +1,113 @@
 {% extends "conteneur.html" %}
 
 {% block titre %}
-    {%if exemplar %}| Edition : {{exemplar.exemplaire_id}} {% endif %}
+    {%if exemplar %}| Exemplaire : {{exemplar.exemplaire_id}} {% endif %}
 {% endblock %}
 
 {% block corps %}
     {% if exemplar %}
         <h1>Exemplaire</h1>
-        <dl>
-            <dt>Short title</dt><dd>{{edition.edition_short_title}}</dd>
-            <dt>PPFF</dt><dd>{{exemplar.exemplaire_collator_PpFf}}</dd>
-            <dt>Code de texte</dt><dd>{{exemplar.exemplaire_library_code_text}}</dd>
-            <dt>Pressmark</dt><dd>{{exemplar.exemplaire_pressmark}}</dd>
-            <dt>Taille</dt><dd>{{exemplar.exemplaire_size}}</dd>
-            <dt>Status d'exemplaire</dt><dd>{{exemplar.exemplaire_exemp_status}}</dd>
-            <dt>Digital URL</dt><dd>{{exemplar.exemplaire_digitalURL}}</dd>
-            <dt>Notes</dt><dd>{{exemplar.exemplaire_notes}}</dd>
+        <table>
+            <tr>
+                <td colspan="2" width="130"><h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">NOTICE SOMMAIRE</h4></td>
+            </tr>
+            <tr>
+                <td><b>Titre court:</b></td>
+                <td width="320"> {{edition.edition_short_title}}</td>
+            </tr>
+            <tr>
+                <td><b>Auteur principal: </b></td>
+                <td>{{edition.edition_author_first}}</td>
+            </tr>
+            {% if edition.edition_author_second %}
+            <tr>
+                <td><b>Auteur(s) secondaire(s): </b></td>
+                <td>{{edition.edition_author_second}}</td>
+            </tr>
+            {% endif %}
+
+                {% if edition.edition_country %}
+             <tr>
+                 <td><b>Pays de publication:</b></td>
+                 <td> {{edition.edition_country}}</td>
+             </tr>
+            {% endif %}
+            {% if edition.edition_place or edition.edition_printer or edition.edition_displayDate%}
+            <tr>
+                <td><b>Lieu/Imprimeur/Libraire/Date:</b></td>
+                <td> {%if edition.edition_place1%}{{edition.edition_placeClean}}{% endif %}
+                     {%if edition.edition_printer%}, {{edition.edition_printer}}{% endif %}
+                     {%if edition.edition_displayDate%}, {{edition.edition_displayDate}}{% endif %}</td>
+            </tr>
+            {% endif %}
+            {% if edition.edition_collator_format %}
+            <tr><td><b>Format:</b></td><td> {{edition.edition_collator_format}}</td></tr>
+            {% endif %}
+            <tr>
+                <td><b>№ dans la base:</b></td>
+                <td> {{edition.edition_sn}}</td>
+            </tr>
+            </table>
+            <table>
+            <tr>
+                <td colspan="2"><h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">SPÉCIFICITÉS D'EXEMPLAIRE</h4></td>
+            </tr>
 
 
-        </dl>
+            <tr>
+                <td><b>Bibliothèque:</b></td>
+                <td> {{exemplar.bibliothecae.bibliothecae_library}}</td>
+            </tr>
+            {% if exemplar.exemplaire_pressmark %}
+            <tr>
+                <td><b>Cote: </b></td>
+                <td>{{exemplar.exemplaire_pressmark}}</td>
+            </tr>
+                {% endif %}
+            {% if exemplar.exemplaire_variantesEdition %}
+            <tr>
+                <td><b>Variantes d'édition: </b></td>
+                <td>{{exemplar.exemplaire_variantesEdition}}</td>
+            </tr>
+            {% endif %}
 
+                {% if  exemplar.exemplaire_collator_etatMateriel %}
+             <tr>
+                 <td><b>État matériel: </b></td>
+                 <td> {{ exemplar.exemplaire_collator_etatMateriel}}</td>
+             </tr>
+            {% endif %}
+            {% if exemplar.exemplaire_reliure%}
+            <tr>
+                <td><b>Reliure:</b></td>
+                <td> {{exemplar.exemplaire_reliure}}</td>
+            </tr>
+            {% endif %}
+            {% if exemplar.exemplaire_provenances %}
+            <tr>
+                <td><b>Provenances: </b></td>
+                <td>{{exemplar.exemplaire_provenances}}</td>
+            </tr>
+            {% endif %}
+                {% if exemplar.exemplaire_annotationManuscrite %}
+            <tr>
+                <td><b>Annotations manuscrites: </b></td>
+                <td> {{exemplar.exemplaire_annotationManuscrite}}</td>
+            </tr>
+              {% endif %}
+                {% if exemplar.exemplaire_digitalURL %}
+            <tr>
+                <td><b>Lien vers numérisation: </b></td>
+                <td> {{exemplar.exemplaire_digitalURL}}</td>
+            </tr>
+              {% endif %}
+                <tr>
+                <td><b>Recueil factice: </b></td>
+                <td> {{exemplar.exemplaire_recueilFactice}}</td>
+            </tr>
+            </table>
 
-
+    <p><a href="{{url_for('ajout_provenance', identifier=exemplar.exemplaire_id)}}">Ajout provenance</a></p>
     {% else %}
         <p>La base de données est en cours de constitution</p>
     {% endif %}

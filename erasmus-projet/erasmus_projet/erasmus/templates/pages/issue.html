@@ -15,17 +15,28 @@
         {% if issue.edition_uniform_title != None %}
         <h5>[{{issue.edition_uniform_title}}]</h5>
         {% endif %}
-<p><b>Auteur principal:</b>  {{issue.edition_author_first}}</p>
-    <p><b>Auteur(s) secondaire(s):</b> {{issue.edition_author_second}}</p>
-<div class="col-8 col-sm-8">
-        <div style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">
-            <h4>NOTICE SOMMAIRE</h4>
-        </div>
+        <p><b>Auteur principal:</b>  {{issue.edition_author_first}}</p>
+        <p><b>Auteur(s) secondaire(s):</b> {{issue.edition_author_second}}</p>
+    <div class="col-8 col-sm-8">
+        <table>
+            <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">NOTICE SOMMAIRE</h4>
+            </tr>
 
-<p><b>Titre court:</b> {{issue.edition_short_title}}</p>
-<p><b>Auteur principal: </b>{{issue.edition_author_first}}</p>
+
+            <tr>
+                <td width="130"><b>Titre court:</b></td>
+                <td> {{issue.edition_short_title}}</td>
+            </tr>
+            <tr>
+                <td width="130"><b>Auteur principal: </b></td>
+                <td>{{issue.edition_author_first}}</td>
+            </tr>
             {% if issue.edition_author_second %}
-            <p><b>Auteur(s) secondaire(s): </b>{{issue.edition_author_second}}</p>
+            <tr>
+                <td width="130"><b>Auteur(s) secondaire(s): </b></td>
+                <td>{{issue.edition_author_second}}</td>
+            </tr>
             {% endif %}
             <!--{% if issue.edition_publisher %}
             <dt>Éditeur</dt><dd>{{issue.edition_publisher}}</dd>
@@ -34,73 +45,174 @@
             <dt>Traducteur</dt><dd>{{issue.edition_translator}}</dd>
             {% endif %}-->
                 {% if issue.edition_country %}
-            <p><b>Pays de publication: </b>{{issue.edition_country}}</p>
+             <tr>
+                 <td width="130"><b>Pays de publication:</b></td>
+                 <td> {{issue.edition_country}}</td>
+             </tr>
             {% endif %}
             {% if issue.edition_place or issue.edition_printer or issue.edition_displayDate%}
-            <p><b>Lieu/Imprimeur/Libraire/Date: </b>{%if issue.edition_place1%}{{issue.edition_placeClean}}{% endif %}{%if issue.edition_printer%}, {{issue.edition_printer}}{% endif %}{%if issue.edition_displayDate%}, {{issue.edition_displayDate}}{% endif %}</i></p>
+            <tr>
+                <td width="130"><b>Lieu/Imprimeur/Libraire/Date:</b></td>
+                <td> {%if issue.edition_place1%}{{issue.edition_placeClean}}{% endif %}
+                     {%if issue.edition_printer%}, {{issue.edition_printer}}{% endif %}
+                     {%if issue.edition_displayDate%}, {{issue.edition_displayDate}}{% endif %}</td>
+            </tr>
 
             {% endif %}
             {% if issue.edition_collator_format %}
-            <p><b>Format:</b> {{issue.edition_collator_format}}</p>
+            <tr>
+                <td width="130"><b>Format:</b></td>
+                <td> {{issue.edition_collator_format}}</td>
+            </tr>
             {% endif %}
-<p><b>№ dans la base: </b>{{issue.edition_id}}</p>
-<div style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">
-            <h4>INFORMATIONS COMPLÉMENTAIRES</h4>
+            <tr>
+                <td width="130"><b>№ dans la base:</b></td>
+                <td> {{issue.edition_sn}}</td>
+            </tr>
+            </table>
+            <table>
+                <tr>
+                    <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">INFORMATIONS COMPLÉMENTAIRES</h4>
+                </tr>
+                {% if issue.edition_full_title or issue.edition_collator_tpt%}
+                <tr>
+                    <td valign="top", width="130"><b> Titre entier/titre transcrit: </b></td>
+                    <td>{% if issue.edition_full_title %}{{issue.edition_full_title}} / {% endif %}
+                        {% if issue.edition_collator_tpt %}{{issue.edition_collator_tpt}}{% endif %}</td>
+                </tr>
+                {% endif %}
+                {% if issue.edition_imprint %}
+                <tr>
+                    <td width="237"><b>Adresse: </b></td>
+                    <td>{{issue.edition_imprint}}</td>
+                </tr>
+                {% endif %}
+                {% if issue.edition_collator_PpFf %}
+                <tr>
+                    <td width="130"><b>PP/FF: </b></td>
+                    <td>{{issue.edition_collator_PpFf}}</td>
+                </tr>
+                {% endif %}
+                {% if issue.edition_collator_signatures %}
+                <tr>
+                    <td width="130"><b>Signatures: </b></td>
+                    <td>{{issue.edition_collator_signatures}}</td>
+                </tr>
+                {% endif %}
+                {% if issue.edition_dedication %}
+                <tr>
+                    <td width="130"><b>Dédicace:  </b></td>
+                    <td>{{issue.edition_dedication}}</td>
+                </tr>
+                {% endif %}
+                {% if issue.edition_privelege %}
+                <tr>
+                    <td width="130"><b>Privilège:  </b></td>
+                    <td>{{issue.edition_privelege}}</td>
+                </tr>
+            {% endif %}
+            {% if issue.edition_class0 or issue.edition_class1 or issue.edition_class2 %}
+            <tr>
+                <td width="130"><b>Matière:  </b></td>
+                <td>{% if issue.edition_class0 %}{{issue.edition_class0}}, {% endif %}
+                    {% if issue.edition_class1 %}{{issue.edition_class1}}, {% endif %}
+                    {% if issue.edition_class2 %}{{issue.edition_class2}}{% endif %}</td>
+            </tr>
+            {% endif %}
+
+            {% if issue.edition_languages %}
+            <tr>
+                <td width="130"><b>Langue:  </b></td>
+                <td>{{issue.edition_languages}}</td>
+            </tr>
+            {% endif %}
+                {% if issue.edition_notes %}
+            <tr>
+                <td width="130"><b>Notes:  </b></td>
+                <td>{{issue.edition_notes}}</td>
+            </tr>
+            {% endif %}
+        </table>
+        <table>
+            <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">EXEMPLAIRES</h4>
+            </tr>
+            <tr>
+                <td width="130">Pays</td>
+                <td width="130">Ville</td>
+                <td width="130">Bibliothèque</td>
+                <td width="130">Cote</td>
+                <td width="130">Lien vers une numérisation</td>
+            </tr>
+            {% for exemplair in exemplaires %}
+
+            <tr>
+                <td valign="top">{{exemplair.bibliothecae.bibliothecae_pays}}</td>
+                <td valign="top">{{exemplair.bibliothecae.bibliothecae_ville}}</td>
+                <td valign="top"><a href="{{url_for('exemplar', exemplaire_id=exemplair.exemplaire_id)}}"> {{exemplair.bibliothecae.bibliothecae_library}}</a><br>
+                    {{exemplair.bibliothecae.bibliothecae_adresse}}</td>
+                <td valign="top">{{exemplair.exemplaire_pressmark}}</td>
+                <td valign="top">{{exemplair.exemplaire_digitalURL}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <table>
+            <tr>
+                <h4 style=" margin-top: 1.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">CITATION</h4>
+            </tr>
+
+        {% for citation in citations %}
+        <tr>
+            <td width="130", valign="top">{{citation.citation_dbname}}</td>
+            <td width="130", valign="top">{{citation.citation_dbnumber}}</td>
+            <td width="130", valign="top"><a href="{{citation.citation_url}}">{{citation.citation_url}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
         </div>
-   <p><b> Titre entier/titre transcrit: </b>{{issue.edition_full_title}} / {{issue.edition_collator_tpt}}</p>
-    {% if issue.edition_imprint %}
-             <p><b>Adresse: </b>{{issue.edition_imprint}}</p>
-            {% endif %}
-    {% if issue.edition_collator_PpFf %}
-            <p><b>PP/FF: </b>{{issue.edition_collator_PpFf}}</p>
-            {% endif %}
-            {% if issue.edition_collator_signatures %}
-            <p><b>Signatures: </b>{{issue.edition_collator_signatures}}</p>
-            {% endif %}
-    {% if issue.edition_dedication %}
-            <p><b>Dédicace: </b>{{issue.edition_dedication}}</p>
-            {% endif %}
-    {% if issue.edition_privelege %}
-            <p><b>Privilège: </b>{{issue.edition_privelege}}</p>
-            {% endif %}
-    {% if issue.edition_class0 or issue.edition_class1 or issue.edition_class2 %}
-        <p><b>Matière: </b>{% if issue.edition_class0 %}{{issue.edition_class0}}{% endif %}{% if issue.edition_class1 %}, {{issue.edition_class1}}{% endif %}{% if issue.edition_class2 %}, {{issue.edition_class2}}{% endif %}</p>
-    {% endif %}
+    <table>
+            <tr><h4 style=" margin-top: 1.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">RÉFÉRENCE(S) BIBLIOGRAPHIQUE(S)</h4></tr>
+       <tr>
+           <td width="150">Auteur(s)</td>
+           <td width="250">Titre</td>
+           <td width="150">Imprint</td>
+           <td width="150">Lien</td>
+           <td width="100">Page</td>
+           <td width="100">Volume</td>
+       </tr>
+    {% for reference in references %}
 
-        {% if issue.edition_languages %}
-            <p><b>Langue: </b>{{issue.edition_languages}}</p>
-            {% endif %}
-    {% if issue.edition_notes %}
-            <p><b>Notes: </b>{{issue.edition_notes}}</p>
-            {% endif %}
-    <div style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">
-            <h4>EXEMPLAIRES</h4>
-        </div>
-
-
-    {% for exemplair in exemplaires %}
-
-    <p>
-
-        <a href="{{url_for('exemplar', exemplaire_id=exemplair.exemplaire_id)}}"> {{exemplair.bibliothecae.bibliothecae_library}} </a></p>
-
+    <tr>
+        <td valign="top">{{reference.bibliographie.bibliographie_author}}</td>
+        <td valign="top">{{reference.bibliographie.bibliographie_title}}</td>
+        <td valign="top">{{reference.bibliographie.bibliographie_imprint}}</td>
+        <td valign="top">{{reference.bibliographie.bibliographie_URLLink}}</td>
+        <td valign="top">{{reference.reference_page}}</td>
+        <td valign="top">{{reference.reference_volume}}</td>
+    </tr>
+    <tr>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+        <td><p></p></td>
+    </tr>
     {% endfor %}
-</div>
-<p><b>Citation </b><i>
-{% for citation in citations %}
+    </table>
 
-    {{citation.citation_dbname}}, {{citation.citation_dbnumber}}, <a href="{{citation.citation_url}}">{{citation.citation_url}}</a></i></p>
-{% endfor %}
-        <p><a href="{{url_for('ajout_exemplaire')}}">Ajout exemplaire</a></p>
+
+
+
+        <p><a href="{{url_for('ajout_exemplaire', identifier = issue.edition_id)}}">Ajout exemplaire</a></p>
         {% else %}
 
 
         <p>La base de données est en cours de constitution</p>
 
 
-{% endif %}
+    {% endif %}
     <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
-
-
 
 {% endblock %}

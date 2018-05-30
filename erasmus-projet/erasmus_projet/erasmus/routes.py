@@ -2,7 +2,7 @@ from flask import render_template, request, flash, redirect
 
 
 from .app import app, db
-from .modeles.donnees import Edition, Authorite, Exemplaire, Bibliothecae
+from .modeles.donnees import Edition, Authorite, Exemplaire, Bibliothecae, Provenance
 from .constantes import EDITION_PAR_PAGE
 
 
@@ -69,10 +69,9 @@ def issue(edition_id):
     unique_issue = Edition.query.get(edition_id)
     exemplaires=unique_issue.exemplaire
     citations=unique_issue.citation
+    references=unique_issue.reference
 
-
-
-    return render_template("pages/issue.html", nom="Erasmus", issue=unique_issue, exemplaires=exemplaires, citations=citations)
+    return render_template("pages/issue.html", nom="Erasmus", issue=unique_issue, exemplaires=exemplaires, citations=citations, references=references)
 
 
 
@@ -93,26 +92,8 @@ def exemplar(exemplaire_id):
     unique_exemplar = Exemplaire.query.get(exemplaire_id)
     edition_exemplaire = Edition.query.get(unique_exemplar.exemplaire_edition_id)
 
-
     return render_template("pages/exemplaires.html", nom="Erasmus", exemplar=unique_exemplar, edition=edition_exemplaire)
-'''
-@app.route("/exemplaires")
-def all_exemplars():
-    """ Route permettant l'affichage d'une page avec touts commentaires ajoutés
-    :return: page html avec une liste de commentaires
-    """
-    page = request.args.get("page", 1)
 
-    if isinstance(page, str) and page.isdigit():
-        page = int(page)
-    else:
-        page = 1
-
-    exemplars = Exemplaire.query.order_by(Exemplaire.exemplaire_id).paginate(page=page, per_page=EDITION_PAR_PAGE)
-    for exemplar in exemplars:
-        editions = Edition.query.get(exemplars.exemplaire_edition_id)
-    return render_template("pages/all_exemplar.html", nom="Erasmus", exemplars=exemplars, editions=editions, page=page)
-'''
 
 @app.route("/creer_edition", methods=["GET", "POST"])
 
@@ -183,16 +164,24 @@ def creer_edition():
     else:
         return render_template("pages/creer_edition.html", editions=editions)
 
-@app.route("/ajout_exemplaire", methods=["GET", "POST"])
-@app.route("/edition/<int:edition_id>")
+@app.route("/ajout_exemplaire/<int:identifier>", methods=["GET", "POST"])
 
-def ajout_exemplaire():
+def ajout_exemplaire(identifier):
     """ Route gérant les ajouts des commentaires
     :return: page html d'ajout de commentaire
     """
-    unique_issue=Exemplaire.exemplaire_edition_id
-    bibliotheques=Bibliothecae.query.all()
+    edition = Edition.query.get(identifier)
+    bibliotheques = Bibliothecae.query.all()
+    if request.method == "GET":
+        bibliotheques = Bibliothecae.query.all()
+        edition = Edition.query.get(identifier)
+
+        return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques, edition=edition)
+
+
     if request.method == "POST":
+        bibliotheques = Bibliothecae.query.all()
+        edition = Edition.query.get(identifier)
         statut, donnees = Exemplaire.ajout_exemplaire(
             pressmark=request.form.get("pressmark"),
             hauteur=request.form.get('hauteur'),
@@ -208,7 +197,7 @@ def ajout_exemplaire():
             recueilFactice=request.form.get('recueilFactice'),
             reliure=request.form.get('reliure'),
             reliureXVI=request.form.get('reliureXVI'),
-            edition_id=unique_issue,
+            edition_id=identifier,
             bibliothecae_id=request.form.get('library'),
     )
         if statut is True:
@@ -216,9 +205,44 @@ def ajout_exemplaire():
             return redirect("/")
         else:
             flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
-            return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques)
+            return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques, edition=edition)
     else:
-        return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques)
+        return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques, edition=edition)
+
+@app.route("/ajout_provenance/<int:identifier>", methods=["GET", "POST"])
+
+def ajout_provenance(identifier):
+
+    if request.method == "GET":
+        exemplaire = Exemplaire.query.get(identifier)
+
+        return render_template("pages/ajout_provenance.html",  exemplaire=exemplaire)
+
+    if request.method == "POST":
+        exemplaire = Exemplaire.query.get(identifier)
+        statut, donnees = Provenance.ajout_provenance(
+            exlibris=request.form.get('exlibris'),
+            exdono=request.form.get('exdono'),
+            envoi=request.form.get('envoi'),
+            notesManuscrites=request.form.get('notesManuscrites'),
+            armesPeintes=request.form.get('armesPeintes'),
+            restitue=request.form.get('restitue'),
+            mentionEntree=request.form.get('mentionEntree'),
+            estampillesCachets=request.form.get('estampillesCachets'),
+            reliure_provenance=request.form.get('reliure_provenance'),
+            possesseur=request.form.get('possesseur'),
+            exemplaire_id=identifier,
+            possesseur_formeRejetee=request.form.get('possesseur_formeRejetee'),
+
+    )
+        if statut is True:
+            flash("Enregistrement effectué", "success", exemplaire=exemplaire)
+            return redirect("/")
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/ajout_provenance.html", exemplaire=exemplaire)
+    else:
+        return render_template("pages/ajout_provenance.html")
 
 
 @app.route("/recherche")
