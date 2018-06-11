@@ -1,22 +1,64 @@
 {% extends "conteneur.html" %}
 
 {% block titre %}
-    {%if exemplar %}| Edition : {{bibliotheque.bibliothecae_library}} {% endif %}
+    {%if  bibliotheque %}| Edition : {{bibliotheque.bibliothecae_library}} {% endif %}
 {% endblock %}
 
 {% block corps %}
     {% if bibliotheque %}
-        <h1>Exemplaire</h1>
-        <dl>
-            <dt>Le nom de bibliothèque</dt><dd>{{bibliotheque.bibliothecae_library}}</dd>
-            <dt>Adresse</dt><dd><a href="{{bibliotheque.bibliothecae_web}}">{{bibliotheque.bibliothecae_web}}</a></dd>
+        <h1>{{bibliotheque.bibliothecae_library}}</h1>
 
-        </dl>
+    <table>
+            <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">DONNÉES SUR BIBLIOTHÈQUE</h4>
+            </tr>
+            <tr>
+                <td><b>Nom de biblithèque:</b> </td>
+                <td>{{bibliotheque.bibliothecae_library}}</td>
+            </tr>
+
+            {% if bibliotheque.bibliothecae_adresse or bibliotheque.bibliothecae_ville or bibliotheque.bibliothecae_pays %}
+            <tr>
+                <td width="130"><b>Adresse:</b></td>
+                <td> {% if bibliotheque.bibliothecae_adresse %}{{bibliotheque.bibliothecae_adresse}},{% endif %}
+                    {% if bibliotheque.bibliothecae_ville %} {{bibliotheque.bibliothecae_ville}},{% endif %}
+                    {% if bibliotheque.bibliothecae_pays %} {{bibliotheque.bibliothecae_pays}}{% endif %}</td>
+            </tr>
+            {% endif %}
+            {% if bibliotheque.bibliothecae_web %}
+            <tr>
+                <td width="130"><b>Site: </b></td>
+                <td>{{bibliotheque.bibliothecae_web}}</td>
+            </tr>
+            {% endif %}
+        <tr><td> <a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_bibliotheque', bibliothecae_id = bibliotheque.bibliothecae_id)}}" role="button">Modifier </a></td></tr>
+
+
+    </table>
+    <table>
+        <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">EXEMPLAIRES DANS LA BIBLIOTHÈQUE</h4>
+        </tr>
+
+        <tr>
+            <td width="2500">Titre d'exemplaire</td>
+            <td width="150">Date</td>
+            <td width="150">Cote</td>
+        </tr>
+        {% for exemplaire in exemplaires %}
+        <tr>
+            <td><a href="{{url_for('exemplar', exemplaire_id=exemplaire.exemplaire_id)}}"> {{exemplaire.edition.edition_short_title}}</a></td>
+            <td>{{exemplaire.edition.edition_displayDate}}</td>
+            <td>{{exemplaire.exemplaire_pressmark}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
 
 
     {% else %}
         <p>La base de données est en cours de constitution</p>
     {% endif %}
+
     <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
 {% endblock %}

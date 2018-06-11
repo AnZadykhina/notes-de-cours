@@ -15,8 +15,8 @@
                 {% for issue in resultats.items %}
                 <tr>
                     <td width="890"><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}</a></td>
-                    <td width="100", valign="top">{{issue.edition_displayDate}}</td>
-                    <td width="100", valign="top">{{issue.edition_place1}}</td>
+                    <td width="100" valign="top">{{issue.edition_displayDate}}</td>
+                    <td width="100" valign="top">{{issue.edition_place}}</td>
                 </tr>
             {% endfor %}
             </table>

@@ -46,4 +46,4 @@ def config_app(config_name="test"):
 
     return app
 
-from .routes import accueil, issue, author, library, exemplar
+#from .routes import accueil, issue, library, exemplar

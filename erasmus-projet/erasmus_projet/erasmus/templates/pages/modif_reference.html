@@ -1,0 +1,57 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Contribuer{%endblock%}
+
+{% block corps %}
+
+<h1>Editer</h1>
+
+<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
+
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_reference", reference_id=reference.reference_id)}}">
+   <div class="form-group row">
+    <label for="oeuvre" class="col-sm-2 col-form-label">Auteur(s) et oeuvre</label>
+    <div class="col-6 col-sm-6">
+      <div class="input-group" >
+     <select class="selectpicker form-control" id="oeuvre" placeholder="oeuvre" name="oeuvre">
+         <option value="{{reference.bibliographie.bibliographie_id}}">{{reference.bibliographie.bibliographie_author}} "{{reference.bibliographie.bibliographie_title}}"</option>
+       {% for bibliographie in bibliographies %}
+        <option value="{{ bibliographie.bibliographie_id}}">{{bibliographie.bibliographie_author}} "{{bibliographie.bibliographie_title}}"</option>
+        {% endfor %}
+     </select>
+    </div>
+  </div>
+      </div>
+
+<div class="form-group row">
+    <label for="volume" class="col-sm-2 col-form-label">Volume</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="volume" placeholder="volume" name="volume" value="{{reference.reference_volume}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="page" class="col-sm-2 col-form-label">Pages</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="page" placeholder="page" name="page" value="{{reference.reference_page}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="recordNumber" class="col-sm-2 col-form-label">Numéro d'enregistrement</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="recordNumber" placeholder="recordNumber" name="recordNumber" value="{{reference.reference_recordNumber}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="note" class="col-sm-2 col-form-label">Notes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="note" placeholder="note" name="note" value="{{reference.reference_note}}">
+    </div>
+  </div>
+
+
+  <div>
+    <button type="submit" class="btn btn-primary">Contribuer</button>
+  </div>
+</form>
+
+{% endblock %}

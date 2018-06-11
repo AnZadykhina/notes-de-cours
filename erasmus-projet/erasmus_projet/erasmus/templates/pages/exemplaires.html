@@ -6,14 +6,14 @@
 
 {% block corps %}
     {% if exemplar %}
-        <h1>Exemplaire</h1>
         <table>
             <tr>
-                <td colspan="2" width="130"><h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">NOTICE SOMMAIRE</h4></td>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">NOTICE SOMMAIRE</h4>
             </tr>
             <tr>
                 <td><b>Titre court:</b></td>
-                <td width="320"> {{edition.edition_short_title}}</td>
+                <td><a href="{{url_for('issue', edition_id=edition.edition_id)}}">{{edition.edition_short_title}}</a> </td>
+
             </tr>
             <tr>
                 <td><b>Auteur principal: </b></td>
@@ -35,7 +35,7 @@
             {% if edition.edition_place or edition.edition_printer or edition.edition_displayDate%}
             <tr>
                 <td><b>Lieu/Imprimeur/Libraire/Date:</b></td>
-                <td> {%if edition.edition_place1%}{{edition.edition_placeClean}}{% endif %}
+                <td> {%if edition.edition_place%}{{edition.edition_place}}{% endif %}
                      {%if edition.edition_printer%}, {{edition.edition_printer}}{% endif %}
                      {%if edition.edition_displayDate%}, {{edition.edition_displayDate}}{% endif %}</td>
             </tr>
@@ -43,14 +43,11 @@
             {% if edition.edition_collator_format %}
             <tr><td><b>Format:</b></td><td> {{edition.edition_collator_format}}</td></tr>
             {% endif %}
-            <tr>
-                <td><b>№ dans la base:</b></td>
-                <td> {{edition.edition_sn}}</td>
-            </tr>
+
             </table>
             <table>
             <tr>
-                <td colspan="2"><h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">SPÉCIFICITÉS D'EXEMPLAIRE</h4></td>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">SPÉCIFICITÉS D'EXEMPLAIRE</h4>
             </tr>
 
 
@@ -105,11 +102,35 @@
                 <td><b>Recueil factice: </b></td>
                 <td> {{exemplar.exemplaire_recueilFactice}}</td>
             </tr>
-            </table>
+                <tr><td> <a href="{{url_for('modif_exemplaire', exemplaire_id = exemplar.exemplaire_id)}}">Modifier</a></td></tr>
 
-    <p><a href="{{url_for('ajout_provenance', identifier=exemplar.exemplaire_id)}}">Ajout provenance</a></p>
+            </table>
+        <table>
+            <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">PROVENANCE</h4>
+            </tr>
+            {% for provenance in provenances%}
+            <tr>
+                <td><b>Ancien possesseur: </b></td>
+                <td>{{provenance.provenance_possesseur}}</td>
+            </tr>
+            <tr>
+                <td><b>Type de provenance: </b></td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td><b>Notes sur provenance: </b></td>
+                <td>{{provenance.provenance_notes}}</td>
+            </tr>
+            <tr><td><a href="{{url_for('modif_provenance', provenance_id=provenance.provenance_id)}}">Modifier</a></td></tr>
+            {% endfor %}
+        </table>
+
+    <p><a href="{{url_for('ajout_provenance', exemplaire_id = exemplar.exemplaire_id)}}">Ajout provenance</a></p>
     {% else %}
         <p>La base de données est en cours de constitution</p>
     {% endif %}
+
+
     <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
 {% endblock %}

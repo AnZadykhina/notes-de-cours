@@ -1,0 +1,60 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}
+    {%if bibliographie %}| OEuvre : {{bibliographie.bibliographie_id}} {% endif %}
+{% endblock %}
+
+{% block corps %}
+    {% if bibliographie %}
+        <table>
+            <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">OEUVRE</h4>
+            </tr>
+            <tr>
+                <td><b>Code: </b></td>
+                <td>{{bibliographie.bibliographie_code}}</td>
+            </tr>
+            <tr>
+                <td><b>Author: </b></td>
+                <td>{{bibliographie.bibliographie_author}}</td>
+            </tr>
+            <tr>
+                <td><b>Titre: </b></td>
+                <td>{{bibliographie.bibliographie_title}}</td>
+            </tr>
+            <tr>
+                <td><b>Imprint: </b></td>
+                <td>{{bibliographie.bibliographie_imprint}}</td>
+            </tr>
+            <tr>
+                <td><b>Lien vers une nimérisation: </b></td>
+                <td>{{bibliographie.bibliographie_URLLink}}</td>
+            </tr>
+            <tr><td><a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_bibliographie', bibliographie_id = bibliographie.bibliographie_id)}}" role="button">Modifier </a></td> </tr>
+            <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('suppression_bibliographie', bibliographie_id = bibliographie.bibliographie_id) }}" role="button">Supprimer</a></td></tr>
+        </table>
+        <table>
+        <tr>
+                <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">ÉDITIONS</h4>
+        </tr>
+
+        <tr>
+            <td width="2500"><b>TITRE D'ÉDITION</b></td>
+            <td width="150"><b>DATE</b></td>
+            <td width="150"><b>LIEU</b></td>
+        </tr>
+        {% for reference in references %}
+        <tr>
+            <td><a href="{{url_for('issue', edition_id=reference.edition.edition_id)}}"> {{reference.edition.edition_short_title}}</a></td>
+            <td>{{reference.edition.edition_displayDate}}</td>
+            <td>{{reference.edition.edition_place}}</td>
+        </tr>
+        {% endfor %}
+        </table>
+
+
+    {% else %}
+        <p>La base de données est en cours de constitution</p>
+    {% endif %}
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+{% endblock %}

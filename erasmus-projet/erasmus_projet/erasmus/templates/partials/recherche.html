@@ -3,11 +3,16 @@
     <form class="form" action="{{url_for("recherche")}}" method="GET">
 
     <div class="input-group">
-      <input type="search" name="keyword" class="form-control form-control-lg" type="text" placeholder="Faire une recherche">
+      <input type="search" name="title" class="form-control form-control-lg" type="text" placeholder="title">
+      <input type="search" name="auteur" class="form-control form-control-lg" type="text" placeholder="auteur">
+      <input type="search" name="begin_date" class="form-control form-control-lg" type="text" placeholder="begin_date">
+      <input type="search" name="end_date" class="form-control form-control-lg" type="text" placeholder="end_date">
       <span class="input-group-btn">
         <button class="btn btn-primary btn-lg" href="#" role="button">Rechercher</button>
       </span>
     </div>
+
+    </form>
 
     </form>
   </div>

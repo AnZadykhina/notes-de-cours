@@ -1,0 +1,107 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Contribuer{%endblock%}
+
+{% block corps %}
+
+<h1>Editer</h1>
+<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
+<form class="form" method="POST" action="{{url_for('modif_exemplaire', exemplaire_id=exemplaire.exemplaire_id)}}">
+    <div class="form-group row">
+    <label for="library" class="col-sm-2 col-form-label">Bibliotheque</label>
+    <div class="col-6 col-sm-6">
+      <div class="input-group" >
+     <select class="selectpicker form-control" id="library" placeholder="library" name="library">
+         <option value="{{exemplaire.bibliothecae.bibliothecae_library}}">{{exemplaire.bibliothecae.bibliothecae_library}}</option>
+       {% for bibliotheque in bibliotheques %}
+        <option value="{{ bibliotheque.bibliothecae_id}}">{{bibliotheque.bibliothecae_library}}</option>
+        {% endfor %}
+     </select>
+    </div>
+  </div>
+      </div>
+<div class="form-group row">
+    <label for="pressmark" class="col-sm-2 col-form-label">Cote</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="pressmark" placeholder="pressmark" name="pressmark" value="{{exemplaire.exemplaire_pressmark}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="hauteur" class="col-sm-2 col-form-label">Hauteur (en cm)</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="hauteur" placeholder="hauteur" name="hauteur" value="{{exemplaire.exemplaire_hauteur}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="largeur" class="col-sm-2 col-form-label">Largeur (en cm)</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="largeur" placeholder="largeur" name="largeur" value="{{exemplaire.exemplaire_largeur}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="variantesEdition" class="col-sm-2 col-form-label">Variantes d'édition</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="variantesEdition" placeholder="variantesEdition" name="variantesEdition" value="{{exemplaire.exemplaire_variantesEdition}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="digitalURL" class="col-sm-2 col-form-label">Lien vers exemplaire numérisé</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="digitalURL" placeholder="digitalURL" name="digitalURL" value="{{exemplaire.exemplaire_digitalURL}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="etatMateriel" class="col-sm-2 col-form-label">État matériel</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="etatMateriel" placeholder="etatMateriel" name="etatMateriel" value="{{exemplaire.exemplaire_etatMateriel}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="notes" class="col-sm-2 col-form-label">Notes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="notes" placeholder="notes" name="notes" value="{{exemplaire.exemplaire_notes}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="provenances" class="col-sm-2 col-form-label">Provenances</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="provenances" placeholder="provenances" name="provenances" value="{{exemplaire.exemplaire_provenances}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="locFingerprint" class="col-sm-2 col-form-label">Empreinte LOC </label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="locFingerprint" placeholder="locFingerprint" name="locFingerprint" value="{{exemplaire.exemplaire_locFingerprint}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="stcnFingerprint" class="col-sm-2 col-form-label">Empreinte STCN</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="stcnFingerprint" placeholder="stcnFingerprint" name="stcnFingerprint" value="{{exemplaire.exemplaire_stcnFingerprint}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="reliure" class="col-sm-2 col-form-label">Reliure</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="reliure" placeholder="reliure" name="reliure" value="{{exemplaire.exemplaire_reliure}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="recueilFactice" class="col-sm-2 col-form-label">Recueil factice</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="recueilFactice" placeholder="recueilFactice" name="recueilFactice" value="{{exemplaire.exemplaire_recueilFactice}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="reliureXVI" class="col-sm-2 col-form-label">Reliure XVIe</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="reliureXVI" placeholder="reliureXVI" name="reliureXVI" value="{{exemplaire.exemplaire_reliureXVI}}">
+    </div>
+  </div>
+
+
+  <div>
+    <button type="submit" class="btn btn-primary">Contribuer</button>
+  </div>
+</form>
+{% endblock %}

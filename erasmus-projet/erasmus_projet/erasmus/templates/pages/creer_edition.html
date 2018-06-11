@@ -7,6 +7,7 @@
 <h1>Édition d'Erasmus</h1>
 <p>Complétez le formulaire et cliquez sur "Enregistrer".</p>
 <form class="form" method="POST" action="{{url_for("creer_edition")}}">
+
   <div class="form-group row">
     <label for="short-title" class="col-sm-2 col-form-label">Titre court</label>
     <div class="col-sm-10">
@@ -20,9 +21,9 @@
     </div>
   </div>
 <div class="form-group row">
-    <label for="parallel_title" class="col-sm-2 col-form-label">Titre entier </label>
+    <label for="full_title" class="col-sm-2 col-form-label">Titre entier </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="parallel_title" placeholder="parallel_title" name="parallel_title">
+      <input type="text" class="form-control" id="full_title" placeholder="full_title" name="full_title">
     </div>
   </div>
 <div class="form-group row">
@@ -78,6 +79,12 @@
       <input type="text" class="form-control" id="prefaceur" placeholder="prefaceur" name="prefaceur">
     </div>
   </div>
+<div class="form-group row">
+    <label for="nomRejete" class="col-sm-2 col-form-label">Noms d'auteur (formes rejetées)</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="nomRejete" placeholder="nomRejete" name="nomRejete">
+    </div>
+  </div>
  <div class="form-group row">
     <label for="dateInferred" class="col-sm-2 col-form-label">Date déduite</label>
     <div class="col-sm-10">
@@ -87,7 +94,7 @@
  <div class="form-group row">
     <label for="displayDate" class="col-sm-2 col-form-label">Date affichée</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="displayDate" placeholder="display Date" name="displayDate">
+      <input type="text" class="form-control" id="displayDate" placeholder="displayDate" name="displayDate">
     </div>
   </div>
  <div class="form-group row">
@@ -95,9 +102,10 @@
     <div class="input-group">
      <select class="selectpicker form-control" id="cleanDate" placeholder="cleanDate" name="cleanDate">
        <option></option>
-       {% for edition in editions %}
-        <option value="{{ edition.edition_cleanDate}}">{{edition.edition_cleanDate}}</option>
+       {% for date in dates %}
+        <option>{{date}}</option>
         {% endfor %}
+        <option>9999</option>
      </select>
     </div>
   </div>
@@ -128,7 +136,7 @@
  <div class="form-group row">
     <label for="placeClean" class="col-sm-2 col-form-label">Lieu Propre</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="placeClean" placeholder="place Clean" name="placeClean">
+      <input type="text" class="form-control" id="placeClean" placeholder="placeClean" name="placeClean">
     </div>
   </div>
  <div class="form-group row">
@@ -213,7 +221,7 @@
 <div class="form-group row">
     <label for="formatNotes" class="col-sm-2 col-form-label"> Notes sur le format</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="formatNotes" placeholder="formatNotess" name="formatNotes">
+      <input type="text" class="form-control" id="formatNotes" placeholder="formatNotes" name="formatNotes">
     </div>
   </div>
 <div class="form-group row">
@@ -231,7 +239,7 @@
 <div class="form-group row">
     <label for="remarks" class="col-sm-2 col-form-label">Remarques</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="remarks" placeholder="remarkss" name="remarks">
+      <input type="text" class="form-control" id="remarks" placeholder="remarks" name="remarks">
     </div>
   </div>
 <div class="form-group row">

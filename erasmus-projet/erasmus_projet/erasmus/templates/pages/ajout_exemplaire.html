@@ -6,12 +6,16 @@
 
 <h1>Édition d'Erasmus</h1>
 <p>Complétez le formulaire et cliquez sur "Enregistrer".</p>
-    <form class="container" method="GET" action="{{url_for("ajout_exemplaire", identifier=edition.edition_id)}}">
-    <div class="form-group col">
-        <label for="idEdition" class="col-lg-4 col-form-label">ID Edition</label>
-      <div class="col">
+    <form class="container" method="GET" class="col-8 col-sm-8"  action="{{url_for("ajout_exemplaire", identifier=edition.edition_id)}}">
+
+    <div class="form-group row">
+
+        <label for="idEdition" class="col-sm-2 col-form-label">ID Edition</label>
+        <div class="col-6 col-sm-6">
+      <div class="col-sm-6">
         <input type="text" class="form-control" id="idEdition" name="idEdition" value="{{edition.edition_id}}">
       </div>
+    </div>
     </div>
 </form>
 <form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("ajout_exemplaire", identifier=edition.edition_id)}}">
@@ -20,7 +24,7 @@
     <div class="col-6 col-sm-6">
       <div class="input-group" >
      <select class="selectpicker form-control" id="library" placeholder="library" name="library">
-       <option></option>
+         <option></option>
        {% for bibliotheque in bibliotheques %}
         <option value="{{ bibliotheque.bibliothecae_id}}">{{bibliotheque.bibliothecae_library}}</option>
         {% endfor %}
@@ -35,9 +39,9 @@
     </div>
   </div>
 <div class="form-group row">
-    <label for="size" class="col-sm-2 col-form-label">Hauteur (en cm)</label>
+    <label for="hauteur" class="col-sm-2 col-form-label">Hauteur (en cm)</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" id="size" placeholder="size" name="size">
+      <input type="text" class="form-control" id="hauteur" placeholder="hauteur" name="hauteur">
     </div>
   </div>
 <div class="form-group row">

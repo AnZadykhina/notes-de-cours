@@ -1,0 +1,37 @@
+{% extends "conteneur.html" %}
+{% block titre %}
+    {%if unique %}| Suppression d'une édition {% endif %}
+{% endblock %}
+
+{% block corps %}
+<div class="mt-2 container">
+<div class="row">
+	<div class="col-md mt-3">
+			<h3>Confirmez s'il vous plaît la suppression de la citation:</h3>
+		</div>
+</div>
+	<form class="form" method="POST" action="{{url_for('suppression_edition', edition_id=unique.edition_id)}}">
+	<div class="row">
+		<div class="col-md mt-3">
+
+				<span class="mr-1">
+					<p>{% if unique.edition_short_title %}<strong>Title: </strong>{{unique.edition_short_title}}{% endif %}</p>
+
+				</span>
+
+		</div>
+		<div class="col-md container mt-3">
+				<div class="row">
+				<form class="col-3 mr-2 " method="POST" action="{{url_for('suppression_edition', edition_id=unique.edition_id) }}">
+				<button type="submit" class="btn btn-success btn-sm">Confirmer</button>
+				</form>
+				<form class="col-3 ml-2" method="GET" action="{{ url_for('issue', edition_id=unique.edition_id) }}">
+				<button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+				</form>
+		</div>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+{% endblock %}

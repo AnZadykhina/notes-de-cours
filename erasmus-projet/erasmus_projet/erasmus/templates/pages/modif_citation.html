@@ -1,0 +1,54 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Contribuer{%endblock%}
+
+{% block corps %}
+
+<h1>Editer</h1>
+
+<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
+
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_citation", citation_id=citation.citation_id)}}">
+     <div class="form-group row">
+    <label for="dbname" class="col-sm-2 col-form-label">Nom de base</label>
+    <div class="col-6 col-sm-6">
+      <div class="input-group" >
+     <select class="selectpicker form-control" id="dbname" placeholder="dbname" name="dbname">
+         <option value="{{citation.citation_dbname}}">{{citation.citation_dbname}}</option>
+         <option>Erasmus Online</option>
+         <option>ESTC</option>
+         <option>GLN15-16</option>
+         <option>USTC</option>
+         <option>VD 16</option>
+         <option>EDIT 16</option>
+         <option>Lyon 15-16</option>
+         <option>ISTC</option>
+         <option>BP 16</option>
+         <option>FB</option>
+         <option>NB</option>
+         <option>IB</option>
+         <option>GW</option>
+         <option>STCN</option>
+     </select>
+    </div>
+  </div>
+      </div>
+<div class="form-group row">
+    <label for="dbnumber" class="col-sm-2 col-form-label">Numéro dans la base</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="dbnumber" placeholder="dbnumber" name="dbnumber" value="{{citation.citation_dbnumber}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="url" class="col-sm-2 col-form-label">Lien numérique</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="url" placeholder="url" name="url" value="{{citation.citation_url}}">
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary">Contribuer</button>
+  </div>
+</form>
+
+{% endblock %}

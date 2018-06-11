@@ -17,6 +17,7 @@
         {% endif %}
         <p><b>Auteur principal:</b>  {{issue.edition_author_first}}</p>
         <p><b>Auteur(s) secondaire(s):</b> {{issue.edition_author_second}}</p>
+<div class="row">
     <div class="col-8 col-sm-8">
         <table>
             <tr>
@@ -53,7 +54,7 @@
             {% if issue.edition_place or issue.edition_printer or issue.edition_displayDate%}
             <tr>
                 <td width="130"><b>Lieu/Imprimeur/Libraire/Date:</b></td>
-                <td> {%if issue.edition_place1%}{{issue.edition_placeClean}}{% endif %}
+                <td> {%if issue.edition_place%}{{issue.edition_place}}{% endif %}
                      {%if issue.edition_printer%}, {{issue.edition_printer}}{% endif %}
                      {%if issue.edition_displayDate%}, {{issue.edition_displayDate}}{% endif %}</td>
             </tr>
@@ -132,31 +133,36 @@
                 <td>{{issue.edition_notes}}</td>
             </tr>
             {% endif %}
+                <tr><td><a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_edition', edition_id = issue.edition_id)}}" role="button">Modifier </a></td>
+                <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('suppression_edition', edition_id=issue.edition_id) }}" role="button">Supprimer</a></td></tr>
+
         </table>
+
         <table>
             <tr>
                 <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">EXEMPLAIRES</h4>
             </tr>
             <tr>
-                <td width="130">Pays</td>
-                <td width="130">Ville</td>
-                <td width="130">Bibliothèque</td>
-                <td width="130">Cote</td>
-                <td width="130">Lien vers une numérisation</td>
+                <td width="130"><b>PAYS</b></td>
+                <td width="130"><b>VILLE</b></td>
+                <td width="130"><b>BIBLIOTHÈQUE</b></td>
+                <td width="130"><b>COTE</b></td>
+                <td width="130"><b>LIEN VERS UNE NUMÉRISATION</b></td>
             </tr>
             {% for exemplair in exemplaires %}
 
             <tr>
                 <td valign="top">{{exemplair.bibliothecae.bibliothecae_pays}}</td>
                 <td valign="top">{{exemplair.bibliothecae.bibliothecae_ville}}</td>
-                <td valign="top"><a href="{{url_for('exemplar', exemplaire_id=exemplair.exemplaire_id)}}"> {{exemplair.bibliothecae.bibliothecae_library}}</a><br>
-                    {{exemplair.bibliothecae.bibliothecae_adresse}}</td>
+                <td valign="top">{{exemplair.bibliothecae.bibliothecae_library}}</td>
                 <td valign="top">{{exemplair.exemplaire_pressmark}}</td>
                 <td valign="top">{{exemplair.exemplaire_digitalURL}}</td>
+                <td valign="top"><a href="{{url_for('exemplar', exemplaire_id=exemplair.exemplaire_id)}}"><img src="{{url_for("static", filename="images/livre.jpeg")}}" width="35"
+        height="35" border="0" alt="lien"> </a></td>
             </tr>
             {% endfor %}
         </table>
-
+ <p><a class="btn btn-outline-success" role="button" href="{{url_for('ajout_exemplaire', identifier = issue.edition_id)}}">Ajout exemplaire</a></p>
     <table>
             <tr>
                 <h4 style=" margin-top: 1.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">CITATION</h4>
@@ -168,18 +174,36 @@
             <td width="130", valign="top">{{citation.citation_dbnumber}}</td>
             <td width="130", valign="top"><a href="{{citation.citation_url}}">{{citation.citation_url}}</a></td>
         </tr>
+        <tr><td><a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_citation', citation_id=citation.citation_id)}}" role="button">Modifier</a></td>
+            <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('suppression_citation', citation_id=citation.citation_id) }}" role="button">Supprimer</a></td></tr>
         {% endfor %}
     </table>
+                <p><a class="btn btn-outline-success" role="button" href="{{url_for('ajout_citation', edition_id = issue.edition_id)}}">Ajout citation</a></p>
         </div>
+    {% if issue.edition_urlImage %}
+            <div class="col-4 col-sm-4">
+    <img src="{{issue.edition_urlImage}}" width="250"
+        height="100" border="0" alt="éditions">
+</div>
+
+    {%else%}
+
+<div class="col-4 col-sm-4">
+    <img src="{{url_for("static", filename="images/erasmus.jpeg")}}" width="450"
+        height="650" border="0" alt="Erasmus Desiderius">
+</div>
+    {% endif %}
+</div>
+<h4 style=" margin-top: 1.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">RÉFÉRENCE(S) BIBLIOGRAPHIQUE(S)</h4> <a class="btn btn-outline-success" role="button" href="{{url_for('ajout_reference', edition_id = issue.edition_id)}}">Ajout reference</a>
     <table>
-            <tr><h4 style=" margin-top: 1.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">RÉFÉRENCE(S) BIBLIOGRAPHIQUE(S)</h4></tr>
+
        <tr>
-           <td width="150">Auteur(s)</td>
-           <td width="250">Titre</td>
-           <td width="150">Imprint</td>
-           <td width="150">Lien</td>
-           <td width="100">Page</td>
-           <td width="100">Volume</td>
+           <td width="150"><b>AUTEUR(S)</b></td>
+           <td width="250"><b>TITRE</b></td>
+           <td width="150"><b>IMPRINT</b></td>
+           <td width="150"><b>LIEN</b></td>
+           <td width="100"><b>PAGE</b></td>
+           <td width="100"><b>VOLUME</b></td>
        </tr>
     {% for reference in references %}
 
@@ -199,13 +223,12 @@
         <td><p></p></td>
         <td><p></p></td>
     </tr>
+        <tr><td><a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_reference', reference_id=reference.reference_id)}}" role="button">Modifier</a></td></tr>
     {% endfor %}
+
     </table>
 
 
-
-
-        <p><a href="{{url_for('ajout_exemplaire', identifier = issue.edition_id)}}">Ajout exemplaire</a></p>
         {% else %}
 
 

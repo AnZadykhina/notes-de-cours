@@ -1,0 +1,94 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| Contribuer{%endblock%}
+
+{% block corps %}
+
+<h1>Editer</h1>
+
+<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
+
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_provenance", provenance_id=provenance.provenance_id)}}">
+
+<div class="form-group row">
+    <label for="possesseur" class="col-sm-2 col-form-label">Ancien possesseur</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="possesseur" placeholder="possesseur" name="possesseur" value="{{provenance.provenance_possesseur}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="possesseur_formeRejetee" class="col-sm-2 col-form-label">Ancien possesseur (formes rejétées)</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="possesseur_formeRejetee" placeholder="possesseur_formeRejetee" name="possesseur_formeRejetee" value="{{provenance.provenance_possesseur_formeRejetee}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="exlibris" class="col-sm-2 col-form-label">Ex-libris</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="exlibris" placeholder="exlibris" name="exlibris" value="{{provenance.provenance_exlibris}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="exdono" class="col-sm-2 col-form-label">Ex-dono</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="exdono" placeholder="exdono" name="exdono" value="{{provenance.provenance_exdono}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="envoi" class="col-sm-2 col-form-label">Envoi</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="envoi" placeholder="envoi" name="envoi" value="{{provenance.provenance_envoi}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="notesManuscrites" class="col-sm-2 col-form-label">Notes manuscrites relatives à la provenance</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="notesManuscrites" placeholder="notesManuscrites" name="notesManuscrites" value="{{provenance.provenance_notesManuscrites}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="armesPeintes" class="col-sm-2 col-form-label">Armes peintes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="armesPeintes" placeholder="armesPeintes" name="armesPeintes" value="{{provenance.provenance_armesPeintes}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="restitue" class="col-sm-2 col-form-label">Provenance restituées d'après des sources externes</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="restitue" placeholder="restitue" name="restitue" value="{{provenance.provenance_restitue}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="mentionEntree" class="col-sm-2 col-form-label">Mention d'entrée</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="mentionEntree" placeholder="mentionEntree" name="mentionEntree" value="{{provenance.provenance_mentionEntree}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="estampillesCachets" class="col-sm-2 col-form-label">Estampilles et cachets</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="estampillesCachets" placeholder="estampillesCachets" name="estampillesCachets" value="{{provenance.provenance_estampillesCachets}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="reliure_provenance" class="col-sm-2 col-form-label">Provenance de la reliure</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="reliure_provenance" placeholder="reliure_provenance" name="reliure_provenance" value="{{provenance.provenance_reliure_provenance}}">
+    </div>
+  </div>
+<div class="form-group row">
+    <label for="notes" class="col-sm-2 col-form-label">Notes sur provenance</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="notes" placeholder="notes" name="notes" value="{{provenance.provenance_notes}}">
+    </div>
+  </div>
+
+
+
+
+  <div>
+    <button type="submit" class="btn btn-primary">Contribuer</button>
+  </div>
+</form>
+
+{% endblock %}

@@ -1,8 +1,8 @@
-from flask import render_template, request, flash, redirect
+from flask import render_template, request, flash, redirect, url_for
 
 
 from .app import app, db
-from .modeles.donnees import Edition, Authorite, Exemplaire, Bibliothecae, Provenance
+from .modeles.donnees import Edition, Exemplaire, Bibliothecae, Provenance, Reference, Bibliographie, Citation
 from .constantes import EDITION_PAR_PAGE
 
 
@@ -10,7 +10,7 @@ from .constantes import EDITION_PAR_PAGE
 def accueil():
 
     return render_template("pages/accueil.html", nom="Erasmus")
-
+"""
 @app.route("/authorite/<int:authorite_id> ")
 def author(authorite_id):
    unique_author = Authorite.query.get(authorite_id)
@@ -19,9 +19,7 @@ def author(authorite_id):
 
 @app.route("/auteurs")
 def all_authors():
-    """ Route permettant l'affichage d'une page avec touts commentaires ajoutés
-    :return: page html avec une liste de commentaires
-    """
+
     page = request.args.get("page", 1)
 
     if isinstance(page, str) and page.isdigit():
@@ -30,7 +28,7 @@ def all_authors():
         page = 1
 
     authors = Authorite.query.order_by(Authorite.authorite_id).paginate(page=page, per_page=EDITION_PAR_PAGE)
-    return render_template("pages/all_authors.html", nom="Erasmus", authors=authors, page=page)
+    return render_template("pages/all_authors.html", nom="Erasmus", authors=authors, page=page)"""
 
 @app.route("/bibliotheques")
 def all_libraries():
@@ -61,6 +59,15 @@ def all_issues():
 
     issues = Edition.query.order_by(Edition.edition_short_title).paginate(page=page, per_page=EDITION_PAR_PAGE)
     return render_template("pages/all_issues.html", nom="Erasmus", issues=issues, page=page)
+"""
+@app.route("/exemplaires")
+def all_exemplar():
+    #Route permettant l'affichage d'une page avec touts commentaires ajoutés
+    #:return: page html avec une liste de commentaires
+    
+
+    exemplars = Exemplaire.query.all()
+    return render_template("pages/all_exemplar.html", nom="Erasmus", exemplars=exemplars)"""
 
 @app.route("/edition/<int:edition_id>")
 
@@ -77,13 +84,154 @@ def issue(edition_id):
 
 
 
+@app.route("/bibliographies")
+def all_bibliographies():
+    """ Route permettant l'affichage d'une page avec touts commentaires ajoutés
+    :return: page html avec une liste de commentaires
+    """
+    page = request.args.get("page", 1)
+
+    if isinstance(page, str) and page.isdigit():
+        page = int(page)
+    else:
+        page = 1
+
+    bibliographies = Bibliographie.query.order_by(Bibliographie.bibliographie_code).paginate(page=page, per_page=EDITION_PAR_PAGE)
+    return render_template("pages/all_bibliographies.html", nom="Erasmus", bibliographies=bibliographies, page=page)
+
+@app.route("/bibliographie/<int:bibliographie_id>")
+
+def bibliographie(bibliographie_id):
+    # On a bien sûr aussi modifié le template pour refléter le changement
+    unique_bibliographie = Bibliographie.query.get(bibliographie_id)
+    references=unique_bibliographie.reference
+
+    return render_template("pages/bibliographie.html", nom="Erasmus", bibliographie=unique_bibliographie, references=references)
+
+@app.route("/ajout_bibliographie", methods=["GET", "POST"])
+
+def ajout_bibliographie():
+    """ Route gérant les ajouts des commentaires
+        :return: page html d'ajout de commentaire
+        """
+
+
+    if request.method == "POST":
+        statut, donnees = Bibliographie.ajout_bibliographie(
+            code=request.form.get('code'),
+            author=request.form.get('author'),
+            bibliReference=request.form.get('bibliReference'),
+            title=request.form.get('title'),
+            imprint=request.form.get('imprint'),
+            urlLink=request.form.get('urlLink'),
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect("/")
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/ajout_bibliographie.html")
+    else:
+        return render_template("pages/ajout_bibliographie.html")
+
+
+
+
+@app.route("/modif_bibliographie/<int:bibliographie_id>", methods=["GET", "POST"])
+def modif_bibliographie(bibliographie_id):
+    """ Route gérant les ajouts des commentaires
+        :return: page html d'ajout de commentaire
+        """
+    unique_bibliographie = Bibliographie.query.get(bibliographie_id)
+    if request.method == "POST":
+        bibliographie = Bibliographie.query.get(bibliographie_id)
+        statut, donnees = Bibliographie.modif_bibliographie(
+            id=bibliographie_id,
+            code=request.form.get('code'),
+            author=request.form.get('author'),
+            bibliReference=request.form.get('bibliReference'),
+            title=request.form.get('title'),
+            imprint=request.form.get('imprint'),
+            urlLink=request.form.get('urlLink'),
+
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('bibliographie', bibliographie_id=bibliographie.bibliographie_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/modif_bibliographie.html")
+    else:
+        return render_template("pages/modif_bibliographie.html", bibliographie=unique_bibliographie)
+
+
+
+
+
 @app.route("/bibliotheque/<string:bibliothecae_id>")
 def library(bibliothecae_id):
     # On a bien sûr aussi modifié le template pour refléter le changement
     unique_bibliotheque = Bibliothecae.query.get(bibliothecae_id)
 
+    exemplaires = unique_bibliotheque.exemplaire
+    
 
-    return render_template("pages/bibliotheque.html", nom="Erasmus", bibliotheque=unique_bibliotheque)
+    return render_template("pages/bibliotheque.html", nom="Erasmus", bibliotheque=unique_bibliotheque, exemplaires=exemplaires)
+
+
+@app.route("/ajout_bibliotheque", methods=["GET", "POST"])
+
+def ajout_bibliotheque():
+    """ Route gérant les ajouts des commentaires
+        :return: page html d'ajout de commentaire
+        """
+
+    if request.method == "POST":
+        statut, donnees = Bibliothecae.ajout_bibliotheque(
+            id=request.form.get('id'),
+            library=request.form.get('library'),
+            adresse=request.form.get('adresse'),
+            ville=request.form.get('ville'),
+            pays=request.form.get('pays'),
+            web=request.form.get('web'),
+            weighting=request.form.get('weighting')
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect("/")
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/ajout_bibliotheque.html")
+    else:
+        return render_template("pages/ajout_bibliotheque.html")
+
+@app.route("/modif_bibliotheque/<string:bibliothecae_id>", methods=["GET", "POST"])
+
+def modif_bibliotheque(bibliothecae_id):
+    """ Route gérant les ajouts des commentaires
+        :return: page html d'ajout de commentaire
+        """
+    unique_bibliotheque = Bibliothecae.query.get(bibliothecae_id)
+    if request.method == "POST":
+        bibliotheque=Bibliothecae.query.get(bibliothecae_id)
+        statut, donnees = Bibliothecae.modif_bibliotheque(
+            id=bibliothecae_id,
+            library=request.form.get('library'),
+            adresse=request.form.get('adresse'),
+            ville=request.form.get('ville'),
+            pays=request.form.get('pays'),
+            web=request.form.get('web'),
+            weighting=request.form.get('weighting')
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('library', bibliothecae_id=bibliotheque.bibliothecae_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/modif_bibliotheque.html")
+    else:
+        return render_template("pages/modif_bibliotheque.html", bibliotheque=unique_bibliotheque)
+
 
 
 @app.route("/exemplaire/<int:exemplaire_id>")
@@ -91,17 +239,19 @@ def exemplar(exemplaire_id):
     # On a bien sûr aussi modifié le template pour refléter le changement
     unique_exemplar = Exemplaire.query.get(exemplaire_id)
     edition_exemplaire = Edition.query.get(unique_exemplar.exemplaire_edition_id)
+    provenances=unique_exemplar.provenance
 
-    return render_template("pages/exemplaires.html", nom="Erasmus", exemplar=unique_exemplar, edition=edition_exemplaire)
+    return render_template("pages/exemplaires.html", nom="Erasmus", exemplar=unique_exemplar, edition=edition_exemplaire, provenances=provenances)
 
 
 @app.route("/creer_edition", methods=["GET", "POST"])
 
 def creer_edition():
-    editions = Edition.query.order_by(Edition.edition_cleanDate.asc()).all()
     """ Route gérant les ajouts des commentaires
-    :return: page html d'ajout de commentaire
-    """
+        :return: page html d'ajout de commentaire
+        """
+    dates = list(range(1450, 1605, 1))
+
     if request.method == "POST":
         statut, donnees = Edition.creer_edition(
             short_title=request.form.get("short_title", None),
@@ -113,12 +263,13 @@ def creer_edition():
             publisher=request.form.get("publisher", None),
             prefaceur=request.form.get("prefaceur"),
             translator=request.form.get("translator", None),
+            nomRejete=request.form.get("nomRejete", None),
             dateInferred=request.form.get("dateInferred", None),
             displayDate=request.form.get("displayDate", None),
             cleanDate=request.form.get("cleanDate", None),
             languages=request.form.get("languages", None),
             placeInferred=request.form.get("placeInferred", None),
-            place1=request.form.get("place", None),
+            place=request.form.get("place", None),
             place2=request.form.get("place2", None),
             placeClean=request.form.get("placeClean", None),
             country=request.form.get("country", None),
@@ -144,7 +295,6 @@ def creer_edition():
             class0=request.form.get("class0", None),
             class1=request.form.get("class1", None),
             class2=request.form.get("class2", None),
-            internal=request.form.get("internal"),
             digital=request.form.get("digital", None),
             fulltext=request.form.get("fulltext", None),
             tpimage=request.form.get("tpimage", None),
@@ -160,9 +310,81 @@ def creer_edition():
             return redirect("/")
         else:
             flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
-            return render_template("pages/creer_edition.html", editions=editions)
+            return render_template("pages/creer_edition.html", dates=dates)
     else:
-        return render_template("pages/creer_edition.html", editions=editions)
+        return render_template("pages/creer_edition.html", dates=dates)
+
+
+@app.route("/modif_edition/<int:edition_id>", methods=["GET", "POST"])
+def modif_edition(edition_id):
+    """ Route permettant modifier le commentaire
+        :param comment_id: Identifiant numérique du commentaire
+        :return: page html avec un formulaire pour modifier le commentaire"""
+    unique_edition = Edition.query.get(edition_id)
+
+    if request.method=="POST":
+        edition = Edition.query.get(edition_id)
+        status, donnees = Edition.modif_edition(
+            id=edition_id,
+            short_title=request.form.get("short_title"),
+            title_notes=request.form.get("title_notes"),
+            uniform_title=request.form.get("uniform_title"),
+            full_title=request.form.get("parallel_title"),
+            author_first=request.form.get("author_first"),
+            author_second=request.form.get("lien"),
+            publisher=request.form.get("publisher"),
+            prefaceur=request.form.get("prefaceur"),
+            translator=request.form.get("translator"),
+            nomRejete=request.form.get("nomRejete"),
+            dateInferred=request.form.get("dateInferred"),
+            displayDate=request.form.get("displayDate"),
+            cleanDate=request.form.get("cleanDate"),
+            languages=request.form.get("languages"),
+            placeInferred=request.form.get("placeInferred"),
+            place=request.form.get("place", None),
+            place2=request.form.get("place2", None),
+            placeClean=request.form.get("placeClean", None),
+            country=request.form.get("country", None),
+            format=request.form.get("format", None),
+            formatNotes=request.form.get("formatNotes", None),
+            imprint=request.form.get("imprint", None),
+            signatures=request.form.get("sigantures", None),
+            PpFf=request.form.get("PpFf", None),
+            remarks=request.form.get("remarks", None),
+            colophon=request.form.get("colophon", None),
+            illustrated=request.form.get("illustrated", None),
+            typographicMaterial=request.form.get("typographicMaterial", None),
+            sheets=request.form.get("sheets", None),
+            typeNotes=request.form.get("typeNotes", None),
+            fb=request.form.get("fb", None),
+            correct=request.form.get("correct", None),
+            locFingerprints=request.form.get("locFingerprints", None),
+            stcnFingerprints=request.form.get("stcnFingerprints", None),
+            tpt=request.form.get("tpt", None),
+            notes=request.form.get("notes", None),
+            printer=request.form.get("printer", None),
+            urlImage=request.form.get("urlImage"),
+            class0=request.form.get("class0", None),
+            class1=request.form.get("class1", None),
+            class2=request.form.get("class2", None),
+            digital=request.form.get("digital", None),
+            fulltext=request.form.get("fulltext", None),
+            tpimage=request.form.get("tpimage", None),
+            privelege=request.form.get("privelege", None),
+            dedication=request.form.get("dedication", None),
+            reference=request.form.get("reference", None),
+            citation=request.form.get("citation", None),
+    )
+
+        if status is True:
+            flash('Merci de votre contribution', 'success')
+            return redirect(url_for('issue', edition_id=edition.edition_id))
+
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+
+            return render_template("pages/modif_commentaire.html")
+    return render_template("pages/modif_edition.html", nom="Erasmus", edition=unique_edition)
 
 @app.route("/ajout_exemplaire/<int:identifier>", methods=["GET", "POST"])
 
@@ -170,8 +392,7 @@ def ajout_exemplaire(identifier):
     """ Route gérant les ajouts des commentaires
     :return: page html d'ajout de commentaire
     """
-    edition = Edition.query.get(identifier)
-    bibliotheques = Bibliothecae.query.all()
+
     if request.method == "GET":
         bibliotheques = Bibliothecae.query.all()
         edition = Edition.query.get(identifier)
@@ -180,10 +401,9 @@ def ajout_exemplaire(identifier):
 
 
     if request.method == "POST":
-        bibliotheques = Bibliothecae.query.all()
         edition = Edition.query.get(identifier)
         statut, donnees = Exemplaire.ajout_exemplaire(
-            pressmark=request.form.get("pressmark"),
+            pressmark=request.form.get('pressmark'),
             hauteur=request.form.get('hauteur'),
             variantesEdition=request.form.get('variantesEdition'),
             digitalURL=request.form.get('digitalURL'),
@@ -202,25 +422,70 @@ def ajout_exemplaire(identifier):
     )
         if statut is True:
             flash("Enregistrement effectué", "success")
-            return redirect("/")
+            return redirect(url_for('issue', edition_id=edition.edition_id))
         else:
             flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
-            return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques, edition=edition)
+            return render_template("pages/ajout_exemplaire.html")
     else:
-        return render_template("pages/ajout_exemplaire.html", bibliotheques=bibliotheques, edition=edition)
+        return render_template("pages/ajout_exemplaire.html")
 
-@app.route("/ajout_provenance/<int:identifier>", methods=["GET", "POST"])
 
-def ajout_provenance(identifier):
+
+@app.route("/modif_exemplaire/<int:exemplaire_id>", methods=["GET", "POST"])
+
+def modif_exemplaire(exemplaire_id):
+    """ Route gérant les ajouts des commentaires
+        :return: page html d'ajout de commentaire
+        """
+    unique_exemplaire = Exemplaire.query.get(exemplaire_id)
+    bibliotheques = Bibliothecae.query.all()
+    if request.method == "POST":
+        bibliotheques = Bibliothecae.query.all()
+        exemplaire = Exemplaire.query.get(exemplaire_id)
+        statut, donnees = Exemplaire.modif_exemplaire(
+            id=exemplaire_id,
+            pressmark=request.form.get('pressmark'),
+            hauteur=request.form.get('hauteur'),
+            variantesEdition=request.form.get('variantesEdition'),
+            digitalURL=request.form.get('digitalURL'),
+            etatMateriel=request.form.get('etatMateriel'),
+            notes=request.form.get('notes'),
+            provenances=request.form.get('provenances'),
+            locFingerprint=request.form.get('locFingerprint'),
+            stcnFingerprint=request.form.get('stcnFingerprint'),
+            annotationManuscrite=request.form.get('annotationManuscrite'),
+            largeur=request.form.get('largeur'),
+            recueilFactice=request.form.get('recueilFactice'),
+            reliure=request.form.get('reliure'),
+            reliureXVI=request.form.get('reliureXVI'),
+            bibliothecae_id=request.form.get('library'),
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('exemplar', exemplaire_id=exemplaire.exemplaire_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/modif_exemplaire.html", bibliotheques=bibliotheques)
+    else:
+        return render_template("pages/modif_exemplaire.html", exemplaire=unique_exemplaire, bibliotheques=bibliotheques)
+
+
+
+@app.route("/ajout_provenance/<int:exemplaire_id>", methods=["GET", "POST"])
+def ajout_provenance(exemplaire_id):
+    """ Route gérant les ajouts des commentaires
+    :return: page html d'ajout de commentaire
+    """
 
     if request.method == "GET":
-        exemplaire = Exemplaire.query.get(identifier)
+        exemplaire = Exemplaire.query.get(exemplaire_id)
 
-        return render_template("pages/ajout_provenance.html",  exemplaire=exemplaire)
+        return render_template("pages/ajout_provenance.html", exemplaire=exemplaire)
 
     if request.method == "POST":
-        exemplaire = Exemplaire.query.get(identifier)
+        exemplaire = Exemplaire.query.get(exemplaire_id)
         statut, donnees = Provenance.ajout_provenance(
+
             exlibris=request.form.get('exlibris'),
             exdono=request.form.get('exdono'),
             envoi=request.form.get('envoi'),
@@ -229,20 +494,168 @@ def ajout_provenance(identifier):
             restitue=request.form.get('restitue'),
             mentionEntree=request.form.get('mentionEntree'),
             estampillesCachets=request.form.get('estampillesCachets'),
-            reliure_provenance=request.form.get('reliure_provenance'),
             possesseur=request.form.get('possesseur'),
-            exemplaire_id=identifier,
             possesseur_formeRejetee=request.form.get('possesseur_formeRejetee'),
-
+            notes=request.form.get('notes'),
+            exemplaire_id=exemplaire_id
     )
         if statut is True:
-            flash("Enregistrement effectué", "success", exemplaire=exemplaire)
-            return redirect("/")
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('exemplar', exemplaire_id=exemplaire.exemplaire_id))
         else:
             flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
             return render_template("pages/ajout_provenance.html", exemplaire=exemplaire)
     else:
         return render_template("pages/ajout_provenance.html")
+
+@app.route("/modif_provenance/<int:provenance_id>", methods=["GET", "POST"])
+
+def modif_provenance(provenance_id):
+
+    unique_provenance = Provenance.query.get(provenance_id)
+
+    if request.method == "POST":
+        unique_provenance = Provenance.query.get(provenance_id)
+        statut, donnees = Provenance.modif_provenance(
+
+            id=provenance_id,
+            exlibris=request.form.get('exlibris'),
+            exdono=request.form.get('exdono'),
+            envoi=request.form.get('envoi'),
+            notesManuscrites=request.form.get('notesManuscrites'),
+            armesPeintes=request.form.get('armesPeintes'),
+            restitue=request.form.get('restitue'),
+            mentionEntree=request.form.get('mentionEntree'),
+            estampillesCachets=request.form.get('estampillesCachets'),
+            possesseur=request.form.get('possesseur'),
+            possesseur_formeRejetee=request.form.get('possesseur_formeRejetee'),
+            notes=request.form.get('notes'),
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('exemplar', exemplaire_id=unique_provenance.provenance_exemplaire_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/modif_provenance.html")
+    else:
+        return render_template("pages/modif_provenance.html", provenance=unique_provenance)
+
+@app.route("/ajout_reference/<int:edition_id>", methods=["GET", "POST"])
+
+def ajout_reference(edition_id):
+    """ Route gérant les ajouts des commentaires
+    :return: page html d'ajout de commentaire
+    """
+
+    if request.method == "GET":
+        bibliographies = Bibliographie.query.all()
+        edition = Edition.query.get(edition_id)
+
+        return render_template("pages/ajout_reference.html", edition=edition, bibliographies=bibliographies)
+
+    if request.method == "POST":
+        edition = Edition.query.get(edition_id)
+        statut, donnees = Reference.ajout_reference(
+
+            volume=request.form.get('volume'),
+            page=request.form.get('page'),
+            recordNumber=request.form.get('recordNumber'),
+            note=request.form.get('note'),
+            bibliographie_id=request.form.get('oeuvre'),
+            edition_id=edition_id
+    )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('issue', edition_id=edition.edition_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/ajout_reference.html")
+    else:
+        return render_template("pages/ajout_reference.html")
+
+@app.route("/modif_reference/<int:reference_id>", methods=["GET", "POST"])
+
+def modif_reference(reference_id):
+    bibliographies = Bibliographie.query.all()
+    unique_reference = Reference.query.get(reference_id)
+
+    if request.method == "POST":
+
+        statut, donnees = Reference.modif_reference(
+
+            id=reference_id,
+            volume=request.form.get('volume'),
+            page=request.form.get('page'),
+            recordNumber=request.form.get('recordNumber'),
+            note=request.form.get('note'),
+            bibliographie_id=request.form.get('oeuvre')
+
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('issue', edition_id=unique_reference.reference_edition_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/modif_reference.html", bibliographies=bibliographies)
+    else:
+        return render_template("pages/modif_reference.html", reference=unique_reference, bibliographies=bibliographies)
+
+@app.route("/ajout_citation/<int:edition_id>", methods=["GET", "POST"])
+
+def ajout_citation(edition_id):
+    """ Route gérant les ajouts des commentaires
+    :return: page html d'ajout de commentaire
+    """
+
+    if request.method == "GET":
+        edition = Edition.query.get(edition_id)
+
+        return render_template("pages/ajout_citation.html", edition=edition)
+
+    if request.method == "POST":
+        edition = Edition.query.get(edition_id)
+        statut, donnees = Citation.ajout_citation(
+
+            dbname=request.form.get('dbname'),
+            dbnumber=request.form.get('dbnumber'),
+            url=request.form.get('url'),
+            edition_id=edition_id
+    )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('issue', edition_id=edition.edition_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/ajout_citation.html")
+    else:
+        return render_template("pages/ajout_citation.html")
+
+@app.route("/modif_citation/<int:citation_id>", methods=["GET", "POST"])
+
+def modif_citation(citation_id):
+
+    unique_citation = Citation.query.get(citation_id)
+
+    if request.method == "POST":
+
+        statut, donnees = Citation.modif_citation(
+
+            id=citation_id,
+            dbname=request.form.get('dbname'),
+            dbnumber=request.form.get('dbnumber'),
+            url=request.form.get('url'),
+
+
+        )
+        if statut is True:
+            flash("Enregistrement effectué", "success")
+            return redirect(url_for('issue', edition_id=unique_citation.citation_edition_id))
+        else:
+            flash("Les erreurs suivantes ont été rencontrées : " + ",".join(donnees), "error")
+            return render_template("pages/modif_citation.html")
+    else:
+        return render_template("pages/modif_citation.html", citation=unique_citation)
+
 
 
 @app.route("/recherche")
@@ -251,7 +664,7 @@ def recherche():
     """
     # On préfèrera l'utilisation de .get() ici
     #   qui nous permet d'éviter un if long (if "clef" in dictionnaire and dictonnaire["clef"])
-    motclef = request.args.get("keyword", None)
+
     page = request.args.get("page", 1)
 
     if isinstance(page, str) and page.isdigit():
@@ -261,36 +674,25 @@ def recherche():
 
     # On crée une liste vide de résultat (qui restera vide par défaut
     #   si on n'a pas de mot clé)
-    resultats = []
+
 
     # On fait de même pour le titre de la page
     titre = "Recherche"
-    if motclef:
-        resultats = Edition.query.filter(db.or_(
-            Edition.edition_short_title.like("%{}%".format(motclef)),
-            Edition.edition_full_title.like("%{}%".format(motclef)),
-            Edition.edition_uniform_title.like("%{}%".format(motclef)),
-            Edition.edition_author_first.like("%{}%".format(motclef)),
-            Edition.edition_author_second.like("%{}%".format(motclef)),
-            Edition.edition_country.like("%{}%".format(motclef)),
-            Edition.edition_place1.like("%{}%".format(motclef)))
+    resultats = Edition.recherche_avancee(request.args).paginate(page=page, per_page=EDITION_PAR_PAGE)
 
-        ).order_by(Edition.edition_short_title.asc()).paginate(page=page, per_page=EDITION_PAR_PAGE)
-        titre = "Résultat pour la recherche `" + motclef + "`"
+
 
     return render_template(
         "pages/recherche.html",
         resultats=resultats,
         titre=titre,
-        keyword=motclef
+
     )
+
 
 @app.route("/browse")
 def browse():
-    """ Route permettant la recherche plein-texte
-    """
-    # On préfèrera l'utilisation de .get() ici
-    #   qui nous permet d'éviter un if long (if "clef" in dictionnaire and dictonnaire["clef"])
+
     page = request.args.get("page", 1)
 
     if isinstance(page, str) and page.isdigit():
@@ -304,3 +706,58 @@ def browse():
         "pages/browse.html",
         resultats=resultats
     )
+
+@app.route("/suppression/<int:edition_id>", methods=["GET", "POST"])
+def suppression_edition(edition_id):
+    """ Route pour supprimer le commentaire
+    :param comment_id : identifiant numérique du commentaire
+    :return: page html de suppression
+    """
+
+    unique_edition = Edition.query.get(edition_id)
+
+    if request.method == "GET":
+        return render_template("pages/suppr_edition.html", unique=unique_edition)
+    else:
+        status = Edition.delete_edition(edition_id=edition_id)
+        if status is True :
+            flash("Votre commentaire a été supprimé !", "success")
+            return redirect("/")
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect(url_for('issue', edition_id=unique_edition.edition_id))
+
+@app.route("/suppression/<int:bibliographie_id>", methods=["GET", "POST"])
+def suppression_bibliographie(bibliographie_id):
+
+    unique_bibliographie=Bibliographie.query.get(bibliographie_id)
+    if request.method == "GET":
+        return render_template("pages/suppression_bibliographie.html", bibliographie=unique_bibliographie)
+    else:
+        status = Bibliographie.delete_bibliographie(bibliographie_id=bibliographie_id)
+        if status is True:
+            flash("Votre commentaire a été supprimé !", "success")
+            return redirect("/")
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect("/")
+
+@app.route("/suppression/<int:citation_id>")
+def suppression_citation(citation_id):
+    """ Route pour supprimer le commentaire
+    :param comment_id : identifiant numérique du commentaire
+    :return: page html de suppression
+    """
+
+    unique_citation = Citation.query.get(citation_id)
+
+    if request.method == "GET":
+        return render_template("pages/suppression_citation.html", citation=unique_citation)
+    else:
+        status = Citation.delete_citation(citation_id=citation_id)
+        if status is True :
+            flash("Votre commentaire a été supprimé !", "success")
+            return redirect("/")
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect("/")

@@ -1,0 +1,40 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}| {{titre}}{%endblock%}
+
+{% block corps %}
+
+
+    <form class="form" action="{{url_for("recherche__avancee")}}" method="GET">
+
+    <div class="input-group">
+      <input type="search" name="title" class="form-control form-control-lg" type="text" placeholder="titre">
+        <input type="search" name="auteur" class="form-control form-control-lg" type="text" placeholder="auteur">
+      <span class="input-group-btn">
+        <button class="btn btn-primary btn-lg" href="#" role="button">Rechercher</button>
+      </span>
+    </div>
+
+    </form>
+
+
+
+
+    <h1>{{titre}}</h1>
+    {% if filtres %}
+        <p>Il y a {{filtres.total}} éditions qui répondent à votre requête :</p>
+            <table>
+                {% for issue in resultats.items %}
+                <tr>
+                    <td width="890"><a href="{{url_for('issue', edition_id=issue.edition_id)}}">{{issue.edition_short_title}}</a></td>
+                    <td width="100" valign="top">{{issue.edition_displayDate}}</td>
+                    <td width="100" valign="top">{{issue.edition_place}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+
+
+
+    {% endif %}
+
+{% endblock %}
