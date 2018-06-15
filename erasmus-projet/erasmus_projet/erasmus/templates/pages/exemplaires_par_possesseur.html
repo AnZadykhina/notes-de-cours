@@ -1,0 +1,25 @@
+{% extends "conteneur.html" %}
+{% block afternav %}
+{%endblock%}
+{% block corps %}
+<div style="font-family: Georgia;">
+<h1>Tous les possesseurs</h1>
+    {% if provenances %}
+
+            <table>
+                {% for provenance in provenances %}
+                <tr>
+                    <td><a href="{{url_for('exemplar', exemplaire_id=provenance.provenance_exemplaire_id)}}">{{provenance.provenance_possesseur}}</a></td>
+
+                </tr>
+            {% endfor %}
+            </table>
+
+    {% else %}
+        <p>La base de données est en cours de constitution</p>
+
+    {% endif %}
+
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p></div>
+
+{% endblock %}

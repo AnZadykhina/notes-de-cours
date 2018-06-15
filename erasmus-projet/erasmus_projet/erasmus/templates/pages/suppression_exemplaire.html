@@ -1,0 +1,37 @@
+{% extends "conteneur.html" %}
+{% block titre %}
+    | Suppression d'un exemplaire
+{% endblock %}
+
+{% block corps %}
+<div class="mt-2 container" style="font-family: Georgia;">
+<div class="row">
+	<div class="col-md mt-3">
+        <h3>Confirmez s'il vous plaît la suppression d'un exemplaire :</h3>
+		</div>
+</div>
+    <form class="form" method="POST" action="{{url_for('suppression_exemplaire', exemplaire_id=exemplaire.exemplaire_id)}}">
+        <div class="row">
+		<div class="col-md mt-3">
+            <span class="mr-1">
+                <strong>Titre: </strong>{{exemplaire.edition.edition_short_title}}
+                {% if exemplaire.exemplaire_pressmark %}<strong>Cote: </strong>{{exemplaire.exemplaire_pressmark}}{% endif %}
+                <strong>Bibliothèque: </strong>{{exemplaire.bibliothecae.bibliothecae_library}}
+
+            </span>
+            </div>
+		<div class="col-md container mt-3">
+				<div class="row">
+				<form class="col-3 mr-2 " method="POST" action="{{url_for('suppression_exemplaire', exemplaire_id=exemplaire.exemplaire_id)}}">
+                    <button type="submit" class="btn btn-success btn-sm">Confirmer</button>
+				</form>
+                    <form class="col-3 ml-2" method="GET" action="{{ url_for('exemplar', exemplaire_id=exemplaire.exemplaire_id)}}">
+                        <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+				</form>
+		</div>
+			</div>
+		</div>
+    </form>
+	</div>
+
+{% endblock %}

@@ -4,11 +4,11 @@
 
 {% block corps %}
 
-<h1>Editer</h1>
+<h1 style="font-family: Georgia;">Editer</h1>
 
-<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
+<p style="font-family: Georgia;">Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une citation.</p>
 
-<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_citation", citation_id=citation.citation_id)}}">
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_citation", citation_id=citation.citation_id)}}" style="font-family: Georgia;">
      <div class="form-group row">
     <label for="dbname" class="col-sm-2 col-form-label">Nom de base</label>
     <div class="col-6 col-sm-6">

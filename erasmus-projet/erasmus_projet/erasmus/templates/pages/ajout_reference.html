@@ -4,9 +4,9 @@
 
 {% block corps %}
 
-<h1>Édition d'Erasmus</h1>
-<p>Complétez le formulaire et cliquez sur "Enregistrer".</p>
-    <form class="container" method="GET" class="col-8 col-sm-8"  action="{{url_for("ajout_reference", edition_id=edition.edition_id)}}">
+<h1 style="font-family: Georgia;">Édition d'Erasmus</h1>
+<p style="font-family: Georgia;">Complétez le formulaire et cliquez sur "Enregistrer".</p>
+    <form class="container" method="GET" class="col-8 col-sm-8"  action="{{url_for("ajout_reference", edition_id=edition.edition_id)}}" style="font-family: Georgia;">
     <div class="form-group col">
         <label for="idEdition" class="col-lg-4 col-form-label">ID Edition</label>
       <div class="col">
@@ -14,7 +14,7 @@
       </div>
     </div>
 </form>
-<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("ajout_reference", edition_id=edition.edition_id)}}">
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("ajout_reference", edition_id=edition.edition_id)}}" style="font-family: Georgia;">
   <div class="form-group row">
     <label for="oeuvre" class="col-sm-2 col-form-label">Auteur(s) et oeuvre</label>
     <div class="col-6 col-sm-6">

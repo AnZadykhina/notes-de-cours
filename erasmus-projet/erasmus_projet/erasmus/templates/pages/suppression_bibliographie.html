@@ -1,15 +1,29 @@
 {% extends "conteneur.html" %}
 {% block titre %}
-    | Suppression d'un oeuvre
+    | Suppression d'une oeuvre
 {% endblock %}
 
 {% block corps %}
+<div class="mt-2 container" style="font-family: Georgia;">
+<div class="row">
+	<div class="col-md mt-3">
+        <h3>Confirmez s'il vous plaît la suppression d'une oeuvre :</h3>
+		</div>
+</div>
+    <form class="form" method="POST" action="{{url_for('suppression_bibliographie', bibliographie_id=bibliographie.bibliographie_id)}}">
+        <div class="row">
+		<div class="col-md mt-3">
+            <span class="mr-1">
+                {% if bibliographie.bibliographie_code %}<strong>Code: </strong>{{bibliographie.bibliographie_code}}{% endif %}
+                {% if bibliographie.bibliographie_author %}<strong>Auteur: </strong>{{bibliographie.bibliographie_author}}{% endif %}
+                {% if bibliographie.bibliographie_title %}<strong>Titre: </strong>{{bibliographie.bibliographie_title}}{% endif %}
+                {% if bibliographie.bibliographie_imprint %}<strong>Imprint: </strong>{{bibliographie.bibliographie_imprint}}{% endif %}
+                {% if bibliographie.bibliographie_URLLink %}<strong>Lien: </strong>{{bibliographie.bibliographie_URLLink}}{% endif %}
 
-
-        <h3>Confirmez s'il vous plaît la suppression d'un oeuvre :</h3>
-
-
-
+            </span>
+            </div>
+		<div class="col-md container mt-3">
+				<div class="row">
 				<form class="col-3 mr-2 " method="POST" action="{{url_for('suppression_bibliographie', bibliographie_id=bibliographie.bibliographie_id)}}">
                     <button type="submit" class="btn btn-success btn-sm">Confirmer</button>
 				</form>
@@ -21,5 +35,5 @@
 		</div>
     </form>
 	</div>
-</div>
+
 {% endblock %}

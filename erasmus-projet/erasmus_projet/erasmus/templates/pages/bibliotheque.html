@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block corps %}
+<div style="font-family: Georgia;">
     {% if bibliotheque %}
         <h1>{{bibliotheque.bibliothecae_library}}</h1>
 
@@ -31,7 +32,8 @@
                 <td>{{bibliotheque.bibliothecae_web}}</td>
             </tr>
             {% endif %}
-        <tr><td> <a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_bibliotheque', bibliothecae_id = bibliotheque.bibliothecae_id)}}" role="button">Modifier </a></td></tr>
+        <tr><td> <a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_bibliotheque', bibliothecae_id = bibliotheque.bibliothecae_id)}}" role="button">Modifier </a></td>
+        <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('suppression_bibliotheque', bibliothecae_id = bibliotheque.bibliothecae_id) }}" role="button">Supprimer</a></td></tr>
 
 
     </table>
@@ -60,5 +62,5 @@
         <p>La base de données est en cours de constitution</p>
     {% endif %}
 
-    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p></div>
 {% endblock %}

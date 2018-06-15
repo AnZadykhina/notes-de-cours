@@ -4,9 +4,9 @@
 
 {% block corps %}
 
-<h1>Editer</h1>
-<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
-<form class="form" method="POST" action="{{url_for('modif_exemplaire', exemplaire_id=exemplaire.exemplaire_id)}}">
+<h1 style="font-family: Georgia;">Editer</h1>
+<p style="font-family: Georgia;">Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur un exemplaire.</p>
+<form class="form" method="POST" action="{{url_for('modif_exemplaire', exemplaire_id=exemplaire.exemplaire_id)}}" style="font-family: Georgia;">
     <div class="form-group row">
     <label for="library" class="col-sm-2 col-form-label">Bibliotheque</label>
     <div class="col-6 col-sm-6">

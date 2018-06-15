@@ -5,14 +5,17 @@
         <title>Erasmus {%block titre %}{%endblock%}</title>
         {% include "partials/css.html" %}
         {% include "partials/metadata.html" %}
+
         <style type="text/css">
             .hero  {
+                font-family: Georgia;
                 background-position: center center;
                 padding:10vh;
 
             }
             .container .hero {
                 background-image: url({{url_for("static", filename="images/paper.jpeg")}});
+                font-family: Georgia;
             }
         </style>
     </head>
@@ -22,15 +25,24 @@
         <a class="navbar-brand" href="{{ url_for('accueil') }}">Erasmus</a>
 
         <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+             <!-- <li class="nav-item">
                 <a class="nav-link" href="{{url_for("browse")}}">Navigation</a>
-              </li>
+              </li>-->
 
             <ul class="nav navbar-nav navbar-right">
-               <li class="nav-item"><a class="nav-link" href="{{url_for("creer_edition")}}">Ajout d'édition</a></li>
-               <li class="nav-item"><a class="nav-link" href="{{url_for("ajout_bibliotheque")}}">Ajout de bibliothèque</a></li>
-               <li class="nav-item"><a class="nav-link" href="{{url_for("ajout_bibliographie")}}">Ajout de bibliographie</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{url_for("recherche")}}">Recherche par dates</a></li>
+<li class="nav-item"><a class="nav-link" href="{{url_for("recherche")}}">Recherche</a></li>
+                <div class="dropdown open">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Ajout
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{{url_for("creer_edition")}}">Ajout d'édition</a>
+    <a class="dropdown-item" href="{{url_for("ajout_bibliotheque")}}">Ajout de bibliothèque</a>
+    <a class="dropdown-item"href="{{url_for("ajout_bibliographie")}}">Ajout de bibliographie</a>
+  </div>
+</div>
+
+
             </ul>
         </ul>
         <form class="form-inline" action="{{url_for("recherche")}}" method="GET">
@@ -38,6 +50,7 @@
           <button class="btn btn-info" type="submit">Rechercher</button>
         </form>
       </nav>
+
       {% block afternav %}{%endblock%}
       <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -57,5 +70,8 @@
             </div>
         </div>
       </div>
+    	<script src="../static/js/jquery.js"></script>
+				<script src="../static/js/popper.js"></script>
+				<script src="../static/js/bootstrap.js"></script>
     </body>
 </html>

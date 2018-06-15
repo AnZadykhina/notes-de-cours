@@ -233,8 +233,21 @@ class Edition(db.Model):
         """
 
         edition = Edition.query.get(edition_id)
+        citations=edition.citation
+        exemplars=edition.exemplaire
+        refs=edition.reference
+
 
         try:
+            for cit in citations:
+                db.session.delete(cit)
+                db.session.commit()
+            for exemp in exemplars:
+                db.session.delete(exemp)
+                db.session.commit()
+            for ref in refs:
+                db.session.delete(ref)
+                db.session.commit()
 
             db.session.delete(edition)
             db.session.commit()
@@ -255,10 +268,9 @@ class Bibliothecae(db.Model):
     bibliothecae_ville = db.Column(db.Text)
     bibliothecae_pays = db.Column(db.Text)
     bibliothecae_web = db.Column(db.Text)
-    bibliothecae_weighting = db.Column(db.Text)
     exemplaire = db.relationship("Exemplaire", back_populates="bibliothecae")
 
-    def ajout_bibliotheque(id, library, adresse, ville, pays, web, weighting):
+    def ajout_bibliotheque(id, library, adresse, ville, pays, web):
 
         # On crée un commentaire
         bibliotheques = Bibliothecae(
@@ -268,7 +280,6 @@ class Bibliothecae(db.Model):
             bibliothecae_adresse=adresse,
             bibliothecae_ville=ville,
             bibliothecae_pays=pays,
-            bibliothecae_weighting=weighting,
 
         )
         print(bibliotheques)
@@ -284,7 +295,7 @@ class Bibliothecae(db.Model):
             return False, [str(erreur)]
 
     @staticmethod
-    def modif_bibliotheque(id, library, adresse, ville, pays, web, weighting):
+    def modif_bibliotheque(id, library, adresse, ville, pays, web):
 
         bibliotheques = Bibliothecae.query.get(id)
 
@@ -293,7 +304,7 @@ class Bibliothecae(db.Model):
         bibliotheques.bibliothecae_adresse = adresse,
         bibliotheques.bibliothecae_ville = ville,
         bibliotheques.bibliothecae_pays = pays,
-        bibliotheques.bibliothecae_weighting = weighting,
+
 
 
         try:
@@ -306,6 +317,24 @@ class Bibliothecae(db.Model):
             return True, bibliotheques
         except Exception as erreur:
             return False, [str(erreur)]
+
+    @staticmethod
+    def delete_bibliotheque(bibliothecae_id):
+        """
+        Supprime un commentaire dans la base de données.
+        :param comment_id_id : un identifiant d'un commentaire
+        """
+
+        bibliotheque = Bibliothecae.query.get(bibliothecae_id)
+
+        try:
+
+            db.session.delete(bibliotheque)
+            db.session.commit()
+            return True
+        except Exception as failed:
+            print(failed)
+            return False
 
 
 
@@ -410,8 +439,12 @@ class Exemplaire(db.Model):
         """
 
         exemplaire = Exemplaire.query.get(exemplaire_id)
+        provs=exemplaire.provenance
 
         try:
+            for prov in provs:
+                db.session.delete(prov)
+                db.session.commit()
 
             db.session.delete(exemplaire)
             db.session.commit()
@@ -518,6 +551,7 @@ class Bibliographie(db.Model):
 
         print(bibliographia)
         try:
+
             db.session.add(bibliographia)
             db.session.commit()
 
@@ -549,8 +583,13 @@ class Bibliographie(db.Model):
     @staticmethod
     def delete_bibliographie(bibliographie_id):
         bibliographie = Bibliographie.query.get(bibliographie_id)
+        refs=bibliographie.reference
 
         try:
+            for ref in refs:
+                db.session.delete(ref)
+                db.session.commit()
+
             db.session.delete(bibliographie)
             db.session.commit()
             return True
@@ -611,6 +650,7 @@ class Citation(db.Model):
         """
 
         citation = Citation.query.get(citation_id)
+
 
         try:
 
@@ -700,14 +740,14 @@ class Provenance(db.Model):
     provenance_restitue = db.Column(db.Text)
     provenance_mentionEntree = db.Column(db.Text)
     provenance_estampillesCachets = db.Column(db.Text)
-
+    provenance_reliure_provenance=db.Column(db.Text)
     provenance_possesseur = db.Column(db.Text)
     provenance_possesseur_formeRejetee = db.Column(db.Text)
     provenance_notes = db.Column(db.Text)
     provenance_exemplaire_id = db.Column(db.Integer, db.ForeignKey('exemplaire.exemplaire_id'))
     exemplaire = db.relationship("Exemplaire", back_populates="provenance")
 
-    def ajout_provenance(exlibris, exdono, envoi, notesManuscrites, armesPeintes, restitue, mentionEntree, estampillesCachets, possesseur, possesseur_formeRejetee, notes, exemplaire_id):
+    def ajout_provenance(exlibris, exdono, envoi, notesManuscrites, armesPeintes, restitue, mentionEntree, estampillesCachets, possesseur, possesseur_formeRejetee, notes, reliure_provenance, exemplaire_id):
          provenances=Provenance(
              provenance_exLibris = exlibris,
              provenance_exDono = exdono,
@@ -718,6 +758,7 @@ class Provenance(db.Model):
              provenance_mentionEntree = mentionEntree,
              provenance_estampillesCachets = estampillesCachets,
              provenance_possesseur = possesseur,
+             provenance_reliure_provenance=reliure_provenance,
              provenance_possesseur_formeRejetee = possesseur_formeRejetee,
              provenance_notes = notes,
              provenance_exemplaire_id = exemplaire_id
@@ -734,7 +775,7 @@ class Provenance(db.Model):
              return False, [str(erreur)]
 
     @staticmethod
-    def modif_provenance(id, exlibris, exdono, envoi, notesManuscrites, armesPeintes, restitue, mentionEntree, estampillesCachets, possesseur, possesseur_formeRejetee, notes):
+    def modif_provenance(id, exlibris, exdono, envoi, notesManuscrites, armesPeintes, restitue, mentionEntree, estampillesCachets, possesseur, possesseur_formeRejetee, reliure_provenance, notes):
 
 
         provenances = Provenance.query.get(id)
@@ -748,7 +789,7 @@ class Provenance(db.Model):
         provenances.provenance_restitue = restitue,
         provenances.provenance_mentionEntree = mentionEntree,
         provenances.provenance_estampillesCachets = estampillesCachets,
-
+        provenances.provenance_reliure_provenance=reliure_provenance,
         provenances.provenance_possesseur = possesseur,
         provenances.provenance_possesseur_formeRejetee = possesseur_formeRejetee,
         provenances.provenance_notes = notes,

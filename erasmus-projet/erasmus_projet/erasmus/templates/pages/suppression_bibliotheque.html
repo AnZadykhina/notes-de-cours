@@ -1,0 +1,35 @@
+{% extends "conteneur.html" %}
+{% block titre %}
+    | Suppression d'une bibliotheque
+{% endblock %}
+
+{% block corps %}
+<div class="mt-2 container" style="font-family: Georgia;">
+<div class="row">
+	<div class="col-md mt-3">
+        <h3>Confirmez s'il vous plaît la suppression d'une bibliotheque :</h3>
+		</div>
+</div>
+    <form class="form" method="POST" action="{{url_for('suppression_bibliotheque', bibliothecae_id=bibliotheque.bibliothecae_id)}}">
+        <div class="row">
+		<div class="col-md mt-3">
+            <span class="mr-1">
+                <strong>Nom de bibliothèque: </strong>{{bibliotheque.bibliothecae_library}}
+
+            </span>
+            </div>
+		<div class="col-md container mt-3">
+				<div class="row">
+				<form class="col-3 mr-2 " method="POST" action="{{url_for('suppression_bibliotheque', bibliothecae_id=bibliotheque.bibliothecae_id)}}">
+                    <button type="submit" class="btn btn-success btn-sm">Confirmer</button>
+				</form>
+                    <form class="col-3 ml-2" method="GET" action="{{ url_for('library', bibliothecae_id=bibliotheque.bibliothecae_id)}}">
+                        <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+				</form>
+		</div>
+			</div>
+		</div>
+    </form>
+	</div>
+
+{% endblock %}

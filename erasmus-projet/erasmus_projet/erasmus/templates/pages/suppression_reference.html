@@ -1,0 +1,41 @@
+{% extends "conteneur.html" %}
+{% block titre %}
+    | Suppression d'une référence
+{% endblock %}
+
+{% block corps %}
+<div class="mt-2 container" style="font-family: Georgia;">
+<div class="row">
+	<div class="col-md mt-3">
+        <h3>Confirmez s'il vous plaît la suppression d'une référence :</h3>
+		</div>
+</div>
+    <form class="form" method="POST" action="{{url_for('suppression_reference', reference_id=reference.reference_id)}}">
+        <div class="row">
+		<div class="col-md mt-3">
+            <span class="mr-1">
+
+                {% if reference.bibliographie.bibliographie_author %}<strong>Auteur: </strong>{{reference.bibliographie.bibliographie_author}}{% endif %}
+                {% if reference.bibliographie.bibliographie_title %}<strong>Titre: </strong>{{reference.bibliographie.bibliographie_title}}{% endif %}
+                {% if reference.reference_volume %}<strong>Volume: </strong>{{provenance.provenance_possesseur}}{% endif %}
+                {% if reference.reference_page %}<strong>Page(s): </strong>{{reference.reference_page }}{% endif %}
+                {% if reference.reference_recordNumber %}<strong>Numéro d'enregistrement: </strong>{{reference.reference_recordNumber }}{% endif %}
+
+
+            </span>
+            </div>
+		<div class="col-md container mt-3">
+				<div class="row">
+				<form class="col-3 mr-2 " method="POST" action="{{url_for('suppression_reference', reference_id=reference.reference_id)}}">
+                    <button type="submit" class="btn btn-success btn-sm">Confirmer</button>
+				</form>
+                    <form class="col-3 ml-2" method="GET" action="{{ url_for('issue', edition_id=reference.reference_edition_id)}}">
+                        <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+				</form>
+		</div>
+			</div>
+		</div>
+    </form>
+	</div>
+
+{% endblock %}

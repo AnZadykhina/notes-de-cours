@@ -59,6 +59,12 @@ def all_issues():
 
     issues = Edition.query.order_by(Edition.edition_short_title).paginate(page=page, per_page=EDITION_PAR_PAGE)
     return render_template("pages/all_issues.html", nom="Erasmus", issues=issues, page=page)
+
+@app.route("/exemplaires_par_possesseur")
+def exemplaires_par_possesseur():
+    provenances=Provenance.query.order_by(Provenance.provenance_possesseur)
+    return render_template("pages/exemplaires_par_possesseur.html", nom="Erasmus", provenances=provenances)
+
 """
 @app.route("/exemplaires")
 def all_exemplar():
@@ -193,8 +199,7 @@ def ajout_bibliotheque():
             adresse=request.form.get('adresse'),
             ville=request.form.get('ville'),
             pays=request.form.get('pays'),
-            web=request.form.get('web'),
-            weighting=request.form.get('weighting')
+            web=request.form.get('web')
         )
         if statut is True:
             flash("Enregistrement effectué", "success")
@@ -220,8 +225,7 @@ def modif_bibliotheque(bibliothecae_id):
             adresse=request.form.get('adresse'),
             ville=request.form.get('ville'),
             pays=request.form.get('pays'),
-            web=request.form.get('web'),
-            weighting=request.form.get('weighting')
+            web=request.form.get('web')
         )
         if statut is True:
             flash("Enregistrement effectué", "success")
@@ -496,6 +500,7 @@ def ajout_provenance(exemplaire_id):
             estampillesCachets=request.form.get('estampillesCachets'),
             possesseur=request.form.get('possesseur'),
             possesseur_formeRejetee=request.form.get('possesseur_formeRejetee'),
+            reliure_provenance=request.form.get('reliure_provenance'),
             notes=request.form.get('notes'),
             exemplaire_id=exemplaire_id
     )
@@ -528,6 +533,7 @@ def modif_provenance(provenance_id):
             mentionEntree=request.form.get('mentionEntree'),
             estampillesCachets=request.form.get('estampillesCachets'),
             possesseur=request.form.get('possesseur'),
+            reliure_provenance=request.form.get('reliure_provenance'),
             possesseur_formeRejetee=request.form.get('possesseur_formeRejetee'),
             notes=request.form.get('notes'),
         )
@@ -707,7 +713,7 @@ def browse():
         resultats=resultats
     )
 
-@app.route("/suppression/<int:edition_id>", methods=["GET", "POST"])
+@app.route("/suppression_edition/<int:edition_id>", methods=["GET", "POST"])
 def suppression_edition(edition_id):
     """ Route pour supprimer le commentaire
     :param comment_id : identifiant numérique du commentaire
@@ -721,13 +727,13 @@ def suppression_edition(edition_id):
     else:
         status = Edition.delete_edition(edition_id=edition_id)
         if status is True :
-            flash("Votre commentaire a été supprimé !", "success")
+            flash("Une édition a été supprimée !", "success")
             return redirect("/")
         else:
             flash("La suppression a échoué.", "danger")
             return redirect(url_for('issue', edition_id=unique_edition.edition_id))
 
-@app.route("/suppression/<int:bibliographie_id>", methods=["GET", "POST"])
+@app.route("/suppression_bibliographie/<int:bibliographie_id>", methods=["GET", "POST"])
 def suppression_bibliographie(bibliographie_id):
 
     unique_bibliographie=Bibliographie.query.get(bibliographie_id)
@@ -736,13 +742,13 @@ def suppression_bibliographie(bibliographie_id):
     else:
         status = Bibliographie.delete_bibliographie(bibliographie_id=bibliographie_id)
         if status is True:
-            flash("Votre commentaire a été supprimé !", "success")
+            flash("Une oeuvre a été supprimée !", "success")
             return redirect("/")
         else:
             flash("La suppression a échoué.", "danger")
             return redirect("/")
 
-@app.route("/suppression/<int:citation_id>")
+@app.route("/suppression_citation/<int:citation_id>", methods=["GET", "POST"])
 def suppression_citation(citation_id):
     """ Route pour supprimer le commentaire
     :param comment_id : identifiant numérique du commentaire
@@ -756,8 +762,68 @@ def suppression_citation(citation_id):
     else:
         status = Citation.delete_citation(citation_id=citation_id)
         if status is True :
-            flash("Votre commentaire a été supprimé !", "success")
+            flash("La citation a été supprimée !", "success")
+            return redirect(url_for('issue', edition_id=unique_citation.citation_edition_id))
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect(url_for('issue', edition_id=unique_citation.citation_edition_id))
+
+@app.route("/suppression_bibliotheque/<string:bibliothecae_id>", methods=["GET", "POST"])
+def suppression_bibliotheque(bibliothecae_id):
+
+    unique_bibliotheque=Bibliothecae.query.get(bibliothecae_id)
+    if request.method == "GET":
+        return render_template("pages/suppression_bibliotheque.html", bibliotheque=unique_bibliotheque)
+    else:
+        status = Bibliothecae.delete_bibliotheque(bibliothecae_id=bibliothecae_id)
+        if status is True:
+            flash("Une oeuvre a été supprimée !", "success")
             return redirect("/")
         else:
             flash("La suppression a échoué.", "danger")
-            return redirect("/")
+            return redirect(url_for('library', bibliothecae_id=unique_bibliotheque.bibliothecae_id))
+
+@app.route("/suppression_exemplaire/<int:exemplaire_id>", methods=["GET", "POST"])
+def suppression_exemplaire(exemplaire_id):
+
+    unique_exemplaire=Exemplaire.query.get(exemplaire_id)
+    if request.method == "GET":
+        return render_template("pages/suppression_exemplaire.html", exemplaire=unique_exemplaire)
+    else:
+        status = Exemplaire.delete_exemplaire(exemplaire_id=exemplaire_id)
+        if status is True:
+            flash("Un exemplaire a été supprimé !", "success")
+            return redirect(url_for('issue', edition_id=unique_exemplaire.exemplaire_edition_id))
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect(url_for('exemplar', exemplaire_id=unique_exemplaire.exemplaire_id))
+
+@app.route("/suppression_provenance/<int:provenance_id>", methods=["GET", "POST"])
+def suppression_provenance(provenance_id):
+
+    unique_provenance=Provenance.query.get(provenance_id)
+    if request.method == "GET":
+        return render_template("pages/suppression_provenance.html", provenance=unique_provenance)
+    else:
+        status = Provenance.delete_provenance(provenance_id=provenance_id)
+        if status is True:
+            flash("Une provenance a été supprimée !", "success")
+            return redirect(url_for('exemplar', exemplaire_id=unique_provenance.provenance_exemplaire_id))
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect(url_for('exemplar', exemplaire_id=unique_provenance.provenance_exemplaire_id))
+
+@app.route("/suppression_reference/<int:reference_id>", methods=["GET", "POST"])
+def suppression_reference(reference_id):
+
+    unique_reference=Reference.query.get(reference_id)
+    if request.method == "GET":
+        return render_template("pages/suppression_reference.html", reference=unique_reference)
+    else:
+        status = Reference.delete_reference(reference_id=reference_id)
+        if status is True:
+            flash("Une référence a été supprimée !", "success")
+            return redirect(url_for('issue', edition_id=unique_reference.reference_edition_id))
+        else:
+            flash("La suppression a échoué.", "danger")
+            return redirect(url_for('issue', edition_id=unique_reference.reference_edition_id))

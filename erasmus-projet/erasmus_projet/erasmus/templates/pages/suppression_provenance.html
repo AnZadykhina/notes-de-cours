@@ -1,0 +1,38 @@
+{% extends "conteneur.html" %}
+{% block titre %}
+    | Suppression d'une provenance
+{% endblock %}
+
+{% block corps %}
+<div class="mt-2 container" style="font-family: Georgia;">
+<div class="row">
+	<div class="col-md mt-3">
+        <h3>Confirmez s'il vous plaît la suppression d'une provenance :</h3>
+		</div>
+</div>
+    <form class="form" method="POST" action="{{url_for('suppression_provenance', provenance_id=provenance.provenance_id)}}">
+        <div class="row">
+		<div class="col-md mt-3">
+            <span class="mr-1">
+
+                {% if provenance.provenance_possesseur %}<strong>Ancien possesseur: </strong>{{provenance.provenance_possesseur}}{% endif %}
+                {% if provenance.provenance_possesseur_formeRejetee %}<strong>Ancien possesseur (forme(s) rejetée(s)): </strong>{{provenance.provenance_possesseur_formeRejetee}}{% endif %}
+
+
+            </span>
+            </div>
+		<div class="col-md container mt-3">
+				<div class="row">
+				<form class="col-3 mr-2 " method="POST" action="{{url_for('suppression_provenance', provenance_id=provenance.provenance_id)}}">
+                    <button type="submit" class="btn btn-success btn-sm">Confirmer</button>
+				</form>
+                    <form class="col-3 ml-2" method="GET" action="{{ url_for('exemplar', exemplaire_id=provenance.provenance_exemplaire_id)}}">
+                        <button type="submit" class="btn btn-danger btn-sm">Annuler</button>
+				</form>
+		</div>
+			</div>
+		</div>
+    </form>
+	</div>
+
+{% endblock %}

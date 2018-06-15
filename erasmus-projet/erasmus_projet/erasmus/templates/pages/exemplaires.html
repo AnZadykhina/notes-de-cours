@@ -6,6 +6,8 @@
 
 {% block corps %}
     {% if exemplar %}
+
+<div style="font-family: Georgia;">
         <table>
             <tr>
                 <h4 style=" margin-top: 3.5em; margin-bottom: 1em; background-color: RGB(135, 206, 250); text-align:left">NOTICE SOMMAIRE</h4>
@@ -102,7 +104,8 @@
                 <td><b>Recueil factice: </b></td>
                 <td> {{exemplar.exemplaire_recueilFactice}}</td>
             </tr>
-                <tr><td> <a href="{{url_for('modif_exemplaire', exemplaire_id = exemplar.exemplaire_id)}}">Modifier</a></td></tr>
+                <tr><td> <a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_exemplaire', exemplaire_id = exemplar.exemplaire_id)}}" role="button">Modifier</a></td>
+                <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('suppression_exemplaire', exemplaire_id = exemplar.exemplaire_id) }}" role="button">Supprimer</a></td></tr>
 
             </table>
         <table>
@@ -121,16 +124,16 @@
             <tr>
                 <td><b>Notes sur provenance: </b></td>
                 <td>{{provenance.provenance_notes}}</td>
-            </tr>
-            <tr><td><a href="{{url_for('modif_provenance', provenance_id=provenance.provenance_id)}}">Modifier</a></td></tr>
+            <td><a class="btn btn-outline-primary btn-sm" href="{{url_for('modif_provenance', provenance_id=provenance.provenance_id)}}" role="button">Modifier</a></td>
+            <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('suppression_provenance', provenance_id=provenance.provenance_id) }}" role="button">Supprimer</a></td></tr>
             {% endfor %}
         </table>
 
-    <p><a href="{{url_for('ajout_provenance', exemplaire_id = exemplar.exemplaire_id)}}">Ajout provenance</a></p>
+    <p><a class="btn btn-outline-info btn-sm" href="{{url_for('ajout_provenance', exemplaire_id = exemplar.exemplaire_id)}}">Ajout provenance</a></p>
     {% else %}
         <p>La base de données est en cours de constitution</p>
     {% endif %}
 
 
-    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p></div>
 {% endblock %}

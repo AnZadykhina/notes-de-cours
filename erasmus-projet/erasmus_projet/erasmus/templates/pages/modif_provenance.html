@@ -4,11 +4,11 @@
 
 {% block corps %}
 
-<h1>Editer</h1>
+<h1 style="font-family: Georgia;">Editer</h1>
 
-<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une bibliothèque.</p>
+<p style="font-family: Georgia;">Complétez le formulaire et cliquez sur "Contribuer" pour modifier les données sur une provenance.</p>
 
-<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_provenance", provenance_id=provenance.provenance_id)}}">
+<form class="form" method="POST" class="col-8 col-sm-8" action="{{url_for("modif_provenance", provenance_id=provenance.provenance_id)}}" style="font-family: Georgia;">
 
 <div class="form-group row">
     <label for="possesseur" class="col-sm-2 col-form-label">Ancien possesseur</label>

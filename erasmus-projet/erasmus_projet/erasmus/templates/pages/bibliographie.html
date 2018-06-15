@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block corps %}
+<div style="font-family: Georgia;">
     {% if bibliographie %}
         <table>
             <tr>
@@ -56,5 +57,5 @@
     {% else %}
         <p>La base de données est en cours de constitution</p>
     {% endif %}
-    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p></div>
 {% endblock %}

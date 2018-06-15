@@ -4,9 +4,9 @@
 
 {% block corps %}
 
-<h1>Editer</h1>
-<p>Complétez le formulaire et cliquez sur "Contribuer" pour modifier l'édition.</p>
-<form class="form" method="POST" action="{{url_for('modif_edition', edition_id=edition.edition_id)}}">
+<h1 style="font-family: Georgia;">Editer</h1>
+<p style="font-family: Georgia;">Complétez le formulaire et cliquez sur "Contribuer" pour modifier l'édition.</p>
+<form class="form" method="POST" action="{{url_for('modif_edition', edition_id=edition.edition_id)}}" style="font-family: Georgia;">
     <div class="form-group row">
     <label for="sn" class="col-sm-2 col-form-label">Numéro dans la base</label>
     <div class="col-sm-10">

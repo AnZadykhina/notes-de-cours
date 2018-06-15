@@ -3,17 +3,38 @@
 
 {%endblock%}
 {% block corps %}
-<h1>Bienvenue !</h1>
-<div class="row">
-    <div class="col-6 col-sm-6">
-        <a href="auteurs"><img src="{{url_for("static", filename="images/auteurs.png")}}" width="250"
-        height="100" border="0" alt="auteurs"></a>
+<h1 style="font-family: Georgia; font-size:300%; padding: 25px; color: rgb(0, 0, 139);">La réception d’Érasme en France au XVIe siècle</h1>
+<div class="row" style="font-family: Georgia;">
+    <div class="col-6 col-sm-6" style="padding: 45px;">
+        <img src="{{url_for("static", filename="images/erasmus1.jpeg")}}" width="500"
+        height="650" border="0" alt="Erasmus Desiderius">
     </div>
+
     <div class="col-6 col-sm-6">
-        <a href="bibliotheques"><img src="{{url_for("static", filename="images/bibliotheque.png")}}" width="300"
-        height="100" border="0" alt="bibliotheques"></a>
+       <p style=" top: 50%; left: 50%; position: absolute; margin-top: -225px; margin-left: -225px; font-size:200%;">Il s’agit ici de recenser l’ensemble des éditions érasmiennes produites en Europe au XVIe siècle, en mettant l’accent sur les éditions réalisées en France et sur les exemplaires qui portent la trace d’un possesseur français (reliure, provenance, annotations…).</p>
+
     </div>
+
 </div>
+<p style="text-align:right;"><a class="btn btn-outline-dark btn-lg" role="button" href="editions">Éditions</a> <a class="btn btn-outline-dark btn-lg" role="button" href="exemplaires_par_possesseur">Possesseurs</a> </p>
+<p style="text-align:right;"><a class="btn btn-outline-dark btn-sm" role="button" href="bibliotheques">Bibliothèques</a> <a class="btn btn-outline-dark btn-sm" role="button" href="bibliographies">Bibliographie</a> </p>
+<div class="row" style="font-family: Georgia;">
+    <div class="col-4 col-sm-4">
+    <img src="{{url_for("static", filename="images/enc.jpeg")}}" width="300"
+        height="300" border="100" alt="ENC">
+        </div>
+     <div class="col-4 col-sm-4" style="padding: 65px;">
+    <img src="{{url_for("static", filename="images/iuf.png")}}" width="300"
+        height="120" border="100" alt="IUF">
+        </div>
+     <div class="col-4 col-sm-4" style="padding: 45px;">
+    <img src="{{url_for("static", filename="images/centre_jean_mabillon.png")}}" width="300"
+        height="150" border="100" alt="Centre Jean Mabillon">
+        </div>
+</div>
+
+<!-- <a href="bibliotheques"><img src="{{url_for("static", filename="images/bibliotheque.png")}}" width="300"
+        height="100" border="0" alt="bibliotheques"></a>
 <div class="row">
     <div class="col-6 col-sm-6">
         <a href="editions"><img src="{{url_for("static", filename="images/editions.png")}}" width="250"
@@ -23,5 +44,5 @@
         <a href="bibliographies"><img src="{{url_for("static", filename="images/exemplaires.png")}}" width="300"
         height="100" border="0" alt="exemplaires"></a>
     </div>
-</div>
+</div>-->
 {% endblock %}

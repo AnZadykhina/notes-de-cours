@@ -2,6 +2,7 @@
 {% block afternav %}
 {%endblock%}
 {% block corps %}
+<div style="font-family: Georgia;">
 <h1>Toutes les bibliothèques </h1>
     {% if libraries %}
         <ul>
@@ -38,6 +39,6 @@
       </ul>
     </nav>
 
-<p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+    <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p></div>
 
 {% endblock %}
